@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import swiper, { Swiper } from 'swiper/bundle';
 
+
 @Component({
   selector: 'app-swiper',
   templateUrl: './swiper.component.html',
@@ -18,7 +19,9 @@ export class SwiperComponent implements OnInit , AfterViewInit {
     'assets/images/3.jpg',
   ];
 
-  constructor() { }
+  constructor() {
+
+  }
 
   ngOnInit(): void {
   }
