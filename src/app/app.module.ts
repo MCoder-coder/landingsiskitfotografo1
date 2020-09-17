@@ -11,6 +11,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { HeaderComponent } from './header/header.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ContactComponent } from './contact/contact.component';
+import { EventsComponent } from './events/events.component';
+import { SlideComponent } from './slide/slide.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     NavbarComponent,
     GalleryComponent,
     HeaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ContactComponent,
+    EventsComponent,
+    SlideComponent
   ],
   imports: [
     BrowserModule,
