@@ -14,9 +14,11 @@ export class SwiperComponent implements OnInit , AfterViewInit {
 
 
   images: string[] = [
-    'assets/images/1.jpg',
+    'assets/images/1.jpeg',
     'assets/images/2.jpg',
-    'assets/images/3.jpg',
+
+    'assets/images/4.jpg',
+    'assets/images/5.jpg',
   ];
 
   constructor() {
@@ -28,21 +30,22 @@ export class SwiperComponent implements OnInit , AfterViewInit {
 
   ngAfterViewInit() {
     this.mySwiper = new Swiper('.swiper-container', {
+
       loop: true,
-       // If we need pagination
-       speed: 600,
-      parallax: true,
-  pagination: {
-    el: '.swiper-pagination',
-  },
 
-  // Navigation arrows
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
+      autoplay: {
+        delay: 3500,
+        disableOnInteraction: false,
+      },
 
-
+      pagination: {
+        el: '.swiper-pagination',
+      },
+      // Navigation arrows
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
     });
   }
 
