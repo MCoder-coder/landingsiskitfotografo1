@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Input,
+  Output,
+  EventEmitter} from '@angular/core';
 
 import {Photo} from './../../../core/models/photo.model';
 
@@ -9,6 +11,8 @@ import {Photo} from './../../../core/models/photo.model';
 })
 export class GalleryComponent implements OnInit {
 
+  @Input() photo: Photo;
+  @Output() photoClicked: EventEmitter<any> = new EventEmitter();
 
   images: Photo[] = [
 
