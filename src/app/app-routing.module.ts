@@ -1,40 +1,50 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule  , PreloadAllModules} from '@angular/router';
 
-import {HomeComponent} from './home/home.component';
-import {GalleryComponent} from './gallery/gallery.component';
-import {FooterComponent} from './footer/footer.component';
+
+
+import { LayoutComponent } from './layout/layout.component';
+
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {ContactComponent} from './contact/contact.component';
-import {EventsComponent} from './events/events.component';
+import {ContactComponent} from './contact/components/contact/contact.component';
+
 
 const routes: Routes = [
   {
-    path: 'home',
-    component: HomeComponent
-  },
-  {
-    path: 'eventos',
-    component: EventsComponent
-  },
-  {
-    path: 'contacto',
-    component: ContactComponent
-  },
-  {
-    path: 'footer',
-    component: FooterComponent
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: '/home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: 'eventos',
+        loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
+      },
+      {
+        path: 'contact',
+      //  canActivate: [AdminGuard],
+        loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
+      },
+
+    ]
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    loadChildren: () => import('./page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent)
   }
-
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{
+    preloadingStrategy : PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
