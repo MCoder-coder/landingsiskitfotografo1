@@ -50,7 +50,7 @@ export class GalleryComponent implements OnInit {
   }
 
   clickImage(id:number){
-    console.log('product');
+    console.log('eventos');
     console.log(id);
   }
 
