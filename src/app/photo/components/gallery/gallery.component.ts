@@ -1,6 +1,7 @@
 import { Component, OnInit , Input,
   Output,
   EventEmitter} from '@angular/core';
+  import { Router } from '@angular/router';
 
 import {Photo} from './../../../core/models/photo.model';
 
@@ -44,7 +45,7 @@ export class GalleryComponent implements OnInit {
 
 
   ];
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -52,6 +53,13 @@ export class GalleryComponent implements OnInit {
   clickImage(id:number){
     console.log('eventos');
     console.log(id);
+    this.router.navigate([':id']);
   }
+  navigate(){
+    //do your any operations
+    this.router.navigate(['eventos']);
+    //also you can pass like this,
+     //this.router.navigateByURL(['eventos']);
+    }
 
 }

@@ -10,7 +10,7 @@
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-6 mt-3" *ngFor="let item of images">
-            <div class="card card-block">
+            <div class="card card-block" [routerLink]="['/eventos', item.id]">
 
                 <!-- <img [src]="item" alt="Photo of sunset"> -->
                 <img [src]="item" alt="Photo of sunset">
