@@ -10,14 +10,14 @@ import {Photo} from './../../../core/models/photo.model';
 })
 export class PhotoDetailComponent implements OnInit {
 
-  product: Photo;
+  photo: Photo;
 
   constructor(private route: ActivatedRoute, private photoService: PhotoService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       const id = params.id;
-      this.product = this.photoService.getImages(id);
+      this.photo = this.photoService.getImages(id);
     });
   }
 

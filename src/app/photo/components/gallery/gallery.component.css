@@ -18,13 +18,14 @@ div [class^="col-"] {
     font-size: 15px;
     transition: 1s;
     cursor: pointer;
+    text-align: center;
 }
 
 .card-title i {
     font-size: 15px;
     transition: 1s;
     cursor: pointer;
-    color: #ffa710
+    color: #ffa710;
 }
 
 .card-title i:hover {
@@ -39,6 +40,7 @@ div [class^="col-"] {
 
 .card-text {
     height: 80px;
+    margin: auto;
 }
 
 .card::before,
