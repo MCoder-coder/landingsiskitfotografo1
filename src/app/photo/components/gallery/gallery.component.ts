@@ -30,8 +30,8 @@ export class GalleryComponent implements OnInit {
 
   fetchProducts(){
     this.photoService.getAllPotos()
-    .subscribe(images => {
-      this.images = images;
+    .subscribe(image => {
+      this.images = image;
     } );
   }
 
