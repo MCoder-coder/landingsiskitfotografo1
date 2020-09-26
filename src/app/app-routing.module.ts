@@ -7,6 +7,7 @@ import { LayoutComponent } from './layout/layout.component';
 
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ContactComponent} from './contact/components/contact/contact.component';
+import { LoginComponent } from './login/components/login.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,10 @@ const routes: Routes = [
       //  canActivate: [AdminGuard],
         loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
+      {
+        path: 'login',
+       loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+      }
 
     ]
   },

@@ -69,7 +69,8 @@
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "landingsiskit:build:production"
+                            "browserTarget": "landingsiskit:build:production",
+                            "proxyConfig": "./proxy.conf.json"
                         }
                     }
                 },

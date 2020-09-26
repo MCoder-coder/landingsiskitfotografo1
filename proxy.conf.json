@@ -1,0 +1,10 @@
+{
+    "/api/*": {
+        "target": "https://www.juanschtrefotografo.com/schapi/api/",
+        "secure": false,
+        "pathRewrite": {
+            "^/api": ""
+        },
+        "changeOrigin": true
+    }
+}
