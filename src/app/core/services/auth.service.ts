@@ -6,8 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   //variables
-  authUrl = '/api/login';
-  apiUrl = '/schapi/api';
+  authUrl = 'apidemo/schapi/api/login';
+  apiUrl = 'apidemo/schapi/api/login';
   options: any;
 
   /**

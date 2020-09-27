@@ -65,12 +65,13 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "landingsiskit:build"
+                        "browserTarget": "landingsiskit:build",
+                        "proxyConfig": "./proxy.conf.json"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "landingsiskit:build:production",
-                            "proxyConfig": "./proxy.conf.json"
+                            "browserTarget": "landingsiskit:build:production"
+
                         }
                     }
                 },
