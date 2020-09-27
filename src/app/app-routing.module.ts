@@ -5,11 +5,6 @@ import { Routes, RouterModule  , PreloadAllModules} from '@angular/router';
 
 import { LayoutComponent } from './layout/layout.component';
 
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {ContactComponent} from './contact/components/contact/contact.component';
-import { LoginComponent } from './login/components/login.component';
-
-
 const routes: Routes = [
   {
     path: '',
