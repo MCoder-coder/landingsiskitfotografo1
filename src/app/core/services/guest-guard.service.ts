@@ -23,7 +23,7 @@ export class GuestGuardService {
     if (
       !localStorage.getItem('access_token')
     ) { return true; }
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/');
     return false;
   }
 }

@@ -6,8 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AuthService {
   //variables
-  authUrl = 'apidemo/schapi/api/login';
-  apiUrl = 'apidemo/schapi/api/login';
+  authUrl = '/api/login';
+  apiUrl = '/api/api';
   options: any;
 
   /**
@@ -25,22 +25,20 @@ export class AuthService {
     const options = {
       headers: new HttpHeaders({
         Accept: 'application/json',
-        'Content-Type': 'application/json',
-      }),
+        'Content-Type': 'application/json'
+      })
     };
-    return this.http.post(
-      this.authUrl,
-      {
-        grant_type: 'password',
-        client_id: '3',
-        client_secret: '1wiHTUApPgQGVrwNkchIPQuIVL8xDhkLVvKEFoUA',
-        username: e,
-        password: p,
-        scope: '',
-      },
-      options
-    );
+    return this.http.post(this.authUrl, {
+      grant_type: 'password',
+      client_id: '3',
+      client_secret: '1wiHTUApPgQGVrwNkchIPQuIVL8xDhkLVvKEFoUA',
+      username: e,
+      password: p,
+      scope: ''
+    }, options);
   }
+
+
 
   /**
    * Revoke the authenticated user token
