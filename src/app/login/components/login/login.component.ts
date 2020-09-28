@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   login(): void {
     this.loading = true;
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('access_token', res.access_token);
           this.loading = false;
           // Navigate to home page
-          this.router.navigate(['/']);
+         // this.router.navigate(['/']);
         },
         (err: any) => {
           // This error can be internal or invalid credentials

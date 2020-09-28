@@ -32,11 +32,12 @@ export class AuthService {
       grant_type: 'password',
       client_id: '3',
       client_secret: '1wiHTUApPgQGVrwNkchIPQuIVL8xDhkLVvKEFoUA',
-      username: e,
-      password: p,
+      username:  'nanod10@hotmail.com',  //e,
+      password:  'Nano786521', //p,
       scope: ''
     }, options);
   }
+
 
 
 
