@@ -12,7 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/',
+        redirectTo: '/home',
         pathMatch: 'full',
       },
       {
@@ -28,10 +28,10 @@ const routes: Routes = [
       //  canActivate: [AdminGuard],
         loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
-     // {
-        //path: 'login',
-      // loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
-      //}
+      // {
+      //   path: 'login',
+      //  loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+      // }
 
     ]
   },
