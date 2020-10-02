@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { PhotoService } from './service/photo.services';
+import { EventsService } from './service/events.services';
 import {AuthService} from './services/auth.service';
 
 @NgModule({
@@ -10,7 +10,7 @@ import {AuthService} from './services/auth.service';
     CommonModule
   ],
   providers: [
-    PhotoService,
+    EventsService,
     AuthService
   ]
 })

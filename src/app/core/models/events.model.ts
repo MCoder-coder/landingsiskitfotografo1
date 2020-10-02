@@ -1,9 +1,9 @@
-export interface Photo{
+export interface Events{
 
   id: string;
   description: string;
   fecha: string;
-  imagencartula: string;
+  imgcaratula: string;
   nombre: string;
 
 

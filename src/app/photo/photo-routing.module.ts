@@ -1,10 +1,11 @@
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 
 //import { ProductDetailComponent } from './components';
 import {GalleryComponent} from './components/gallery/gallery.component';
-import {PhotoDetailComponent} from './components/photo-detail/photo-detail.component';
+import {EventDetailComponent} from './components/events-detail/events-detail.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: PhotoDetailComponent
+    component: EventDetailComponent
   }
 ];
 

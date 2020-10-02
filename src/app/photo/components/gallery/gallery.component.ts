@@ -1,9 +1,10 @@
+import { EventsService } from './../../../core/service/events.services';
+import { Events } from './../../../core/models/events.model';
 import { Component, OnInit , Input,
   Output,
   EventEmitter} from '@angular/core';
   import { Router } from '@angular/router';
-import {PhotoService} from './../../../core/service/photo.services';
-import {Photo} from './../../../core/models/photo.model';
+
 
 @Component({
   selector: 'app-gallery',
@@ -12,14 +13,14 @@ import {Photo} from './../../../core/models/photo.model';
 })
 export class GalleryComponent implements OnInit {
 
-  @Input() photo: Photo;
-  @Output() photoClicked: EventEmitter<any> = new EventEmitter();
+  @Input() events: Events;
+  @Output() eventClicked: EventEmitter<any> = new EventEmitter();
 
-  images: Photo[] = [];
-  constructor(private photoService: PhotoService) { }
+  eventos: Events[] = [];
+  constructor(private eventService: EventsService) { }
 
   ngOnInit(): void {
-   this.fetchProducts();
+   this.fetchEvent();
   }
 
   clickImage(id:number){
@@ -28,10 +29,12 @@ export class GalleryComponent implements OnInit {
   //  this.router.navigate([':id']);
   }
 
-  fetchProducts(){
-    this.photoService.getAllPotos()
-    .subscribe(image => {
-      this.images = image;
+  fetchEvent(){
+    this.eventService.getAllEvents()
+    .subscribe(eventresponse => {
+      console.log(eventresponse)
+      this.eventos = eventresponse.data.eventos
+      //this.imagen = image;
     } );
   }
 

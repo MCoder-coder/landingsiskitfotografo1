@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 
-import {Photo} from './../../../core/models/photo.model';
+import {Events} from '../../../core/models/events.model';
 
 @Component({
   selector: 'app-events',
@@ -10,7 +10,7 @@ import {Photo} from './../../../core/models/photo.model';
 })
 export class EventsComponent implements OnInit {
 
-  images: Photo[] = [ ];
+  images: Events[] = [ ];
   constructor() { }
 
   ngOnInit(): void {

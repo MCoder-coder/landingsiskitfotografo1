@@ -1,22 +1,24 @@
 import { Injectable } from '@angular/core';
 
-import { Photo } from '../models/photo.model';
+import { Events } from '../models/events.model';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PhotoService {
+export class EventsService {
 
 
 
 
-   images: Photo[] = [];
+   images: Events[] = [];
 
   constructor(private http: HttpClient) { }
 
-  getAllPotos() {
-    return this.http.get<Photo[]>('/api/v3/eventos?page=0&per_page=10');
+  getAllEvents() {
+    return this.http.get<Events[]>('/api/v3/eventos?page=0&per_page=10');
+
   }
 
   getImages(id: string) {
