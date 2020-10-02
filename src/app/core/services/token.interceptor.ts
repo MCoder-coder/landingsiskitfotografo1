@@ -10,21 +10,34 @@ import { AuthService } from './auth.service';
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private tokenService: TokenProvider, private authService: AuthService){}
+
+
+  constructor(private tokenService: TokenProvider, private authService: AuthService){
+      console.log(tokenService);
+
+  }
 
   intercept(req: HttpRequest<any> , next: HttpHandler): Observable<HttpEvent<any>> {
 
-
-
-
     console.log('INTERCEPTOR');
-    const token = this.tokenService.getAuthToken();
+
+    const token = this.tokenService.getTokenResponse();
+
+    console.log('Interceptor: tokenService: ',this.tokenService);
+    console.log('Interceptor: tokenResponse: ', token);
+    // console.log(this.tokenService.tokenResponse.access_token);
+    // console.log(this.tokenService.getAuthToken(), 'este es el token');
+
+    /* modificacion de headers de request */
     let newHeaders = req.headers;
-    if (token) {
-      newHeaders = newHeaders.append('AUTOTOKEN', token);
+
+    newHeaders = newHeaders.append('Access-Control-Allow-Origin', '*');
+
+    if (this.tokenService.tokenResponse) {
+       newHeaders = newHeaders.append('Authorization', 'Bearer ' + token.access_token);
     }
-    const authReq = req.clone({headers: newHeaders});
-    return next.handle(authReq);
+    const nextReq = req.clone({headers: newHeaders});
+    return next.handle(nextReq);
   }
 
 

@@ -13,7 +13,8 @@ export class TokenProvider {
   authUrl = '/api/login';
   apiUrl = '/api/api';
   options: any;
-  xxx: any;
+  tokenRequest: any;
+  tokenResponse: any;
 
   constructor(private http: HttpClient) { }
 
@@ -25,7 +26,7 @@ export class TokenProvider {
           'Content-Type': 'application/json',
         }),
       };
-      this.xxx = this.http
+      this.tokenRequest = this.http
         .post(
           this.authUrl,
           {
@@ -37,23 +38,26 @@ export class TokenProvider {
           },
           options
         )
-        .subscribe(async (x) => {
-          await new Promise((resolve) => setTimeout(resolve, 3000));
+        .subscribe(async (httpResponse) => {
+
+          //httpResponse respuesta token del servidor
+          // await new Promise((resolve) => setTimeout(resolve, 3000));
           console.log('obteniendo token');
+          console.log(httpResponse);
+          // this.getAuthToken(httpResponse);
+          this.tokenResponse = httpResponse;
+          resolve(this.tokenResponse);
         });
 
-      console.log(this.xxx);
+
 
       // resolve(true);
       // return this.xxx;
     });
   }
 
-
-
-  getAuthToken(): string {
-
-    return "TOKEN-ABCDEFG";
+  getTokenResponse() {
+    return this.tokenResponse;
   }
 
 }

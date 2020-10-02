@@ -19,7 +19,7 @@ export class GalleryComponent implements OnInit {
   constructor(private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.fetchProducts();
+   this.fetchProducts();
   }
 
   clickImage(id:number){
