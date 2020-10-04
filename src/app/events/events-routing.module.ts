@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 //import { ProductDetailComponent } from './components';
-import {GalleryComponent} from './components/gallery/gallery.component';
+import {GalleryComponent} from './components/events-gallery/events-gallery.component';
 import {EventDetailComponent} from './components/events-detail/events-detail.component';
 
 

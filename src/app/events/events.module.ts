@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import {SlideComponent} from './components/slide/slide.component';
-import {GalleryComponent} from './components/gallery/gallery.component';
-import { PhotoRoutingModule } from './photo-routing.module';
-import { SharedModule } from './../shared/shared.module';
+import {GalleryComponent} from './components/events-gallery/events-gallery.component';
+import { PhotoRoutingModule } from './events-routing.module';
+import { SharedModule } from '../shared/shared.module';
 import { EventDetailComponent } from './components/events-detail/events-detail.component';
 
 @NgModule({
@@ -24,6 +24,6 @@ import { EventDetailComponent } from './components/events-detail/events-detail.c
 
   ]
 })
-export class PhotoModule {
+export class EventsModule {
 
 }

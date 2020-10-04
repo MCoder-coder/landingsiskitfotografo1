@@ -9,13 +9,13 @@
         <h2 style="font-family: 'Parisienne', cursive; font-size: 60px; text-align: center;">Eventos Destacados</h2>
     </div>
     <div class="row">
-        <div class="col-md-3 col-sm-6 mt-3" *ngFor="let item of images">
+        <div class="col-md-3 col-sm-6 mt-3" *ngFor="let item of eventos">
             <div class="card card-block" [routerLink]="['/eventos', item.id]">
 
                 <!-- <img [src]="item" alt="Photo of sunset"> -->
-                <img [src]="item" alt="Photo of sunset">
-                <h5 class="card-title mt-3 mb-3">Sierra Web Development • Owner</h5>
-                <p class="card-text">This is a company that builds websites, web apps and e-commerce solutions.</p>
+                <img src="{{ 'https://www.juanschtrefotografo.com'+ item.imgcaratula}}" alt="Photo of sunset">
+                <h5 class="card-title mt-3 mb-3">{{item.nombre}}</h5>
+                <p class="card-text">{{item.description}}</p>
             </div>
         </div>
 

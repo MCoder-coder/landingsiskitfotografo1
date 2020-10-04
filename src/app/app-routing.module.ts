@@ -21,18 +21,13 @@ const routes: Routes = [
       },
       {
         path: 'eventos',
-        loadChildren: () => import('./photo/photo.module').then(m => m.PhotoModule)
+        loadChildren: () => import('./events/events.module').then(m => m.EventsModule)
       },
       {
         path: 'contact',
       //  canActivate: [AdminGuard],
         loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
-      // {
-      //   path: 'login',
-      //  loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
-      // }
-
     ]
   },
   {
