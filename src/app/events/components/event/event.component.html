@@ -1,0 +1,7 @@
+<div class="card card-block" [routerLink]="['/evento', evento.ID]">
+    <!-- <img [src]="item" alt="Photo of sunset"> -->
+    <img src="{{ 'https://www.juanschtrefotografo.com/'+ evento.imgcaratula}}" alt="">
+    <h5 class="card-title mt-4 mb-3 ">{{evento.nombre}}</h5>
+    <p class="card-text">{{evento.description}}</p>
+    <!-- <button (click)="clickBtn()">bnt</button> -->
+</div>

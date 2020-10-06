@@ -11,17 +11,9 @@
         <h2 style="font-family: 'Parisienne', cursive; font-size: 60px; text-align: center;">Eventos </h2>
     </div>
     <div class="row">
-        <div class="col-md-3 col-sm-6 mt-3" *ngFor="let item of eventos">
-            <div class="card card-block" [routerLink]="['/eventos', item.id]">
 
-                <!-- <img [src]="item" alt="Photo of sunset"> -->
-                <img src="{{ 'https://www.juanschtrefotografo.com'+ item.imgcaratula}}" alt="">
-                <h5 class="card-title mt-4 mb-3 ">{{item.nombre}}</h5>
-                <p class="card-text">{{item.description}}</p>
-
-            </div>
-
-        </div>
+        <app-event class="col-md-3 col-sm-6 mt-3" *ngFor="let evento of eventos" (eventClicked)="clickEvent($event)" [evento]="evento">
+        </app-event>
 
     </div>
 

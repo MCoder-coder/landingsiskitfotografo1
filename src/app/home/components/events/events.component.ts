@@ -11,7 +11,7 @@ import {Events} from '../../../core/models/events.model';
 })
 export class EventsComponent implements OnInit {
 
-  eventos: Events[] = [ ];
+  eventos: Events[] = [];
 
   constructor(private eventService: EventsService) { }
 

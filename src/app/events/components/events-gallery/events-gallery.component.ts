@@ -4,6 +4,7 @@ import { retry } from 'rxjs/operators';
 import { Component, OnInit , Input,
   Output,
   EventEmitter} from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 
 
@@ -14,22 +15,23 @@ import { Component, OnInit , Input,
 })
 export class GalleryComponent implements OnInit {
 
-  @Input() events: Events;
+  @Input() evento: Events;
   @Output() eventClicked: EventEmitter<any> = new EventEmitter();
 
   eventos: Events[] = [];
 
 
-  constructor(private eventService: EventsService) { }
+  constructor(private route: ActivatedRoute,private eventService: EventsService) { }
 
   ngOnInit(): void {
    this.fetchEvent();
+
   }
 
-  clickImage(id:number){
-    console.log('eventos');
+  clickEvent(id: number) {
+    console.log('clickEvent en event-gallery.ts');
     console.log(id);
-  //  this.router.navigate([':id']);
+    this.eventClicked.emit(this.evento.ID);
   }
 
   // tslint:disable-next-line: typedef

@@ -7,12 +7,14 @@ import {GalleryComponent} from './components/events-gallery/events-gallery.compo
 import { PhotoRoutingModule } from './events-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { EventDetailComponent } from './components/events-detail/events-detail.component';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
   declarations: [
     SlideComponent,
     GalleryComponent,
-    EventDetailComponent
+    EventDetailComponent,
+    EventComponent
 
   ],
   imports: [

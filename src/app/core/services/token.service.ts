@@ -22,10 +22,10 @@ export class TokenProvider {
     return new Promise((resolve, reject) => {
       const options = {
         headers: new HttpHeaders({
-          //Accept: 'application/json',
-          //'Content-Type': 'application/json; charset=utf-8',
-          Accept: 'application/json;charset=utf-8',
-          'Accept-Charset':'charset=utf-8'
+          Accept: 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
+          // Accept: 'application/json;charset=utf-8',
+          //'Accept-Charset':'charset=utf-8'
         }),
       };
       this.tokenRequest = this.http
