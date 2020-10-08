@@ -14,7 +14,7 @@ import { pipe } from 'rxjs/internal/util/pipe';
 })
 export class EventDetailComponent implements OnInit {
 
-  //evento: Observable<Events>;
+   //evento: Observable<Events>;
 
 
   evento: Events;
@@ -25,19 +25,15 @@ export class EventDetailComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.snapshot.paramMap.get('id');
-    let id = +this.route.snapshot.paramMap.get('id');
-    this.eventService.getEventDetail(id)
-    console.log(id)
 
-    this.route.params.subscribe((params: Params) => {
+     this.route.params.subscribe((params: Params) => {
       const ID = params.ID;
-      let id = +this.route.snapshot.paramMap.get('id');
-      this.eventService.getEventDetail(ID)
-      console.log("ID DEL EVENTO: ", ID);
-      this.fetchEvents(id);
-      console.log(this.fetchEvents(id), 'id OnInit')
-    });
+       let id = +this.route.snapshot.paramMap.get('id');
+      this.eventService.getEventDetail(id)
+       console.log("ID DEL EVENTO: ", id);
+       this.fetchEvents(id);
+       console.log(this.fetchEvents(ID), 'id OnInit')
+     });
     //  this.evento = this.route.params
     //   .pipe(
     //     switchMap((params: Params) => {
@@ -46,10 +42,10 @@ export class EventDetailComponent implements OnInit {
     //       return this.eventService.getEventDetail(params.id);
     //     })
     //   );
-    //  let id = +this.route.snapshot.paramMap.get('id');
-    //  this.eventService.getEventDetail(id)
+      let id = +this.route.snapshot.paramMap.get('id');
+      this.eventService.getEventDetail(id)
 
-    //  console.log(id, 'le id')
+      console.log(id, 'le id')
   }
 
 
@@ -64,11 +60,11 @@ export class EventDetailComponent implements OnInit {
       });
 
 
-    //  }
+   }
 
 
 
   }
 
 
-}
+
