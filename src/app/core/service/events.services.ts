@@ -21,7 +21,7 @@ export class EventsService {
   constructor(private http: HttpClient) { }
 
   getAllEvents() {
-    return this.http.get('/api/v3/eventos?page=0&per_page=16')
+    return this.http.get('/api/v3/eventos?page=0&per_page=16&order=fecha:DESC')
     //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
     .pipe(
       map((data: Events[]) => {
@@ -35,7 +35,7 @@ export class EventsService {
   getImages() {
   //  return this.events.find(item => id === item.id);
     //www.juanschtrefotografo.com.ar/schapi/api/v3/fotos?eventos_id=28&page=0&per_page=20
-    return this.http.get(`/api/v3/eventos?page=0&per_page=16/`);
+    return this.http.get(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`);
   }
 
   getEventDetail(ID: number){

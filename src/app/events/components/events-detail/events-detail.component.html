@@ -1,54 +1,24 @@
 <app-slide></app-slide>
-
-
-<div *ngIf="evento ">
-    <div>
-        <img [src]="" alt=" ">
+<!-- Photo Grid -->
+<div class="row">
+    <div class="column">
+        <ng-container *ngFor="let foto of fotos; let i = index">
+          <img *ngIf="i % 4 === 0" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+        </ng-container> 
+      </div>
+      <div class="column">
+        <ng-container *ngFor="let foto of fotos; let i = index">
+            <img *ngIf="i % 4 === 1" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+        </ng-container> 
     </div>
-    <div>
-        <ul>
-            <li>Nombre: {{ evento.nombre }}</li>
-
-        </ul>
-        <p>{{ evento.descripcion}}</p>
+    <div class="column">
+        <ng-container *ngFor="let foto of fotos; let i = index">
+            <img *ngIf="i % 4 === 2" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+        </ng-container> 
     </div>
-    <!-- Photo Grid -->
-    <!-- <div class="row ">
-    <div class="column ">
-        <img [src]="photo.image " alt=" " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img src="https://www.w3schools.com/w3images/underwater.jpg " style="width:100% ">
+    <div class="column">
+        <ng-container *ngFor="let foto of fotos; let i = index">
+            <img *ngIf="i % 4 === 3" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+        </ng-container>
     </div>
-    <div class="column ">
-        <img [src]="photo.image " alt=" " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img src="https://www.w3schools.com/w3images/rocks.jpg " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-    </div>
-    <div class="column ">
-        <img [src]="photo.image " alt=" " style="width:100% ">
-        <img src="https://www.w3schools.com/w3images/underwater.jpg " style="width:100% ">
-
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-    </div>
-    <div class="column ">
-        <img [src]="photo.image " alt=" " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img src="https://www.w3schools.com/w3images/underwater.jpg " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-        <img [src]="photo.image " style="width:100% ">
-
-    </div> -->
+</div>
