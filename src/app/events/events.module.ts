@@ -13,17 +13,15 @@ import { EventComponent } from './components/event/event.component';
   declarations: [
     SlideComponent,
     GalleryComponent,
+    EventComponent,
     EventDetailComponent,
-    EventComponent
+
 
   ],
   imports: [
     CommonModule,
     SharedModule,
     PhotoRoutingModule,
-
-
-
   ]
 })
 export class EventsModule {

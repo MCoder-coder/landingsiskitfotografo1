@@ -1,7 +1,7 @@
 export interface Events{
 
-  ID: string;
-  description: string;
+  ID: number;
+  descripcion: string;
   fecha: string;
   imgcaratula: string;
   nombre: string;

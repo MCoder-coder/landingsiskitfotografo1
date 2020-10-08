@@ -7,7 +7,7 @@ import { map , retry , catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 
 import { from, Observable, throwError } from 'rxjs';
-
+import { environment } from "./../../../environments/environment.prod";
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +22,7 @@ export class EventsService {
 
   getAllEvents() {
     return this.http.get('/api/v3/eventos?page=0&per_page=16')
+    //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
     .pipe(
       map((data: Events[]) => {
         return data;
@@ -37,8 +38,8 @@ export class EventsService {
     return this.http.get(`/api/v3/eventos?page=0&per_page=16/`);
   }
 
-  getEventDetail(id: string){
+  getEventDetail(ID: number){
+    return this.http.get<Events>(`/api/v3/fotos?eventos_id=${ID}&page=0&per_page=20`)
 
-    return this.http.get<Events>(`/api/v3/fotos?eventos_id=${id}&page=0&per_page=20`);
   }
 }

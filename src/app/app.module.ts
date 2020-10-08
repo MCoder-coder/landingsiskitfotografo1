@@ -27,12 +27,12 @@ export function servicesOnRun(token: TokenProvider) {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+
     FormsModule,
     SharedModule,
     CoreModule,
-    HttpClientModule
-
+    HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     {

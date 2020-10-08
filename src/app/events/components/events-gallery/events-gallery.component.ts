@@ -15,13 +15,13 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class GalleryComponent implements OnInit {
 
-  @Input() evento: Events;
-  @Output() eventClicked: EventEmitter<any> = new EventEmitter();
+  // @Input() evento: Events;
+  // @Output() eventClicked: EventEmitter<any> = new EventEmitter();
 
   eventos: Events[] = [];
 
 
-  constructor(private route: ActivatedRoute,private eventService: EventsService) { }
+  constructor(private eventService: EventsService) { }
 
   ngOnInit(): void {
    this.fetchEvent();
@@ -31,7 +31,7 @@ export class GalleryComponent implements OnInit {
   clickEvent(id: number) {
     console.log('clickEvent en event-gallery.ts');
     console.log(id);
-    this.eventClicked.emit(this.evento.ID);
+   //this.eventClicked.emit(this.evento.ID);
   }
 
   // tslint:disable-next-line: typedef
