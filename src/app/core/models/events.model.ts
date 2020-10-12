@@ -1,4 +1,4 @@
-export interface Events{
+export interface Events extends Array<Events>{
 
   ID: number;
   descripcion: string;

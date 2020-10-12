@@ -1,6 +1,6 @@
 <app-slide></app-slide>
 
-<div class="container mt-5 pb-5" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+<div class="container mt-5 pb-5" >
     <!--   <div class="card card-block mb-2">
       <h4 class="card-title">Card 1</h4>
       <p class="card-text">Welcom to bootstrap card styles</p>
@@ -10,14 +10,15 @@
     <div>
         <h2 style="font-family: 'Parisienne', cursive; font-size: 60px; text-align: center;">Eventos </h2>
     </div>
-    <div class="row">
+    <div class="row eventos-page" infiniteScroll [infiniteScrollDistance]="2"   (scrolled)="onScroll()">
 
-        <app-event class=" col-md-3 col-sm-6 mt-3" *ngFor="let evento of eventos" (eventClicked)="clickEvent($event)" [evento]="evento">
+        <app-event class=" col-md-3 col-sm-6 mt-3" *ngFor="let evento of addEvents" (eventClicked)="clickEvent($event)" [evento]="evento">
 
         </app-event>
+        
 
     </div>
-
+<!-- 
     <div class="container" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
         <h1 style="text-align: center">INFINITE SCROLL EXAMPLE</h1>
         <table class="table">
@@ -35,4 +36,4 @@
             </tbody>
         </table>
     </div>
-</div>
+</div> -->

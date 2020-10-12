@@ -13,12 +13,13 @@ import { environment } from "./../../../environments/environment.prod";
 })
 export class EventsService {
 
+  // propiedades / variables
+  events: Events[] = [];
 
-
-
-   events: Events[] = [];
 
   constructor(private http: HttpClient) { }
+
+
 
   getAllEvents() {
     return this.http.get(`/api/v3/eventos?page=0&per_page=16&order=fecha:DESC`)
@@ -44,10 +45,13 @@ export class EventsService {
     return this.http.get<Events>(`/api/v3/fotos?eventos_id=${ID}&page=0&per_page=20`);
   }
 
+  // getEventPage
+  // Refactorizar nombre a getEventPage
   getEventScroll(page: number ){
     return this.http.get(`/api/v3/eventos?page=${page}&per_page=16&order=fecha:DESC`)
     //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
-    .pipe(
+    
+    /*.pipe(
       map((data: Events[]) => {
         retry(3);
         return data;
@@ -55,6 +59,7 @@ export class EventsService {
         return throwError( 'Algo salio mal!' );
       })
    );
+      */
   }
 
 //   randomPhotos(page: number = 1) {

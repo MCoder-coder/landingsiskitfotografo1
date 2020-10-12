@@ -34,23 +34,28 @@ export class GalleryComponent implements OnInit {
   totalPage = 0;
   sum = 100;
   private linesToWrite: Array<string>;
-  private finishPage = 35;
+  
+  
+  
+  // refactorizar nombre variable a: eventosArray
+  addEvents: Array<Events>;
+  private finishPage = 35; // corta el loop aqui 
   private actualPage: number;
+  private nextPage: number;
+
+
 
   constructor(private eventService: EventsService) {
-    this.linesToWrite = new Array<string>();
-    this.add40lines();
-    this.page = 1;
-    this.actualPage = 1;
-
-
+    this.addEvents  = new Array<Events>();
+    //this.add40lines();
+    this.page       = 0;
+    this.actualPage =  0;
+    this.nextPage   = 1;
   }
 
   ngOnInit(): void {
-
-       this.loadInitEvents();
-
-
+      let firstPage = 0;
+      this.loadInitEvents(firstPage);
   }
 
   clickEvent(id: number) {
@@ -70,33 +75,65 @@ export class GalleryComponent implements OnInit {
 
   }
 
+  // Llena el array de eventos
+  // 
   add40lines() {
-    const line = 'Another new line -- ';
-    let lineCounter = this.linesToWrite.length;
-    for (let i = 0; i < 40; i ++) {
-      this.linesToWrite.push(line + lineCounter);
+    const line = this.actualPage;
+    let lineCounter = this.addEvents.length;
+    console.log("(addEvents/eventosArray): lenght: ", lineCounter);
+    for (let i = 0; i < 40 ; i ++) {
+      //this.addEvents.push(line + lineCounter);
       lineCounter ++;
     }
   }
 
-  loadInitEvents() {
-    this.eventService.getEventScroll(this.page)
+  // Refactorizar nombre a: getEventosPage
+  loadInitEvents(page: number ) {
+    this.eventService.getEventScroll(page)
       .subscribe((eventosresponse: any) => {
-        this.eventos = eventosresponse.data.eventos;
-        console.log(this.page);
+
+        console.log("eventosresponse.data.eventos: ",eventosresponse.data.eventos);
+        console.log("this.addEvents: ",this.addEvents);
+        /*
+        for (let eventos_index = 0; eventos_index < eventosresponse.data.eventos.length; eventos_index++) {
+          const element = eventosresponse.data.eventos[eventos_index];
+          this.addEvents.push(element);
+        }
+        */
+        if (eventosresponse.data.eventos.length > 0) {
+          
+        this.addEvents.push(...eventosresponse.data.eventos);
+
+        this.actualPage = page;
+        console.log("Setea this.actualPage: ", this.actualPage);
+        }
+
+
+
       });
 
+      //this.add40lines();
   }
 
 
   onScroll() {
-
     console.log('scrolled down!!');
-    if (this.actualPage < this.finishPage) {
-        this.add40lines();
-        this.actualPage ++;
-        console.log(this.page);
-    }
+    //return ;
+
+     // if (this.actualPage < this.finishPage) {
+          //this.add40lines();
+
+          this.actualPage;
+          console.log("actualPage: ", this.actualPage);
+          
+          this.nextPage = this.actualPage + 1;
+          console.log("nextPage: ", this.nextPage);
+
+          console.log("pide pagina siguiente: loadInitEvents() ");
+          this.loadInitEvents(this.nextPage); // refactorizar a: getEventosPage
+
+      //}
+    
 
 
 
