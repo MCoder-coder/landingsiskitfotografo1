@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import {HeaderComponent} from './components/header/header.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,14 @@ import {FooterComponent} from './components/footer/footer.component';
   exports: [
     HeaderComponent,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    InfiniteScrollModule,
 
   ],
   imports: [
     CommonModule,
     RouterModule,
-
+    InfiniteScrollModule,
 
   ]
 })

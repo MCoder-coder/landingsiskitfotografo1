@@ -26,6 +26,7 @@
         "bootstrap": "^5.0.0-alpha1",
         "jquery": "^3.5.1",
         "ngx-bootstrap": "^6.1.0",
+        "ngx-infinite-scroll": "^9.1.0",
         "popper.js": "^1.16.1",
         "rxjs": "~6.6.0",
         "swiper": "^6.2.0",

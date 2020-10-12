@@ -11,6 +11,7 @@ import { APP_INITIALIZER } from '@angular/core';
 import { TokenProvider } from './core/services/token.service';
 
 
+import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 import { TokenInterceptor } from "./core/services/token.interceptor";
 
@@ -27,7 +28,7 @@ export function servicesOnRun(token: TokenProvider) {
   ],
   imports: [
     BrowserModule,
-
+    InfiniteScrollModule,
     FormsModule,
     SharedModule,
     CoreModule,

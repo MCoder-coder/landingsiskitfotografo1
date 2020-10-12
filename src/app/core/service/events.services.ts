@@ -21,7 +21,7 @@ export class EventsService {
   constructor(private http: HttpClient) { }
 
   getAllEvents() {
-    return this.http.get('/api/v3/eventos?page=0&per_page=16&order=fecha:DESC')
+    return this.http.get(`/api/v3/eventos?page=0&per_page=16&order=fecha:DESC`)
     //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
     .pipe(
       map((data: Events[]) => {
@@ -29,8 +29,10 @@ export class EventsService {
       }), catchError( error => {
         return throwError( 'Something went wrong!' );
       })
-   )
+   );
   }
+
+
 
   getImages() {
   //  return this.events.find(item => id === item.id);
@@ -39,7 +41,26 @@ export class EventsService {
   }
 
   getEventDetail(ID: number){
-    return this.http.get<Events>(`/api/v3/fotos?eventos_id=${ID}&page=0&per_page=20`)
-
+    return this.http.get<Events>(`/api/v3/fotos?eventos_id=${ID}&page=0&per_page=20`);
   }
+
+  getEventScroll(page: number ){
+    return this.http.get(`/api/v3/eventos?page=${page}&per_page=16&order=fecha:DESC`)
+    //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
+    .pipe(
+      map((data: Events[]) => {
+        retry(3);
+        return data;
+      }), catchError( error => {
+        return throwError( 'Algo salio mal!' );
+      })
+   );
+  }
+
+//   randomPhotos(page: number = 1) {
+//     return this.http.get(`https://api.pexels.com/v1/curated?per_page=15&page=${page}`)
+//   }
+// searchPhotos(query: string, page: number = 1) {
+//     return this.http.get(`https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=15&page=${page}`)
+//   }
 }
