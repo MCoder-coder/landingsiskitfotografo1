@@ -30,7 +30,7 @@ export class EventsImportantComponent implements OnInit {
   fetchEventsImportants(){
     this.eventService.getEventImportantService()
     .subscribe( (eventosresponse: any) => {
-      this.eventos = eventosresponse.data.eventos;
+      this.eventos = eventosresponse;
 
     });
 

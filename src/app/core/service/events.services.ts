@@ -37,7 +37,15 @@ export class EventsService {
 
 
   getEventImportantService() {
-    return this.http.get(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`);
+    return this.http.get<Events>(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`)
+    .pipe(
+      map((eventosresponse: any) => {
+        //eventosresponse.data.eventos as Events[]
+        return eventosresponse.data.eventos as Events[];
+      }), retry(3), catchError(error => {
+        return throwError('ALgo salio mal!!');
+      })
+    );
   }
 
   getEventDetailService(ID: number, page: number) {
@@ -47,7 +55,7 @@ export class EventsService {
 
         //eventosresponse.data.eventos as Events[]
         return eventosresponse.data.fotos as Fotos[];
-      }),retry(3), catchError(error => {
+      }), retry(3), catchError(error => {
         return throwError('ALgo salio mal!!');
       })
     );
