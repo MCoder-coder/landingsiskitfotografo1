@@ -10,12 +10,12 @@
     </div>
     <div class="row">
         <div class="col-md-3 col-sm-6 mt-3" *ngFor="let item of eventos">
-            <div class="card card-block" [routerLink]="['/eventos', item.id]">
+            <div class="card card-block" [routerLink]="['/eventos', item.ID]">
 
                 <!-- <img [src]="item" alt="Photo of sunset"> -->
                 <img src="{{ 'https://www.juanschtrefotografo.com'+ item.imgcaratula}}" alt="Photo of sunset">
                 <h5 class="card-title mt-3 mb-3">{{item.nombre}}</h5>
-                <p class="card-text">{{item.description}}</p>
+                <p class="card-text">{{item.descripcion}}</p>
             </div>
         </div>
 

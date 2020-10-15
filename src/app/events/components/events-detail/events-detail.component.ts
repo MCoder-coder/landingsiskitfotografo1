@@ -16,68 +16,69 @@ import { Fotos } from 'src/app/core/models/fotos.model';
 export class EventDetailComponent implements OnInit {
   //evento: Observable<Events>;
 
-  fotos: Fotos;
+  fotosArray: Fotos[];
   //evento: Events;
   id: any = <any>{};
-  arrayFotosUrl: string[] = [];
-  page = 1;
+  private actualPage: number;
+  private nextPage: number;
+  page: number;
 
   constructor(
     private route: ActivatedRoute,
     private eventService: EventsService
   ) {
     console.log(this.route.snapshot.paramMap.get('id/page'));
+    this.fotosArray = new Array<Fotos>();
+    this.page = 0;
+    this.actualPage = 0;
+    this.nextPage = 1;
+
   }
 
   ngOnInit(): void {
-    //this.route.params.subscribe((params: Params) => {
-    //const ID = params.ID;
     let id = +this.route.snapshot.paramMap.get('id');
-    this.eventService.getEventDetail(id);
+    this.eventService.getEventDetailService(id , this.page);
     console.log('ID DEL EVENTO: ', id);
-    this.fetchEvents(id);
-    // console.log(this.fetchEvents(ID), 'id OnInit')
-    // });
-    //  this.evento = this.route.params
-    //   .pipe(
-    //     switchMap((params: Params) => {
-    //       console.log(params.id , 'PARAMETROS ID')
-    //       //console.log(this.eventService.getEventDetail(params.ID), 'Get eventsDetail')
-    //       return this.eventService.getEventDetail(params.id);
-    //     })
-    //   );
-    //let id = +this.route.snapshot.paramMap.get('id');
-    //this.eventService.getEventDetail(id)
-
-    //console.log(id, 'le id')
-
+    this.fetchEventsFotos(id, this.nextPage);
   }
 
-  fetchEvents(id: number) {
-    this.eventService.getEventDetail(id).subscribe((eventosresponse: any) => {
+  fetchEventsFotos(id: number, page: number) {
+    this.eventService.getEventDetailService(id , page).subscribe((eventosresponse: any) => {
       console.log(eventosresponse, 'evento detalle');
-      this.fotos = eventosresponse.data.fotos;
-      console.log(' RESPONSE: ', eventosresponse.data.fotos);
-      //     // www.juanschtrefotografo.com.ar/schapi/api/v3/fotos?eventos_id=28&page=0&per_page=20
+      //this.fotosArray = eventosresponse;
+     // console.log(' RESPONSE: ', eventosresponse);
+
+      console.log('eventosresponse.data.fotos: ', eventosresponse);
+      console.log('this.fotosArray: ', this.fotosArray);
+      if (eventosresponse) {
+
+        //this.fotosArray.push(...eventosresponse);
+
+        this.actualPage = page;
+        console.log('Setea this.actualPage: ', this.actualPage);
+
+        return eventosresponse[this.fotosArray.push(...eventosresponse)];
+      }
+
     });
   }
 
-  getEvent(){
-    this.eventService.getAllEvents()
-    .subscribe(eventosresponse => {
-      this.arrayFotosUrl = this.arrayFotosUrl.concat((eventosresponse as any)
-      .fotos.data.fotos.map(p => p.src.landscape));
-      console.log(eventosresponse, 'scroll')
-    })
-  }
+
   onScroll() {
-    this.page++
-    if (this.id) {
-      this.getEvent();
+
+    console.log('estas haciendo scrolld');
+    if (this.fotosArray) {
+
+      this.actualPage;
+      console.log('actualPage: ', this.actualPage);
+
+      this.nextPage = this.actualPage + 1;
+      console.log('nextPage: ', this.nextPage);
+
+      console.log('pide pagina siguiente: getEventPage() ');
+      this.fetchEventsFotos(this.id, this.nextPage);
+
     }
-    else {
-      //this.requestSearchPhotos();
-      console.log('no funciono')
-    }
+
   }
 }

@@ -4,14 +4,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 //import { ProductDetailComponent } from './components';
-import {GalleryComponent} from './components/events-gallery/events-gallery.component';
+import {EventsGallerycontainerComponent} from './components/events-container/events-container.component';
 import {EventDetailComponent} from './components/events-detail/events-detail.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: GalleryComponent
+    component: EventsGallerycontainerComponent
   },
   {
     path: ':id',

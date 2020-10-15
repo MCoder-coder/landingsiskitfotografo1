@@ -1,7 +1,7 @@
-export interface Fotos{
+export interface Fotos extends Array<Fotos>{
 
   ID: number;
-  filname: string;
+  filename: string;
 
 
 }

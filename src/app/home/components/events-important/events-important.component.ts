@@ -6,27 +6,29 @@ import {Events} from '../../../core/models/events.model';
 
 @Component({
   selector: 'app-events',
-  templateUrl: './events.component.html',
-  styleUrls: ['./events.component.css']
+  templateUrl: './events-important.component.html',
+  styleUrls: ['./events-important.component.css']
 })
-export class EventsComponent implements OnInit {
+export class EventsImportantComponent implements OnInit {
 
   eventos: Events[] = [];
 
   constructor(private eventService: EventsService) { }
 
   ngOnInit(): void {
-    this.fethEventsImportants();
+    this.fetchEventsImportants();
   }
 
-  clickImage(id:number){
+  // tslint:disable-next-line: typedef
+  clickImage(id: number){
     console.log('product');
     console.log(id);
   }
 
 
-  fethEventsImportants(){
-    this.eventService.getImages()
+  // tslint:disable-next-line: typedef
+  fetchEventsImportants(){
+    this.eventService.getEventImportantService()
     .subscribe( (eventosresponse: any) => {
       this.eventos = eventosresponse.data.eventos;
 

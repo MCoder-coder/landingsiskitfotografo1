@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {EventsComponent} from './components/events/events.component';
+import {EventsImportantComponent} from './components/events-important/events-important.component';
 import { SwiperComponent } from './components/swiper/swiper.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -13,7 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     SwiperComponent,
-    EventsComponent,
+    EventsImportantComponent,
     HomeComponent,
 
   ],
