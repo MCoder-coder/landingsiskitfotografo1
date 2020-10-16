@@ -18,7 +18,7 @@ export class EventDetailComponent implements OnInit {
 
   fotosArray: Fotos[];
   //evento: Events;
-  id: any = <any>{};
+  ID: number = null;
   private actualPage: number;
   private nextPage: number;
   page: number;
@@ -28,6 +28,7 @@ export class EventDetailComponent implements OnInit {
     private eventService: EventsService
   ) {
     console.log(this.route.snapshot.paramMap.get('id/page'));
+
     this.fotosArray = new Array<Fotos>();
     this.page = 0;
     this.actualPage = 0;
@@ -36,20 +37,22 @@ export class EventDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = +this.route.snapshot.paramMap.get('id');
-    this.eventService.getEventDetailService(id , this.page);
-    console.log('ID DEL EVENTO: ', id);
-    this.fetchEventsFotos(id, this.nextPage);
+    let ID = +this.route.snapshot.paramMap.get('id');
+    this.ID = ID;
+    this.eventService.getEventDetailService(ID , this.page);
+    console.log('ID DEL EVENTO: ', ID);
+    this.fetchEventsFotos(ID, this.actualPage);
   }
 
-  fetchEventsFotos(id: number, page: number) {
-    this.eventService.getEventDetailService(id , page).subscribe((eventosresponse: any) => {
+  fetchEventsFotos(ID: number, page: number) {
+    console.log('ID Fetch Event Fotos: ' , ID);
+    this.eventService.getEventDetailService(ID , page).subscribe((eventosresponse: any) => {
       console.log(eventosresponse, 'evento detalle');
       //this.fotosArray = eventosresponse;
      // console.log(' RESPONSE: ', eventosresponse);
 
       console.log('eventosresponse.data.fotos: ', eventosresponse);
-      console.log('this.fotosArray: ', this.fotosArray);
+      console.log('this.fotosArray: ', this.fotosArray.length);
       if (eventosresponse) {
 
         //this.fotosArray.push(...eventosresponse);
@@ -76,7 +79,7 @@ export class EventDetailComponent implements OnInit {
       console.log('nextPage: ', this.nextPage);
 
       console.log('pide pagina siguiente: getEventPage() ');
-      this.fetchEventsFotos(this.id, this.nextPage);
+      this.fetchEventsFotos(this.ID, this.nextPage);
 
     }
 

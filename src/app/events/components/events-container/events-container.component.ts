@@ -35,8 +35,7 @@ export class EventsGallerycontainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const firstPage = 0;
-    this.getEventPage(firstPage);
+    this.getEventPage(this.actualPage);
   }
 
   // tslint:disable-next-line:typedef

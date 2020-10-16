@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 
 import { Events } from '../models/events.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, retry, catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 
@@ -40,24 +40,18 @@ export class EventsService {
     return this.http.get<Events>(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`)
     .pipe(
       map((eventosresponse: any) => {
-        //eventosresponse.data.eventos as Events[]
         return eventosresponse.data.eventos as Events[];
-      }), retry(3), catchError(error => {
-        return throwError('ALgo salio mal!!');
-      })
+      }), retry(3), catchError(this.handleError),
     );
   }
 
   getEventDetailService(ID: number, page: number) {
-    return this.http.get<Fotos>(`/api/v3/fotos?eventos_id=${ID}&page=${page}&per_page=20`)
+    console.log('ID event detail service: ' , ID);
+    return this.http.get(`/api/v3/fotos?eventos_id=${ID}&page=${page}&per_page=20`)
     .pipe(
       map((eventosresponse: any) => {
-
-        //eventosresponse.data.eventos as Events[]
         return eventosresponse.data.fotos as Fotos[];
-      }), retry(3), catchError(error => {
-        return throwError('ALgo salio mal!!');
-      })
+      }), retry(3), catchError(this.handleError),
     );
   }
 
@@ -66,15 +60,10 @@ export class EventsService {
   getEventPageService(page: number): Observable<Events[]> {
     return this.http.get<Events>(`/api/v3/eventos?page=${page}&per_page=16&order=fecha:DESC`)
       //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
-
       .pipe(
         map((eventosresponse: any) => {
-          retry(3)
-          //eventosresponse.data.eventos as Events[]
           return eventosresponse.data.eventos as Events[];
-        }), retry(3), catchError(error => {
-          return throwError('ALgo salio mal!!');
-        })
+        }), retry(3), catchError(this.handleError),
       );
 
     // map((eventosresponse: any) =>
@@ -84,5 +73,11 @@ export class EventsService {
     // })
   }
 
+
+  // tslint:disable-next-line: typedef
+  private handleError(error: HttpErrorResponse){
+    console.log('Algo salio mal');
+    return throwError('Algo salio mal');
+  }
 
 }

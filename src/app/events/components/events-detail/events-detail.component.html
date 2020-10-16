@@ -1,23 +1,23 @@
 <app-slide></app-slide>
 <!-- Photo Grid -->
-<div class="row container mt-5 ml-5" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+<div class="row" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
     <div class="column">
-        <ng-container *ngFor="let foto of fotosArray; let i = index">
+        <ng-container *ngFor="let foto of fotosArray let i = index">
             <img *ngIf="i % 4 === 0" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
         </ng-container>
     </div>
     <div class="column">
-        <ng-container *ngFor="let foto of fotosArray; let i = index">
+        <ng-container *ngFor="let foto of fotosArray let i = index">
             <img *ngIf="i % 4 === 1" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
         </ng-container>
     </div>
     <div class="column">
-        <ng-container *ngFor="let foto of fotosArray; let i = index">
+        <ng-container *ngFor="let foto of fotosArray let i = index">
             <img *ngIf="i % 4 === 2" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
         </ng-container>
     </div>
     <div class="column">
-        <ng-container *ngFor="let foto of fotosArray; let i = index">
+        <ng-container *ngFor="let foto of fotosArray let i = index">
             <img *ngIf="i % 4 === 3" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
         </ng-container>
     </div>

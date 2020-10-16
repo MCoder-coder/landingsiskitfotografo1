@@ -1,0 +1,17 @@
+.carousel {
+    margin-top: 66px;
+}
+
+.carousel-item.active {
+    height: 400px;
+}
+
+.carousel-item.active img {
+    height: auto !important;
+    top: -50%;
+    left: auto;
+    margin: auto;
+    right: auto;
+    bottom: -50%;
+    position: absolute;
+}
