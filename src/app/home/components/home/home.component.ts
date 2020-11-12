@@ -6,7 +6,7 @@ import swiper, { Swiper } from 'swiper/bundle';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit ,AfterContentInit {
+export class HomeComponent implements OnInit, AfterContentInit {
 
 
   constructor() { }

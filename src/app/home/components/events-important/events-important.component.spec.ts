@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventsImportantComponent } from './events-important.component';
 
-describe('EventsComponent', () => {
+describe('EventsImportantComponent', () => {
   let component: EventsImportantComponent;
   let fixture: ComponentFixture<EventsImportantComponent>;
 

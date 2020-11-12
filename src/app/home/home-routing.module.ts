@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 
-import { GuestGuardService } from '../core/services/guest-guard.service';
 
 const routes: Routes = [
   {

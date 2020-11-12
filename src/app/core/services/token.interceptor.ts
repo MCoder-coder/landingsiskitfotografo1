@@ -3,8 +3,7 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/c
 import { Observable } from 'rxjs';
 
 import { TokenProvider } from './token.service';
-import { logging } from 'protractor';
-import { AuthService } from './auth.service';
+
 
 
 @Injectable()
@@ -12,7 +11,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
 
 
-  constructor(private tokenService: TokenProvider, private authService: AuthService){
+  constructor(private tokenService: TokenProvider){
       console.log(tokenService);
 
   }
