@@ -22,6 +22,7 @@ import { EventComponent } from './components/event/event.component';
     CommonModule,
     SharedModule,
     PhotoRoutingModule,
+
   ]
 })
 export class EventsModule {
