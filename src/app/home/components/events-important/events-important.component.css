@@ -1,6 +1,16 @@
 img {
-    height: 150px;
-    width: 100%;
+    height: auto;
+    min-height: 100%;
+    min-width: 100%;
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    left: -50%;
+    right: -50%;
+    margin: auto;
+    text-align: center;
+    object-fit: cover;
+    object-position: center center;
 }
 
 div [class^="col-"] {
@@ -12,13 +22,45 @@ div [class^="col-"] {
     transition: 0.5s;
     cursor: pointer;
     margin-top: 25px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #000;
+    background-clip: border-box;
+    border: none;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 5px;
 }
 
 .card-title {
     font-size: 15px;
     transition: 1s;
-    cursor: pointer;
+    background: transparent;
+    position: absolute;
     text-align: center;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    /* border: 1px solid #F00; */
+    min-height: 80px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: #FFF;
+    font-size: 1.4em;
+    margin: 0 auto !important;
+    text-shadow: #000 0px 1px 1px;
+}
+
+.card-inner-container {
+    position: relative;
+    overflow: hidden;
+    height: 600px;
+    max-height: 550px;
 }
 
 .card-title i {
@@ -34,13 +76,15 @@ div [class^="col-"] {
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.2);
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+    z-index: 100;
 }
 
 .card-text {
     height: 80px;
     margin: auto;
+    display: none;
 }
 
 .card::before,
@@ -74,6 +118,11 @@ div [class^="col-"] {
 
 h2 {
     border-bottom: 1px solid #666;
+}
+
+div [class^="col-"] {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .pagination {

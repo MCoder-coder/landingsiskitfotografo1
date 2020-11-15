@@ -22,17 +22,6 @@ export class EventsService {
 
 
 
-  // getAllEvents() {
-  //   return this.http.get(`/api/v3/eventos?page=0&per_page=16&order=fecha:DESC`)
-  //   //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
-  //   .pipe(
-  //     map((data: Events[]) => {
-  //       return data;
-  //     }), catchError( error => {
-  //       return throwError( 'Something went wrong!' );
-  //     })
-  //  );
-  // }
 
 
 
@@ -77,6 +66,7 @@ export class EventsService {
   // tslint:disable-next-line: typedef
   private handleError(error: HttpErrorResponse){
     console.log('Algo salio mal');
+
     return throwError('Algo salio mal');
   }
 

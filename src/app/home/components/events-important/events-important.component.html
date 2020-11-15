@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-5 pb-5">
     <!--   <div class="card card-block mb-2">
     <h4 class="card-title">Card 1</h4>
     <p class="card-text">Welcom to bootstrap card styles</p>
@@ -12,8 +12,10 @@
         <div class="col-md-3 col-sm-6 mt-3" *ngFor="let item of eventos">
             <div class="card card-block" [routerLink]="['/eventos', item.ID]">
 
-                <!-- <img [src]="item" alt="Photo of sunset"> -->
-                <img src="{{ 'https://www.juanschtrefotografo.com'+ item.imgcaratula}}" alt="Photo of sunset">
+                <div class="card-inner-container">
+                    <img src="{{ 'https://www.juanschtrefotografo.com'+ item.imgcaratula}}" alt="Photo of sunset">
+                </div>
+
                 <h5 class="card-title mt-3 mb-3">{{item.nombre}}</h5>
                 <p class="card-text">{{item.descripcion}}</p>
             </div>

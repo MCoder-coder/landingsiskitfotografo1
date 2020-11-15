@@ -32,7 +32,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    loadChildren: () => import('./page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent)
+    loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   }
 ];
 
