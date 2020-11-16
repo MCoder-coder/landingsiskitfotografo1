@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { error } from 'protractor';
 import { EventsService } from 'src/app/core/service/events.services';
 
 
@@ -17,7 +18,10 @@ export class EventsImportantComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchEventsImportants();
+
   }
+
+
 
   // tslint:disable-next-line: typedef
   clickImage(id: number){
@@ -31,6 +35,7 @@ export class EventsImportantComponent implements OnInit {
     this.eventService.getEventImportantService()
     .subscribe( (eventosresponse: any) => {
       this.eventos = eventosresponse;
+
 
     });
 

@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { Inject, NgModule} from '@angular/core';
 
 import { Injectable } from '@angular/core';
 
@@ -7,53 +9,69 @@ import { map, retry, catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 
 import { from, Observable, throwError } from 'rxjs';
-import { environment } from "./../../../environments/environment.prod";
+import { environment } from './../../../environments/environment.prod';
 import { Fotos } from '../models/fotos.model';
+
+import { ToastrService } from 'ngx-toastr';
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EventsService {
-
   // propiedades / variables
   events: Events[] = [];
   fotos: Fotos[] = [];
 
-  constructor(private http: HttpClient) { }
-
-
-
-
-
+  constructor(private http: HttpClient, public toastr: ToastrService) {}
 
   getEventImportantService() {
-    return this.http.get<Events>(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`)
-    .pipe(
-      map((eventosresponse: any) => {
-        return eventosresponse.data.eventos as Events[];
-      }), retry(3), catchError(this.handleError),
+    return (
+      this.http
+        .get<Events>(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`)
+        // return this.http.get(`${environment.url_api}eventos?page=0&per_page=12&order=fecha:DESC`)
+        .pipe(
+          map((eventosresponse: any) => {
+            return eventosresponse.data.eventos as Events[];
+          }),
+          retry(1),
+          catchError(this.handleError)
+        )
     );
   }
 
   getEventDetailService(ID: number, page: number) {
-    console.log('ID event detail service: ' , ID);
-    return this.http.get(`/api/v3/fotos?eventos_id=${ID}&page=${page}&per_page=20`)
-    .pipe(
-      map((eventosresponse: any) => {
-        return eventosresponse.data.fotos as Fotos[];
-      }), retry(3), catchError(this.handleError),
+    console.log('ID event detail service: ', ID);
+    return (
+      this.http
+        .get(`/api/v3/fotos?eventos_id=${ID}&page=${page}&per_page=4`)
+        //return this.http.get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=20`)
+        .pipe(
+          map((eventosresponse: any) => {
+            return eventosresponse.data.fotos as Fotos[];
+          }),
+          retry(3),
+          catchError(this.handleError)
+        )
     );
   }
 
   // getEventPage
   // Refactorizar nombre a getEventPage
   getEventPageService(page: number): Observable<Events[]> {
-    return this.http.get<Events>(`/api/v3/eventos?page=${page}&per_page=16&order=fecha:DESC`)
-      //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
-      .pipe(
-        map((eventosresponse: any) => {
-          return eventosresponse.data.eventos as Events[];
-        }), retry(3), catchError(this.handleError),
-      );
+    return (
+      this.http
+        .get<Events>(
+          `/api/v3/eventos?page=${page}&per_page=16&order=fecha:DESC`
+        )
+        //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
+        .pipe(
+          map((eventosresponse: any) => {
+            return eventosresponse.data.eventos as Events[];
+          }),
+          retry(3),
+          catchError(this.handleError)
+        )
+    );
 
     // map((eventosresponse: any) =>
     //  eventosresponse.data.eventos as Events[]),
@@ -62,12 +80,33 @@ export class EventsService {
     // })
   }
 
-
   // tslint:disable-next-line: typedef
-  private handleError(error: HttpErrorResponse){
+  public handleError(error: HttpErrorResponse) {
     console.log('Algo salio mal');
+    console.log('error', error.status);
+    if (error instanceof HttpErrorResponse) {
+      if (error.error instanceof ErrorEvent) {
+        console.error('Error Event');
+        console.log('error.error', error.error);
+      } else {
+        console.log(`error status : ${error.status} ${error.statusText}`);
+        switch (error.status) {
+          case 404:
+            console.log(`redirect to 404`);
+            console.log('esto es un 404');
+            // this.router.navigateByUrl('404')
+            //this.toastr.error('Hello world!', 'Toastr fun!');
+            //this.zone.run(()=> this.toastr.error('error'));
+            break;
+          case 403: //forbidden
+            console.log('esto es un 403');
+            break;
+        }
+      }
+    } else {
+      console.error('some thing else happened');
+    }
 
     return throwError('Algo salio mal');
   }
-
 }

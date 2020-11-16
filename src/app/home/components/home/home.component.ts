@@ -12,10 +12,11 @@ export class HomeComponent implements OnInit, AfterContentInit {
   constructor() { }
 
   ngOnInit(): void {
+
+
   }
 
   ngAfterContentInit(){
-
 
   }
 

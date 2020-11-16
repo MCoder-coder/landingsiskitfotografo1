@@ -32,7 +32,15 @@ const routes: Routes = [
   },
   {
     path: '**',
+
+
     loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
+  },
+  {
+    path: '',
+    pathMatch: 'prefix',
+    redirectTo: '404',
+
   }
 ];
 

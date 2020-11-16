@@ -52,8 +52,8 @@ export class EventsGallerycontainerComponent implements OnInit {
     this.eventService.getEventPageService(page)
       .subscribe((eventosresponse) => {
 
-        console.log('eventosresponse.data.eventos: ', eventosresponse);
-        console.log('this.eventosArray: ', this.eventosArray);
+       // console.log('eventosresponse.data.eventos: ', eventosresponse);
+        //console.log('this.eventosArray: ', this.eventosArray);
         if (eventosresponse) {
 
          // this.eventosArray.push(...eventosresponse);

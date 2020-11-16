@@ -1,3 +1,6 @@
+import { APP_INITIALIZER } from '@angular/core';
+import { TokenProvider } from './core/services/token.service';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,8 +10,10 @@ import { AppComponent } from './app.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { APP_INITIALIZER } from '@angular/core';
-import { TokenProvider } from './core/services/token.service';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
@@ -16,8 +21,8 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { TokenInterceptor } from "./core/services/token.interceptor";
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
-export function servicesOnRun(token: TokenProvider) {
-  return () => {token.load()};
+export function appInitFactory(token: TokenProvider) {
+  return () => token.load();
 }
 
 
@@ -34,13 +39,16 @@ export function servicesOnRun(token: TokenProvider) {
     CoreModule,
     HttpClientModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
-      useFactory: servicesOnRun,
+      useFactory: appInitFactory,
       multi: true,
-      deps: [TokenProvider]
+      deps: [TokenProvider],
+
     },
 
     {
