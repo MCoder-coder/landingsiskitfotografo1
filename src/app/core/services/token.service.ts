@@ -38,11 +38,8 @@ export class TokenProvider {
       }),
     };
     const body = new HttpParams()
-    .set('grant_type', 'password')
-    .set('client_id', '3')
-    .set('client_secret', '1wiHTUApPgQGVrwNkchIPQuIVL8xDhkLVvKEFoUA')
-    .set('username', 'nanod10@hotmail.com')
-    .set('password', 'Nano786521');
+    .set('client_id', '5');
+
     this.tokenRequest = this.http.post(
                                   this.authUrl,
                                  body.toString(),
