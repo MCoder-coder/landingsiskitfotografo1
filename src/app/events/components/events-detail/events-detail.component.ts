@@ -22,6 +22,8 @@ export class EventDetailComponent implements OnInit {
   private actualPage: number;
   private nextPage: number;
   page: number;
+  public isMobile: boolean;
+  private isLoading: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,10 +31,20 @@ export class EventDetailComponent implements OnInit {
   ) {
     console.log(this.route.snapshot.paramMap.get('id/page'));
 
+
     this.fotosArray = new Array<Fotos>();
     this.page = 0;
     this.actualPage = 0;
     this.nextPage = 1;
+    this.isLoading = false;
+
+    if(window.innerWidth < 768 ){
+      this.isMobile = true;
+    }else{
+      this.isMobile = false;
+    }
+
+
 
   }
 
@@ -46,7 +58,9 @@ export class EventDetailComponent implements OnInit {
 
   fetchEventsFotos(ID: number, page: number) {
     console.log('ID Fetch Event Fotos: ' , ID);
+    this.isLoading = true;
     this.eventService.getEventDetailService(ID , page).subscribe((eventosresponse: any) => {
+      this.isLoading = false;
       console.log(eventosresponse, 'evento detalle');
       //this.fotosArray = eventosresponse;
      // console.log(' RESPONSE: ', eventosresponse);
@@ -57,22 +71,23 @@ export class EventDetailComponent implements OnInit {
 
         //this.fotosArray.push(...eventosresponse);
 
-        this.actualPage = page;
-        console.log('Setea this.actualPage: ', this.actualPage);
-
-        return eventosresponse[this.fotosArray.push(...eventosresponse)];
+        if (page >= this.actualPage){
+          this.actualPage = page;
+          console.log('Setea this.actualPage: ', this.actualPage);
+          return eventosresponse[this.fotosArray.push(...eventosresponse)];
+        }
       }
 
     });
   }
 
 
+
   onScroll() {
 
-    console.log('estas haciendo scrolld');
-    if (this.fotosArray) {
+    console.log('estas haciendo scroll');
+    if (!this.isLoading) {
 
-      this.actualPage;
       console.log('actualPage: ', this.actualPage);
 
       this.nextPage = this.actualPage + 1;

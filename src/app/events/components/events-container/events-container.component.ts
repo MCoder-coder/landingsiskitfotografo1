@@ -24,6 +24,7 @@ export class EventsGallerycontainerComponent implements OnInit {
   eventosArray: Events[] = [];
   private actualPage: number;
   private nextPage: number;
+  private isLoading: Boolean;
 
 
 
@@ -32,6 +33,7 @@ export class EventsGallerycontainerComponent implements OnInit {
     this.page = 0;
     this.actualPage = 0;
     this.nextPage = 0;
+    this.isLoading = false;
   }
 
   ngOnInit(): void {
@@ -49,21 +51,21 @@ export class EventsGallerycontainerComponent implements OnInit {
   // Refactorizar nombre a: getEventosPage
   // tslint:disable-next-line: typedef
   getEventPage(page: number) {
+    this.isLoading = true;
     this.eventService.getEventPageService(page)
       .subscribe((eventosresponse) => {
-
+        this.isLoading = false;
        // console.log('eventosresponse.data.eventos: ', eventosresponse);
         //console.log('this.eventosArray: ', this.eventosArray);
         if (eventosresponse) {
-
-         // this.eventosArray.push(...eventosresponse);
-
-          this.actualPage = page;
+          if (page >= this.actualPage){
+            this.actualPage = page;
 
 
-          console.log('Setea this.actualPage: ', this.actualPage);
+            console.log('Setea this.actualPage: ', this.actualPage);
 
-          return eventosresponse[this.eventosArray.push(...eventosresponse)];
+            return eventosresponse[this.eventosArray.push(...eventosresponse)];
+          }
         }
 
 
@@ -76,9 +78,8 @@ export class EventsGallerycontainerComponent implements OnInit {
 
   onScroll() {
     console.log('scrolled down!!');
-    if (this.eventosArray) {
+    if (!this.isLoading) {
 
-      this.actualPage;
       console.log('actualPage: ', this.actualPage);
 
       this.nextPage = this.actualPage + 1;

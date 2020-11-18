@@ -1,9 +1,11 @@
+import { environment } from './../../../environments/environment';
 import { async } from '@angular/core/testing';
 import {
   HttpHeaders,
   HttpClient,
   HttpClientModule,
   HttpResponse,
+  HttpParams,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { truncateSync } from 'fs';
@@ -14,8 +16,8 @@ import { tap } from 'rxjs/operators';
 })
 export class TokenProvider {
   //variables
-  authUrl = '/api/login';
-  apiUrl = '/api/api';
+  authUrl = environment.url_login;
+  apiUrl = environment.url_api ;
   options: any;
   tokenRequest: any;
   tokenResponse: any;
@@ -29,22 +31,21 @@ export class TokenProvider {
 
     const options = {
       headers: new HttpHeaders({
-        Accept: 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         // Accept: 'application/json;charset=utf-8',
         //'Accept-Charset':'charset=utf-8'
       }),
     };
-
+    const body = new HttpParams()
+    .set('grant_type', 'password')
+    .set('client_id', '3')
+    .set('client_secret', '1wiHTUApPgQGVrwNkchIPQuIVL8xDhkLVvKEFoUA')
+    .set('username', 'nanod10@hotmail.com')
+    .set('password', 'Nano786521');
     this.tokenRequest = this.http.post(
                                   this.authUrl,
-                                  {
-                                    grant_type: 'password',
-                                    client_id: '3',
-                                    client_secret: '1wiHTUApPgQGVrwNkchIPQuIVL8xDhkLVvKEFoUA',
-                                    username: 'nanod10@hotmail.com', // e,
-                                    password: 'Nano786521', // p,
-                                  },
+                                 body.toString(),
                                   options
                                 )
                                 // .pipe(

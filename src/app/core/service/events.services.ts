@@ -27,13 +27,13 @@ export class EventsService {
   getEventImportantService() {
     return (
       this.http
-        .get<Events>(`/api/v3/eventos?page=0&per_page=12&order=fecha:DESC`)
+        .get<Events>(`${environment.url_api}eventos?page=0&per_page=12&order=fecha:DESC`)
         // return this.http.get(`${environment.url_api}eventos?page=0&per_page=12&order=fecha:DESC`)
         .pipe(
           map((eventosresponse: any) => {
             return eventosresponse.data.eventos as Events[];
           }),
-          retry(1),
+          retry(0),
           catchError(this.handleError)
         )
     );
@@ -43,13 +43,13 @@ export class EventsService {
     console.log('ID event detail service: ', ID);
     return (
       this.http
-        .get(`/api/v3/fotos?eventos_id=${ID}&page=${page}&per_page=4`)
+        .get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=4`)
         //return this.http.get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=20`)
         .pipe(
           map((eventosresponse: any) => {
             return eventosresponse.data.fotos as Fotos[];
           }),
-          retry(3),
+          retry(0),
           catchError(this.handleError)
         )
     );
@@ -61,14 +61,14 @@ export class EventsService {
     return (
       this.http
         .get<Events>(
-          `/api/v3/eventos?page=${page}&per_page=16&order=fecha:DESC`
+          `${environment.url_api}eventos?page=${page}&per_page=16&order=fecha:DESC`
         )
         //return this.http.get(`${environment.url_api}?page=0&per_page=16`)
         .pipe(
           map((eventosresponse: any) => {
             return eventosresponse.data.eventos as Events[];
           }),
-          retry(3),
+          retry(0),
           catchError(this.handleError)
         )
     );

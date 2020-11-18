@@ -7,11 +7,12 @@
 
 img {
     height: auto !important;
-    top: -50%;
+    /* top: -50%; */
     width: 100%;
     left: auto;
     margin: auto;
     right: auto;
-    bottom: -50%;
+    /* bottom: -50%; */
     position: absolute;
+    margin-top: 67px;
 }

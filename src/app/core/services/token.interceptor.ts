@@ -27,7 +27,7 @@ export class TokenInterceptor implements HttpInterceptor {
 
     const token = this.tokenService.getTokenResponse();
 
-    console.log('Interceptor: tokenService: ',this.tokenService);
+    console.log('Interceptor: tokenService: ', this.tokenService);
     console.log('Interceptor: tokenResponse: ', token);
     // console.log(this.tokenService.tokenResponse.access_token);
     // console.log(this.tokenService.getAuthToken(), 'este es el token');
@@ -35,7 +35,7 @@ export class TokenInterceptor implements HttpInterceptor {
     /* modificacion de headers de request */
     let newHeaders = req.headers;
 
-    newHeaders = newHeaders.append('Access-Control-Allow-Origin', '*');
+   // newHeaders = newHeaders.append('Access-Control-Allow-Origin', '*');
 
     if (this.tokenService.tokenResponse) {
        newHeaders = newHeaders.append('Authorization', 'Bearer ' + token.access_token);

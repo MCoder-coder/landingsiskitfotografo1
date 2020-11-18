@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  url_api: 'https://www.juanschtrefotografo.com/schapi/api/'
+  production: false,
+  url_api: 'https://www.juanschtrefotografo.com/schapi/api/',
+  url_login: 'https://www.juanschtrefotografo.com/schapi/api/login'
 };
 
 /*
