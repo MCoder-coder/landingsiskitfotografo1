@@ -8,34 +8,40 @@
 
         <h1 style="font-family: 'Parisienne', cursive; font-size: 60px; text-align: center; color: white;" class="mt-3"><img src="./assets/images/logo-2-nav-bar.png" alt=""><br></h1>
     </div>
+    <form [formGroup]="form" (ngSubmit)="save($event)">
 
-    <div class="row input-container">
-        <div class="col-xs-12">
-            <div class="styled-input wide">
-                <input type="text" required />
-                <label>Nombre</label>
+
+        <div class="row input-container">
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <input type="text" formControlName="nombre" required />
+                    <label>Nombre</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input">
+
+                    <input type="email" formControlName="email" required />
+                    <label>Email</label>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="styled-input" style="float:right;">
+                    <input type="number" formControlName="telefono" required />
+                    <label>Numero de Telefono</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="styled-input wide">
+                    <textarea required></textarea>
+                    <label>Mensaje</label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <Button class="btn-lrg submit-btn" type="submit">Enviar Mensaje</Button>
+
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="styled-input">
-                <input type="text" required />
-                <label>Email</label>
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <div class="styled-input" style="float:right;">
-                <input type="text" required />
-                <label>Numero de Telefono</label>
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="styled-input wide">
-                <textarea required></textarea>
-                <label>Mensaje</label>
-            </div>
-        </div>
-        <div class="col-xs-12">
-            <div class="btn-lrg submit-btn">Enviar Mensaje</div>
-        </div>
-    </div>
+
+    </form>
 </div>

@@ -5,6 +5,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SlideComponent } from "./components/slide/slide.component";
 import { ContactRoutingModule } from './contact-routing.module';
 import { SharedModule } from './../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SharedModule } from './../shared/shared.module';
     CommonModule,
     SharedModule,
     ContactRoutingModule,
+    ReactiveFormsModule
 
   ]
 })
