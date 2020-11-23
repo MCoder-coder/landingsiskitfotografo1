@@ -13,7 +13,7 @@ import { SharedModule } from './shared/shared.module';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { NoRightClickDirective } from './no-right-click.directive';
 
 
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
@@ -30,6 +30,8 @@ export function appInitFactory(token: TokenProvider) {
   declarations: [
     AppComponent,
     LayoutComponent,
+    NoRightClickDirective
+
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ export function appInitFactory(token: TokenProvider) {
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+
   ],
   providers: [
     {

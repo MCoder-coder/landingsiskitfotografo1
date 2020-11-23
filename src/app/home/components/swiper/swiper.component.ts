@@ -18,7 +18,7 @@ export class SwiperComponent implements OnInit , AfterViewInit {
     'assets/images/2.jpg',
 
     'assets/images/4.jpg',
-    'assets/images/5.jpg',
+
   ];
 
   constructor() {
