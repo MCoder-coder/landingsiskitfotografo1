@@ -9,12 +9,14 @@ import { SharedModule } from './../shared/shared.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { NoRightClickDirective } from '../no-right-click.directive';
 
 @NgModule({
   declarations: [
     SwiperComponent,
     EventsImportantComponent,
     HomeComponent,
+
 
   ],
   imports: [

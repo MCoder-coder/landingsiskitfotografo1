@@ -7,7 +7,8 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { NoRightClickDirective } from '../no-right-click.directive';
+
+
 @NgModule({
   declarations: [
     HeaderComponent,

@@ -30,7 +30,8 @@ export function appInitFactory(token: TokenProvider) {
   declarations: [
     AppComponent,
     LayoutComponent,
-    NoRightClickDirective
+
+
 
   ],
   imports: [

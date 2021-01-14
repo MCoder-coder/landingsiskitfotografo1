@@ -1,6 +1,6 @@
 <app-slide></app-slide>
 <!-- Photo Grid -->
-<div class="container-fluid">
+<div class="container-fluid ">
     <div class="row no-gutters " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()" *ngIf="!isMobile">
         <div class="column">
             <ng-container *ngFor="let foto of fotosArray let i = index">
