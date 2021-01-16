@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FontAwesomeModule, FaIconLibrary  } from '@fortawesome/angular-fontawesome';
+
+import { faCoffee, fas, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+  googleIcon = faShoppingCart;
 
   constructor() { }
 

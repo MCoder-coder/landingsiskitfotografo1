@@ -7,6 +7,8 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     CommonModule,
     RouterModule,
     InfiniteScrollModule,
+    FontAwesomeModule
 
   ]
 })
