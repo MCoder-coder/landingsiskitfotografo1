@@ -23,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NavbarComponent,
     FooterComponent,
     InfiniteScrollModule,
+    FontAwesomeModule
 
   ],
   imports: [

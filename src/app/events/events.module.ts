@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EventDetailComponent } from './components/events-detail/events-detail.component';
 import { EventComponent } from './components/event/event.component';
 import { NoRightClickDirective } from '../no-right-click.directive';
+
 @NgModule({
   declarations: [
     SlideComponent,
@@ -23,6 +24,7 @@ import { NoRightClickDirective } from '../no-right-click.directive';
     CommonModule,
     SharedModule,
     PhotoRoutingModule,
+
 
   ]
 })

@@ -39,11 +39,11 @@ export class EventsService {
     );
   }
 
-  getEventDetailService(ID: number, page: number) {
-    console.log('ID event detail service: ', ID);
+  getEventDetailService(eventos_id: number, page: number) {
+    console.log('eventos_id event detail service: ', eventos_id);
     return (
       this.http
-        .get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=4`)
+        .get(`${environment.url_api}fotos?eventos_id=${eventos_id}&page=${page}&per_page=4`)
         //return this.http.get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=20`)
         .pipe(
           map((eventosresponse: any) => {

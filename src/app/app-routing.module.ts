@@ -28,12 +28,14 @@ const routes: Routes = [
       //  canActivate: [AdminGuard],
         loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule)
       },
+      {
+        path: 'carrito',
+        loadChildren: () => import('./shopping-cart/cart.module').then(m => m.CartModule)
+      }
     ]
   },
   {
     path: '**',
-
-
     loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
   },
   {

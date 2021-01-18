@@ -19,6 +19,8 @@ import { NoRightClickDirective } from './no-right-click.directive';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 import { TokenInterceptor } from "./core/services/token.interceptor";
+import { ModalModule } from 'ngx-bootstrap/modal';
+
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
 export function appInitFactory(token: TokenProvider) {
@@ -44,6 +46,7 @@ export function appInitFactory(token: TokenProvider) {
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ModalModule.forRoot()
 
   ],
   providers: [

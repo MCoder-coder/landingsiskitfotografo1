@@ -38,3 +38,15 @@
         max-width: 100%;
     }
 }
+
+.box {
+    position: relative;
+}
+
+.box .btn {
+    position: absolute;
+    top: 87%;
+    left: 89%;
+    transform: translate(-50%, -50%);
+    background-color: yellow;
+}

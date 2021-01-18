@@ -1,5 +1,5 @@
 import { Events } from './../../../core/models/events.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
 
 import { EventsService } from '../../../core/service/events.services';
@@ -8,6 +8,14 @@ import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 import { Fotos } from 'src/app/core/models/fotos.model';
+
+
+import { faCoffee, fas, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import { threadId } from 'worker_threads';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { CartService } from 'src/app/core/service/cart.service';
+
+
 @Component({
   selector: 'app-photo-detail',
   templateUrl: './events-detail.component.html',
@@ -15,7 +23,9 @@ import { Fotos } from 'src/app/core/models/fotos.model';
 })
 export class EventDetailComponent implements OnInit {
   //evento: Observable<Events>;
-
+  fotos : Fotos[]
+  modalRef: BsModalRef;
+  //
   fotosArray: Fotos[];
   //evento: Events;
   ID: number = null;
@@ -25,9 +35,15 @@ export class EventDetailComponent implements OnInit {
   public isMobile: boolean;
   private isLoading: boolean;
 
+  googleIcon = faShoppingCart;
+
+  //BsModalService nos permite abrir el modal
+
   constructor(
     private route: ActivatedRoute,
-    private eventService: EventsService
+    private eventService: EventsService,
+    private modalService: BsModalService,
+    private cartService: CartService
   ) {
     console.log(this.route.snapshot.paramMap.get('id/page'));
 
@@ -79,6 +95,18 @@ export class EventDetailComponent implements OnInit {
       }
 
     });
+  }
+
+
+  clickPopUp(id : string , template: TemplateRef<any> , fotos){
+    //templateRef hace referencia al id del template creado con ng Template  en este caso el identificador es #template
+   // this.modalRef = this.modalService.show(template);
+    //ModalRef expone 2 eventos: onHidey onHidden
+
+      this.cartService.addCart(fotos)
+      localStorage.setItem('foto', id)
+
+    console.log("click pop up" , id , fotos)
   }
 
 
