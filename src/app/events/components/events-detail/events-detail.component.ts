@@ -98,15 +98,16 @@ export class EventDetailComponent implements OnInit {
   }
 
 
-  clickPopUp(id : string , template: TemplateRef<any> , fotos){
+  clickPopUp(id : string , filename : string , template: TemplateRef<any> , fotos : Fotos ){
     //templateRef hace referencia al id del template creado con ng Template  en este caso el identificador es #template
    // this.modalRef = this.modalService.show(template);
     //ModalRef expone 2 eventos: onHidey onHidden
 
-      this.cartService.addCart(fotos)
-      localStorage.setItem('foto', id)
+      //this.cartService.addCart(fotos)
+      //localStorage.setItem('foto', id)
+      this.fotosArray.push(fotos)
 
-    console.log("click pop up" , id , fotos)
+    console.log("click pop up"   , id )
   }
 
 
