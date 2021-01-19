@@ -1,3 +1,12 @@
-<p>cart works!</p>
-<img src="" alt="">
-<p *ngIf="data">{{data}}</p>
+<div class="container mt-4">
+    <div class="row">
+        <div class="card col-auto mb-3" style="width: 18rem;" *ngFor="let key of Object.keys(cart) ">
+            <img class="card-img-top" src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.filename}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}</h5>
+
+            </div>
+        </div>
+
+    </div>
+</div>

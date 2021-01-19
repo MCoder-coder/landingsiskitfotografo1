@@ -14,6 +14,7 @@ import { faCoffee, fas, faShoppingCart} from '@fortawesome/free-solid-svg-icons'
 import { threadId } from 'worker_threads';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CartService } from 'src/app/core/service/cart.service';
+import { CartItem } from "./../../../core/models/cartitem.model";
 
 
 @Component({
@@ -26,6 +27,7 @@ export class EventDetailComponent implements OnInit {
   fotos : Fotos[]
   modalRef: BsModalRef;
   //
+  mcartItemModel : CartItem
   fotosArray: Fotos[];
   //evento: Events;
   ID: number = null;
@@ -37,13 +39,15 @@ export class EventDetailComponent implements OnInit {
 
   googleIcon = faShoppingCart;
 
+
   //BsModalService nos permite abrir el modal
 
   constructor(
     private route: ActivatedRoute,
     private eventService: EventsService,
     private modalService: BsModalService,
-    private cartService: CartService
+    private cartService: CartService,
+
   ) {
     console.log(this.route.snapshot.paramMap.get('id/page'));
 
@@ -110,7 +114,16 @@ export class EventDetailComponent implements OnInit {
     console.log("click pop up"   , id )
   }
 
+  addToCart(fotos : Fotos , template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
 
+    this.cartService.addToCart(fotos);
+
+
+
+    console.log(fotos)
+
+  }
 
   onScroll() {
 
