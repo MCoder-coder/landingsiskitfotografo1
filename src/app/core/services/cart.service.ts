@@ -1,9 +1,9 @@
-import { CartItem } from './../models/cartitem.model';
+import { CartItem } from '../models/cartitem.model';
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
 
-import { Fotos } from './../models/fotos.model';
+import { Fotos } from '../models/fotos.model';
 
 @Injectable({
   providedIn: 'root',
@@ -17,25 +17,22 @@ export class CartService {
   constructor() {
     // cargo el carrito desde el local storage
     this.loadLocalStorageCart();
-    this.totalItems.next(this.getFotosCount())
+    this.totalItems.next(this.getFotosCount());
   }
 
-  loadLocalStorageCart(){
-    let myCart = JSON.parse(localStorage.getItem("cart"));
-    if(!myCart){
+  loadLocalStorageCart() {
+    let myCart = JSON.parse(localStorage.getItem('cart'));
+    if (!myCart) {
       this.cart = [];
-    }else{
+    } else {
       this.cart = myCart;
     }
   }
 
-  updateLocalStorageCart(){
+  updateLocalStorageCart() {
     let myCart = JSON.stringify(this.cart);
-    localStorage.setItem("cart", myCart);
+    localStorage.setItem('cart', myCart);
   }
-
-
-
 
   addToCart(foto) {
     //this.cart.push(fotos);
@@ -47,26 +44,26 @@ export class CartService {
       cantidad: 1,
       size: '15x18',
     };
-    console.log("cart item" , newCartitem)
+    console.log('cart item', newCartitem);
     this.cart.push(newCartitem);
-    console.log("cart" , this.cart)
+    console.log('cart', this.cart);
 
     this.updateLocalStorageCart();
 
     this.totalItems.next(this.getFotosCount());
   }
 
-  updateCantidad(key, nuevaCantidad : number){
-      this.cart[key].cantidad = nuevaCantidad
-      this.totalItems.next(this.getFotosCount());
-      this.updateLocalStorageCart();
+  updateCantidad(key, nuevaCantidad: number) {
+    this.cart[key].cantidad = nuevaCantidad;
+    this.totalItems.next(this.getFotosCount());
+    this.updateLocalStorageCart();
   }
 
   // getFotos() {
   //   return this.fotos;
   // }
-  getCart(){
-    return this.cart
+  getCart() {
+    return this.cart;
   }
 
   clearCart() {
@@ -76,27 +73,17 @@ export class CartService {
     this.updateLocalStorageCart();
 
     this.totalItems.next(this.getFotosCount());
-
-
   }
-
-  // getCart() {
-  //   return this.cart.asObservable()
-  //                   .subscribe( cart => {
-  //                       console.log(cart)
-  //                     }
-  //                   );
-  // }
 
   getFotosCount() {
     //return this.cart.length;
-    let total : number = 0
+    let total: number = 0;
     for (let item of this.cart) {
       console.log(item.cantidad);
 
-      total =( Number (total)  + Number (item.cantidad) )
+      total = Number(total) + Number(item.cantidad);
     }
-    return total
+    return total;
   }
 
   getTotalItemsObserver() {

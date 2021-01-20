@@ -2,7 +2,7 @@ import { Events } from './../../../core/models/events.model';
 import { Component, OnInit , TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
 
-import { EventsService } from '../../../core/service/events.services';
+import { EventsService } from '../../../core/services/events.services';
 
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { Fotos } from 'src/app/core/models/fotos.model';
 import { faCoffee, fas, faShoppingCart} from '@fortawesome/free-solid-svg-icons';
 import { threadId } from 'worker_threads';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { CartService } from 'src/app/core/service/cart.service';
+import { CartService } from 'src/app/core/services/cart.service';
 import { CartItem } from "./../../../core/models/cartitem.model";
 
 

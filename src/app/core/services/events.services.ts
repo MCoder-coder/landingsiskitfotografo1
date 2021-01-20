@@ -8,8 +8,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, retry, catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 
-import { from, Observable, throwError } from 'rxjs';
-import { environment } from './../../../environments/environment.prod';
+import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 import { Fotos } from '../models/fotos.model';
 
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +21,7 @@ export class EventsService {
   // propiedades / variables
   events: Events[] = [];
   fotos: Fotos[] = [];
+
 
   constructor(private http: HttpClient, public toastr: ToastrService) {}
 
@@ -73,11 +74,6 @@ export class EventsService {
         )
     );
 
-    // map((eventosresponse: any) =>
-    //  eventosresponse.data.eventos as Events[]),
-    // catchError(error => {
-    //     return throwError('Algo salio mal');
-    // })
   }
 
   // tslint:disable-next-line: typedef

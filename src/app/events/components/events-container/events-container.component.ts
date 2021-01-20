@@ -1,4 +1,4 @@
-import { EventsService } from '../../../core/service/events.services';
+import { EventsService } from '../../../core/services/events.services';
 import { Events } from '../../../core/models/events.model';
 
 import {
