@@ -12,6 +12,7 @@ export class CartService {
   private fotos: Fotos[] = [];
   private cart: CartItem[] = [];
   private tempCartItem: CartItem;
+  //Behaviour Subject nos permite utilizar una característica realmente útil y que es la de poder "recodar¨ el último valor emitido por el Observable a todas las nuevas subscripciones, al margen del momento temporal en que éstas se establezcan
   private totalItems: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor() {
@@ -21,6 +22,7 @@ export class CartService {
   }
 
   loadLocalStorageCart() {
+    //El método JSON.parse() analiza una cadena de texto como JSON, transformando opcionalmente  el valor producido por el análisis.
     let myCart = JSON.parse(localStorage.getItem('cart'));
     if (!myCart) {
       this.cart = [];
@@ -30,6 +32,7 @@ export class CartService {
   }
 
   updateLocalStorageCart() {
+    //El JSON.stringify()método convierte un objeto o valor de JavaScript en una cadena
     let myCart = JSON.stringify(this.cart);
     localStorage.setItem('cart', myCart);
   }
@@ -49,7 +52,7 @@ export class CartService {
     console.log('cart', this.cart);
 
     this.updateLocalStorageCart();
-
+    //método next para emitir valores
     this.totalItems.next(this.getFotosCount());
   }
 
