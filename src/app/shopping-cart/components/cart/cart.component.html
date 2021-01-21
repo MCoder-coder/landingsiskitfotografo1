@@ -17,10 +17,34 @@
                 <img src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.filename}}" alt="images">
             </div>
             <div class="details">
-                <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}</h5>
+                <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}
+                    <label class="card-title details labels">
+                    <select class="ice-cream" name="ice-cream">
+                      <option value="">Impresa</option>
+                      <option value="chocolate">Digital</option>
+                      <option value="sardine">Ambas</option>
+
+                    </select>
+                  </label>
+                </h5>
+                <!-- <h2>SomeOne Famous<br><span>Director</span></h2> -->
+            </div>
+            <div class="detailsdos">
+                <h5 class="card-titledos"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}
+                    <label class="titledos select ">
+                <select class="ice-cream" name="ice-cream">
+                  <option value="">Impresa</option>
+                  <option value="chocolate">Digital</option>
+                  <option value="sardine">Ambas</option>
+
+                </select>
+              </label>
+                </h5>
                 <!-- <h2>SomeOne Famous<br><span>Director</span></h2> -->
             </div>
         </div>
+
+
 
 
 

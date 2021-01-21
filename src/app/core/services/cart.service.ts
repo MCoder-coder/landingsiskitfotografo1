@@ -48,18 +48,21 @@ export class CartService {
 
   addToCart(foto) {
     //this.cart.push(fotos);
-    this.fotos.push(foto);
 
+
+    this.fotos.push(foto);
+    //modelo de cart
     let newCartitem: CartItem = <CartItem>{
       ID: 0,
       foto: foto,
       cantidad: 1,
       size: '15x18',
     };
-    console.log('cart item', newCartitem);
+    //console.log('cart item', newCartitem);
+    //agrego datos del model en this.cart
     this.cart.push(newCartitem);
-    console.log('cart', this.cart);
-
+    //console.log('cart', this.cart);
+    //actualizo los datos del cart
     this.updateLocalStorageCart();
     //método next para emitir valores en este caso las items sumados del cart
     this.totalItems.next(this.getFotosCount());
@@ -71,9 +74,10 @@ export class CartService {
     this.updateLocalStorageCart();
   }
 
-  // getFotos() {
-  //   return this.fotos;
-  // }
+  getFotos() {
+    return this.fotos;
+   }
+
   getCart() {
     return this.cart;
   }
@@ -96,6 +100,7 @@ export class CartService {
       total = Number(total) + Number(item.cantidad);
     }
     return total;
+    //retorno el total de la suma
   }
 
   getTotalItemsObserver() {

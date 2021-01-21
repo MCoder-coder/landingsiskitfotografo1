@@ -13,7 +13,7 @@
     width: 1200px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-gap: 15px;
+    grid-gap: 45px;
     margin: 0 auto;
 }
 
@@ -78,7 +78,7 @@
 .card .details {
     position: absolute;
     left: 10px;
-    right: 10px;
+    right: 87px;
     bottom: 10px;
     height: 60px;
     text-align: center;
@@ -99,4 +99,43 @@
     color: #f38695;
     display: block;
     margin-top: 5px;
+}
+
+.card .detailsdos {
+    /* margin-top: 317px; */
+    position: absolute;
+    left: 10px;
+    right: 87px;
+    bottom: 23px;
+    height: 13px;
+    text-align: center;
+}
+
+.card .titledos {
+    display: inline-block;
+    margin-left: 177px;
+    /* margin-top: -6px; */
+    padding-top: 17px;
+}
+
+.card h5 {
+    font-family: 'Roboto';
+}
+
+input {
+    width: 45px;
+}
+
+.card .labels {
+    display: inline-block;
+    margin-left: 177px;
+    /* margin-top: -6px; */
+    padding-top: 17px;
+}
+
+.card {
+    display: inline-block;
+    margin-left: 177px;
+    /* margin-top: -6px; */
+    padding-top: 17px;
 }
