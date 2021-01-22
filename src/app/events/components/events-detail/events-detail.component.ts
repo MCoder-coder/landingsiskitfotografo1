@@ -1,4 +1,3 @@
-import { Fotos } from './../../../core/models/fotos.model';
 import { Events } from './../../../core/models/events.model';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
@@ -8,7 +7,7 @@ import { EventsService } from '../../../core/services/events.services';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
-
+import { Fotos } from 'src/app/core/models/fotos.model';
 
 import {
   faCoffee,
@@ -26,10 +25,9 @@ import { CartItem } from './../../../core/models/cartitem.model';
   styleUrls: ['./events-detail.component.css'],
 })
 export class EventDetailComponent implements OnInit {
-  @Input() fotos: Fotos
-
+  @Input() fotos: Fotos[];
   //evento: Observable<Events>;
-  photos : Fotos
+
   modalRef: BsModalRef;
   //
   mcartItemModel: CartItem;
@@ -113,11 +111,6 @@ export class EventDetailComponent implements OnInit {
      this.cartService.addToCart(fotos);
 
 
-
-  }
-
-  photo(foto : Fotos){
-    console.log( "getfotos" ,foto)
   }
 
   onScroll() {
