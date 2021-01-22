@@ -29,7 +29,8 @@ export class CartService {
     //let myCart = JSON.parse(localStorage.getItem('cart'));
      //local service inyectado en el constructo key cart para obtener los datos este metodo desencripta los datos guardados
     //en localStorage
-     let get =this.localService.getJsonValue('cart')
+     let get = this.localService.getJsonValue('cart')
+     console.log( 'get' , get)
     if (!get) {
       //si el carrito esta vacio
       this.cart = [];
@@ -77,16 +78,16 @@ export class CartService {
     if (!isDuplicate) {
       this.cart.push(newCartitem);
 
+      this.updateLocalStorageCart();
 
-
-
+      this.totalItems.next(this.getFotosCount());
     }
     console.log('cart', this.cart);
     //actualizo los datos del cart
-   // this.updateLocalStorageCart();
+
     //console.log( 'update',this.updateLocalStorageCart())
     //método next para emitir valores en este caso las items sumados del cart
-    this.totalItems.next(this.getFotosCount());
+
     //console.log('total items' , this.totalItems.next(this.getFotosCount()))
   }
 
@@ -100,6 +101,8 @@ export class CartService {
 
   getCart() {
     return this.cart;
+
+    console.log( 'cart' , this.cart)
   }
 
   clearCart() {

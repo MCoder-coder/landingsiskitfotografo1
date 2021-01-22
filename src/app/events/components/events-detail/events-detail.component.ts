@@ -25,9 +25,9 @@ import { CartItem } from './../../../core/models/cartitem.model';
   styleUrls: ['./events-detail.component.css'],
 })
 export class EventDetailComponent implements OnInit {
-  @Input() fotos: Fotos[];
+  @Input()
   //evento: Observable<Events>;
-
+  fotos: Fotos[];
   modalRef: BsModalRef;
   //
   mcartItemModel: CartItem;
@@ -72,29 +72,29 @@ export class EventDetailComponent implements OnInit {
     let ID = +this.route.snapshot.paramMap.get('id');
     this.ID = ID;
     this.eventService.getEventDetailService(ID, this.page);
-    console.log('ID DEL EVENTO: ', ID);
+   // console.log('ID DEL EVENTO: ', ID);
     this.fetchEventsFotos(ID, this.actualPage);
   }
 
   fetchEventsFotos(ID: number, page: number) {
-    console.log('ID Fetch Event Fotos: ', ID);
+    //console.log('ID Fetch Event Fotos: ', ID);
     this.isLoading = true;
     this.eventService
       .getEventDetailService(ID, page)
       .subscribe((eventosresponse: any) => {
         this.isLoading = false;
-        console.log(eventosresponse, 'evento detalle');
+      //  console.log(eventosresponse, 'evento detalle');
         //this.fotosArray = eventosresponse;
         // console.log(' RESPONSE: ', eventosresponse);
 
-        console.log('eventosresponse.data.fotos: ', eventosresponse);
-        console.log('this.fotosArray: ', this.fotosArray.length);
+        //console.log('eventosresponse.data.fotos: ', eventosresponse);
+        //console.log('this.fotosArray: ', this.fotosArray.length);
         if (eventosresponse) {
           //this.fotosArray.push(...eventosresponse);
 
           if (page >= this.actualPage) {
             this.actualPage = page;
-            console.log('Setea this.actualPage: ', this.actualPage);
+          //  console.log('Setea this.actualPage: ', this.actualPage);
             return eventosresponse[this.fotosArray.push(...eventosresponse)];
           }
         }
@@ -109,6 +109,7 @@ export class EventDetailComponent implements OnInit {
   addToCart(fotos: Fotos, template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
      this.cartService.addToCart(fotos);
+     console.log( 'fotoadd' ,fotos)
 
 
   }
