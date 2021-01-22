@@ -78,8 +78,6 @@ export class CartService {
       this.cart.push(newCartitem);
 
 
-
-
     }
     console.log('cart', this.cart);
     //actualizo los datos del cart
