@@ -1,5 +1,5 @@
 import { Events } from './../../../core/models/events.model';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
 
 import { EventsService } from '../../../core/services/events.services';
@@ -25,8 +25,9 @@ import { CartItem } from './../../../core/models/cartitem.model';
   styleUrls: ['./events-detail.component.css'],
 })
 export class EventDetailComponent implements OnInit {
+  @Input() fotos: Fotos[];
   //evento: Observable<Events>;
-  fotos: Fotos[];
+
   modalRef: BsModalRef;
   //
   mcartItemModel: CartItem;
@@ -64,6 +65,7 @@ export class EventDetailComponent implements OnInit {
     } else {
       this.isMobile = false;
     }
+
   }
 
   ngOnInit(): void {
@@ -97,19 +99,18 @@ export class EventDetailComponent implements OnInit {
           }
         }
       });
+
+
+
   }
 
 
 
   addToCart(fotos: Fotos, template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
-
      this.cartService.addToCart(fotos);
 
 
-
-
-    //console.log(fotos);
   }
 
   onScroll() {
@@ -128,5 +129,9 @@ export class EventDetailComponent implements OnInit {
 
   //(change)se activa cuando el usuario cambia la entrada
 
-  cartFotos = this.cartService.getFotos()
+
+
+
+
+
 }

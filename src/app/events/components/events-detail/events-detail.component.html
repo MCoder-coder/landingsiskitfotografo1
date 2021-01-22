@@ -65,8 +65,8 @@
       <span aria-hidden="true">&times;</span>
     </button>
     </div>
-    <div class="modal-body">
-        <img src="/src/assets/images/1.jpeg" />
+    <div class="modal-body" *ngFor="let foto of fotosArray let i = index">
+        <img src="{{'//www.juanschtrefotografo.com/' +  foto.filename  }}" [attr.data-index]="i" alt="" style="width:100%" />
         <!-- tipos -->
 
         <br>
@@ -88,6 +88,12 @@
 
 
         </select>
+        <select class="ice-cream" name="ice-cream">
+          <option value="">cuadro</option>
+          <option value="chocolate">sobre</option>
+
+
+        </select>
         <br>
         <input type="number">
         <select class="ice-cream" name="ice-cream">
@@ -107,6 +113,14 @@
 
 
         </select>
+
+        <select class="ice-cream" name="ice-cream">
+          <option value="">cuadro</option>
+          <option value="chocolate">sobre</option>
+
+
+        </select>
+        <p>Total :</p>
     </div>
 
 </ng-template>
