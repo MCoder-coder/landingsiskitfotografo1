@@ -1,3 +1,4 @@
+import { Fotos } from './../../../core/models/fotos.model';
 import { Events } from './../../../core/models/events.model';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
@@ -7,7 +8,7 @@ import { EventsService } from '../../../core/services/events.services';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
-import { Fotos } from 'src/app/core/models/fotos.model';
+
 
 import {
   faCoffee,
@@ -106,10 +107,81 @@ export class EventDetailComponent implements OnInit {
 
 
 
-  addToCart(fotos: Fotos, template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-     this.cartService.addToCart(fotos);
-     console.log( 'fotoadd' ,fotos)
+  addToCart(cartItem: Fotos) {
+    //this.modalRef = this.modalService.show(template);
+
+    //leer formulario pop up
+
+    //completar cartItem / actualizar
+
+
+
+     this.cartService.addToCart(cartItem);
+     console.log( 'fotoadd' ,cartItem)
+
+  //   this.getFotos(fotos)
+
+  }
+
+  addToCartPopUp(foto: Fotos, template: TemplateRef<any>) {
+
+    //existe en el carrito?
+
+    let newItemCart : CartItem = this.firstOrNew(foto)
+
+    const initialState = {
+      itemCart: newItemCart
+    };
+    console.log('initialState' , initialState)
+    this.modalRef = this.modalService.show(template, {initialState});
+    this.getFotos(foto)
+
+  }
+
+
+
+  firstOrNew(foto: Fotos): CartItem {
+   console.log('functionFirsOnNew' , foto )
+   // throw new Error('Method not implemented.');
+
+
+    let tempCart = this.cartService.getCart()
+    console.log('tempCart' , tempCart)
+    for (let index = 0; index < tempCart.length; index++) {
+      //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
+      //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
+      //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
+        if (foto.ID == tempCart[index].foto.ID) {
+
+            console.log('tempaCarIf' , tempCart[index])
+            return tempCart[index]
+
+
+            break
+        }
+
+    }
+
+
+    let newCartitem: CartItem = <CartItem>{
+      ID: 0,
+      foto: foto,
+      cantidad: 1,
+      size: '15x18',
+      impresa : false
+    };
+    console.log('tempCartIf' , newCartitem)
+    return newCartitem
+
+
+  }
+
+
+
+
+
+  getFotos(fotos : Fotos){
+      console.log('getFotos eventdetail' , fotos)
 
 
   }

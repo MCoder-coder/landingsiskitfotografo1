@@ -30,7 +30,7 @@ export class CartService {
      //local service inyectado en el constructo key cart para obtener los datos este metodo desencripta los datos guardados
     //en localStorage
      let get = this.localService.getJsonValue('cart')
-     console.log( 'get' , get)
+    // console.log( 'get' , get)
     if (!get) {
       //si el carrito esta vacio
       this.cart = [];
