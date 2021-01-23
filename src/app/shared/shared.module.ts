@@ -8,6 +8,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add-modal.component';
 
 
 
@@ -16,6 +17,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HeaderComponent,
     NavbarComponent,
     FooterComponent,
+    CartAddModalComponent,
 
   ],
   exports: [

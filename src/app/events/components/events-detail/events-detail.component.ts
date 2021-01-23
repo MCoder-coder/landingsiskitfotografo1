@@ -19,6 +19,7 @@ import { threadId } from 'worker_threads';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CartItem } from './../../../core/models/cartitem.model';
+import { CartAddModalComponent } from 'src/app/shared/components/cart/cart-add-modal/cart-add-modal.component';
 
 @Component({
   selector: 'app-photo-detail',
@@ -123,7 +124,7 @@ export class EventDetailComponent implements OnInit {
 
   }
 
-  addToCartPopUp(foto: Fotos, template: TemplateRef<any>) {
+  addToCartPopUp(foto: Fotos) {
 
     //existe en el carrito?
 
@@ -133,7 +134,7 @@ export class EventDetailComponent implements OnInit {
       itemCart: newItemCart
     };
     console.log('initialState' , initialState)
-    this.modalRef = this.modalService.show(template, {initialState});
+    this.modalRef = this.modalService.show(CartAddModalComponent, {initialState});
     this.getFotos(foto)
 
   }
