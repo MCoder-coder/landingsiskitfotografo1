@@ -1,3 +1,4 @@
+import { Fotos } from './../../../core/models/fotos.model';
 import { Events } from './../../../core/models/events.model';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
@@ -7,7 +8,7 @@ import { EventsService } from '../../../core/services/events.services';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
-import { Fotos } from 'src/app/core/models/fotos.model';
+
 
 import {
   faCoffee,
@@ -27,7 +28,7 @@ import { CartItem } from './../../../core/models/cartitem.model';
 export class EventDetailComponent implements OnInit {
   @Input()
   //evento: Observable<Events>;
-  fotos: Fotos[];
+  fotos: Fotos[] = []
   modalRef: BsModalRef;
   //
   mcartItemModel: CartItem;
@@ -39,7 +40,7 @@ export class EventDetailComponent implements OnInit {
   page: number;
   public isMobile: boolean;
   private isLoading: boolean;
-
+  photo : any
   googleIcon = faShoppingCart;
   Object = Object;
 
@@ -52,13 +53,14 @@ export class EventDetailComponent implements OnInit {
     private modalService: BsModalService,
     private cartService: CartService
   ) {
-    console.log(this.route.snapshot.paramMap.get('id/page'));
+   // console.log(this.route.snapshot.paramMap.get('id/page'));
 
     this.fotosArray = new Array<Fotos>();
     this.page = 0;
     this.actualPage = 0;
     this.nextPage = 1;
     this.isLoading = false;
+    this.photo = ''
 
     if (window.innerWidth < 768) {
       this.isMobile = true;
@@ -74,7 +76,11 @@ export class EventDetailComponent implements OnInit {
     this.eventService.getEventDetailService(ID, this.page);
    // console.log('ID DEL EVENTO: ', ID);
     this.fetchEventsFotos(ID, this.actualPage);
+
+
   }
+
+
 
   fetchEventsFotos(ID: number, page: number) {
     //console.log('ID Fetch Event Fotos: ', ID);
@@ -106,13 +112,33 @@ export class EventDetailComponent implements OnInit {
 
 
 
+
   addToCart(fotos: Fotos, template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
      this.cartService.addToCart(fotos);
      console.log( 'fotoadd' ,fotos)
 
 
+     this.fotos = this.getFoto(fotos)
+      console.log('fotosss' , this.fotos)
+       this.getFoto(fotos)
+
   }
+
+
+
+
+  getFoto(foto : any){
+
+    let data = foto
+
+    console.log( 'getfoto' , data)
+    return data
+
+  }
+
+  setFoto = this.getFoto(this.fotos)
+
 
   onScroll() {
     console.log('estas haciendo scroll');
