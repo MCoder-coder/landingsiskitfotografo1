@@ -7,7 +7,7 @@
             <ng-container *ngFor="let foto of fotosArray let i = index">
                 <div class="box" *ngIf="i % 4 === 0">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCart(foto , template)"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto  )" [attr.data]="foto"><fa-icon [icon]="googleIcon"></fa-icon></button>
 
                 </div>
 
@@ -21,7 +21,7 @@
 
                 <div class="box" *ngIf="i % 4 === 1">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCart(foto , template)"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
                 </div>
             </ng-container>
         </div>
@@ -29,7 +29,7 @@
             <ng-container *ngFor="let foto of fotosArray let i = index">
                 <div class="box" *ngIf="i % 4 === 2">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCart(foto , template)"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
                 </div>
 
             </ng-container>
@@ -39,7 +39,7 @@
 
                 <div class="box" *ngIf="i % 4 === 3">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCart(foto , template)"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
                 </div>
 
             </ng-container>
@@ -49,78 +49,11 @@
     <div class="row no-gutters" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()" *ngIf="isMobile">
 
         <div class="column">
-            <ng-container *ngFor="let foto of fotosArray let i = index">
-                <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+            <ng-container>
+                <img src="" alt="" style="width:100%" />
             </ng-container>
         </div>
 
     </div>
 
 </div>
-
-<ng-template #template>
-    <div class="modal-header mt-5">
-        <h4 class="modal-title pull-left"></h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-    </div>
-    <div class="modal-body" *ngFor="let foto of setFoto ">
-        <img src="{{'//www.juanschtrefotografo.com/' +  foto  }}" alt="" style="width:100%" />
-        <!-- tipos -->
-
-        <br>
-        <input type="number">
-        <select class="ice-cream" name="ice-cream">
-          <option value="">15x21</option>
-          <option value="chocolate">30x40</option>
-          <option value="chocolate">30x40</option>
-          <option value="chocolate">40x50</option>
-          <option value="chocolate">80x80</option>
-          <option value="chocolate">100x100</option>
-          <option value="chocolate">120x120</option>
-          <option value="chocolate">60x120</option>
-          <option value="chocolate">90x90</option>
-        </select>
-        <select class="ice-cream" name="ice-cream">
-          <option value="">Impresa</option>
-          <option value="chocolate">Digital</option>
-
-
-        </select>
-        <select class="ice-cream" name="ice-cream">
-          <option value="">cuadro</option>
-          <option value="chocolate">sobre</option>
-
-
-        </select>
-        <br>
-        <input type="number">
-        <select class="ice-cream" name="ice-cream">
-          <option value="">15x21</option>
-          <option value="chocolate">30x40</option>
-          <option value="chocolate">30x40</option>
-          <option value="chocolate">40x50</option>
-          <option value="chocolate">80x80</option>
-          <option value="chocolate">100x100</option>
-          <option value="chocolate">120x120</option>
-          <option value="chocolate">60x120</option>
-          <option value="chocolate">90x90</option>
-        </select>
-        <select class="ice-cream" name="ice-cream">
-          <option value="">Impresa</option>
-          <option value="chocolate">Digital</option>
-
-
-        </select>
-
-        <select class="ice-cream" name="ice-cream">
-          <option value="">cuadro</option>
-          <option value="chocolate">sobre</option>
-
-
-        </select>
-        <p>Total :</p>
-    </div>
-
-</ng-template>
