@@ -1,4 +1,5 @@
-import { Fotos } from 'src/app/core/models/fotos.model';
+import { Fotos } from './fotos.model';
+
 export interface CartItem{
 
   ID : number,

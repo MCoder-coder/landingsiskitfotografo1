@@ -63,32 +63,38 @@ export class CartService {
     };
     //console.log('cart item', newCartitem);
     //agrego datos del model en this.cart
+      console.log('this.cart de service' , this.cart)
+    //  for (let index = 0; index < this.cart.length; index++) {
+    //    //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
+    //   // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
+    //    //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
 
-    for (let index = 0; index < this.cart.length; index++) {
-      //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
-      //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
-      //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
-        if (foto.ID == this.cart[index].foto.ID) {
-            isDuplicate = true
-            break
-        }
+    //   //   if (foto.ID == this.cart[index].foto.ID) {
+    //   //     isDuplicate = false
+    //   //     console.log('primer if' , this.cart[index])
+    //   //     break
 
-    }
 
-    if (!isDuplicate) {
-      this.cart.push(newCartitem);
 
-      this.updateLocalStorageCart();
 
-      this.totalItems.next(this.getFotosCount());
-    }
-    console.log('cart', this.cart);
-    //actualizo los datos del cart
+    //   //  }
 
-    //console.log( 'update',this.updateLocalStorageCart())
-    //método next para emitir valores en este caso las items sumados del cart
+    //  }
+    this.cart.push(newCartitem);
+    //console.log('segundo if')
+    this.updateLocalStorageCart();
 
-    //console.log('total items' , this.totalItems.next(this.getFotosCount()))
+    this.totalItems.next(this.getFotosCount());
+
+    //  if (isDuplicate) {
+    //    this.cart.push(newCartitem);
+    //    console.log('segundo if')
+    //    this.updateLocalStorageCart();
+
+    //    this.totalItems.next(this.getFotosCount());
+    //  }
+
+
   }
 
   updateCantidad(key, nuevaCantidad: number) {
@@ -101,8 +107,6 @@ export class CartService {
 
   getCart() {
     return this.cart;
-
-    console.log( 'cart' , this.cart)
   }
 
   clearCart() {

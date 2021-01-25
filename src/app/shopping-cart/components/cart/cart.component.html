@@ -14,7 +14,7 @@
     <div class="box">
         <div class="card" *ngFor="let key of Object.keys(cart)">
             <div class="imgBx">
-                <img src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.filename}}" alt="images">
+                <img src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.foto.filename}}" alt="images">
             </div>
             <div class="details">
                 <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}

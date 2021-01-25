@@ -1,6 +1,6 @@
 <div class="modal-header mt-5">
     <h4 class="modal-title pull-left"></h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <button type="button" class="close pull-right" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -62,5 +62,6 @@
     <p>Total :</p>
 
 
-    <button (click)="addToCart(foto)"></button>
+    <!-- <button (click)="addToCart(foto)"></button> -->
+    <button class="btn btn-primary" (click)="addToCartFoto(itemCart)">Agregar al Carrito</button>
 </div>
