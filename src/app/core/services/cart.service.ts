@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { Fotos } from '../models/fotos.model';
-import { LocalService } from "./local.service";
+import { LocalService } from './local.service';
 import { Local } from 'protractor/built/driverProviders';
 import { StorageService } from './storage.service';
 
@@ -18,7 +18,7 @@ export class CartService {
   //Behaviour Subject nos permite utilizar una característica realmente útil y que es la de poder "recodar¨ el último valor emitido por el Observable a todas las nuevas subscripciones, al margen del momento temporal en que éstas se establezcan
   private totalItems: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   //inyecto servicio de encriptacion para acceder a sus metodos
-  constructor(private localService : LocalService) {
+  constructor(private localService: LocalService) {
     // cargo el carrito desde el local storage
     this.loadLocalStorageCart();
     this.totalItems.next(this.getFotosCount());
@@ -27,9 +27,9 @@ export class CartService {
   loadLocalStorageCart() {
     //El método JSON.parse() analiza una cadena de texto como JSON, transformando opcionalmente  el valor producido por el análisis.
     //let myCart = JSON.parse(localStorage.getItem('cart'));
-     //local service inyectado en el constructo key cart para obtener los datos este metodo desencripta los datos guardados
+    //local service inyectado en el constructo key cart para obtener los datos este metodo desencripta los datos guardados
     //en localStorage
-     let get = this.localService.getJsonValue('cart')
+    let get = this.localService.getJsonValue('cart');
     // console.log( 'get' , get)
     if (!get) {
       //si el carrito esta vacio
@@ -42,17 +42,17 @@ export class CartService {
 
   updateLocalStorageCart() {
     //El JSON.stringify()método convierte un objeto o valor de JavaScript en una cadena
-    this.localService.setJsonValue('cart' , this.cart)
-   // let myCart = JSON.stringify(this.cart);
+    this.localService.setJsonValue('cart', this.cart);
+    // let myCart = JSON.stringify(this.cart);
     //localStorage.setItem('cart', myCart);
   }
 
-  addToCart(foto : Fotos) {
+  addToCart(foto: Fotos) {
     //this.cart.push(fotos);
-     let isDuplicate = false
+    let isDuplicate = false;
 
     //  this.fotos.push(foto);
-   // console.log('cart push' ,this.fotos.push(foto) )
+    // console.log('cart push' ,this.fotos.push(foto) )
 
     //modelo de cart
     let newCartitem: CartItem = <CartItem>{
@@ -63,38 +63,30 @@ export class CartService {
     };
     //console.log('cart item', newCartitem);
     //agrego datos del model en this.cart
-      console.log('this.cart de service' , this.cart)
-    //  for (let index = 0; index < this.cart.length; index++) {
-    //    //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
-    //   // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
-    //    //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
 
-    //   //   if (foto.ID == this.cart[index].foto.ID) {
-    //   //     isDuplicate = false
-    //   //     console.log('primer if' , this.cart[index])
-    //   //     break
+   // for (let index = 0; index < this.cart.length; index++) {
+      //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
+      // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
+      //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
 
+    //   if (foto.ID == this.cart[index].foto.ID) {
+    //     isDuplicate = true;
+    //     console.log('primer if', this.cart[index]);
+    //     break;
+    //   }
+    // }
+     this.cart.push(newCartitem);
+    // //console.log('segundo if')
+     this.updateLocalStorageCart();
 
+     this.totalItems.next(this.getFotosCount());
 
-
-    //   //  }
-
-    //  }
-    this.cart.push(newCartitem);
-    //console.log('segundo if')
-    this.updateLocalStorageCart();
-
-    this.totalItems.next(this.getFotosCount());
-
-    //  if (isDuplicate) {
+    //   if (isDuplicate) {
     //    this.cart.push(newCartitem);
-    //    console.log('segundo if')
-    //    this.updateLocalStorageCart();
 
-    //    this.totalItems.next(this.getFotosCount());
+    //     this.updateLocalStorageCart();
+    //     this.totalItems.next(this.getFotosCount());
     //  }
-
-
   }
 
   updateCantidad(key, nuevaCantidad: number) {
@@ -102,8 +94,6 @@ export class CartService {
     this.totalItems.next(this.getFotosCount());
     this.updateLocalStorageCart();
   }
-
-
 
   getCart() {
     return this.cart;

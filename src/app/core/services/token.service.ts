@@ -1,5 +1,5 @@
 import { environment } from './../../../environments/environment';
-import { async } from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import {
   HttpHeaders,
   HttpClient,

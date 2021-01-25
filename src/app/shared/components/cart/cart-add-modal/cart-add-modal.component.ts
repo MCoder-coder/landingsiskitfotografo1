@@ -1,6 +1,7 @@
 import { Fotos } from './../../../../core/models/fotos.model';
 import { CartService } from './../../../../core/services/cart.service';
 import { Component, OnInit } from '@angular/core';
+import { flatten } from '@angular/compiler';
 
 
 @Component({
@@ -22,27 +23,30 @@ export class CartAddModalComponent implements OnInit {
 
   addToCartFoto(foto : Fotos){
 
-    let isDuplicate : false
-    let cartitemAdd = this.cartService.getCart()
+    let  isDuplicated = false
 
-    console.log('paso por el for' , this.itemCart)
-    console.log('foto addto cart' , foto)
+
     for (let index = 0; index < this.itemCart.length; index++) {
+      for (let index = 0; index < foto.length; index++) {
 
-        if (foto.ID === this.itemCart[index].foto.ID) {
-
-          isDuplicate = false
-
-          break
+        if (this.itemCart[index] == foto[index]) {
+            console.log('if')
         }
 
-
+      }
     }
 
-    if (!isDuplicate) {
-      this.cartService.addToCart(this.itemCart)
-      console.log('if de duplicado global' , this.itemCart)
-    }
+
+    // if (this.itemCart.foto.ID  == this.itemCart.foto.ID) {
+    //   isDuplicated = true
+    //   console.log('if' , isDuplicated)
+    //   this.cartService.addToCart(this.itemCart)
+    // }else{
+    //   isDuplicated = false
+
+
+
+
 
 
 
