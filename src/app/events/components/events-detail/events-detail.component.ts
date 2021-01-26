@@ -1,4 +1,5 @@
 import { Fotos } from './../../../core/models/fotos.model';
+import { Foto } from './../../../core/models/foto.model';
 import { Events } from './../../../core/models/events.model';
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Event, Params } from '@angular/router';
@@ -32,7 +33,7 @@ export class EventDetailComponent implements OnInit {
   modalRef: BsModalRef;
   //
   mcartItemModel: CartItem;
-  fotosArray: Fotos[];
+  fotosArray: Fotos;
   //evento: Events;
   ID: number = null;
   private actualPage: number;
@@ -54,7 +55,7 @@ export class EventDetailComponent implements OnInit {
   ) {
     // console.log(this.route.snapshot.paramMap.get('id/page'));
 
-    this.fotosArray = new Array<Fotos>();
+    this.fotosArray = [];
     this.page = 0;
     this.actualPage = 0;
     this.nextPage = 1;
@@ -115,7 +116,7 @@ export class EventDetailComponent implements OnInit {
   // }
 
   //modal para preferencias de la fotos para el carrito
-  addToCartPopUp(foto: Fotos) {
+  addToCartPopUp(foto: Foto) {
     //existe en el carrito?
     //una variable asignada al modelos CarItem que obtiene de la funcion firstNew la foto seleccionada , este metodo compara si la fotos son iguales, para poder mostrar una sola y no ambas
     let newItemCart: CartItem = this.firstOrNew(foto);
@@ -132,7 +133,7 @@ export class EventDetailComponent implements OnInit {
   }
 
   //primer foto seleccionada
-  firstOrNew(foto: Fotos): CartItem {
+  firstOrNew(foto: Foto): CartItem {
     //console.log('functionFirsOnNew', foto);
     // throw new Error('Method not implemented.');
 
@@ -152,11 +153,11 @@ export class EventDetailComponent implements OnInit {
 
     //creo un objeto basandome en el modelo carro
     let newCartitem: CartItem = <CartItem>{
-     // ID: 0,
-       foto,
-      // cantidad: 1,
-      // size: '15x18',
-      // impresa: false,
+      ID: 0,
+      foto: foto,
+      cantidad: 1,
+      size: '15x18',
+      impresa: false,
     };
     console.log('tempCartIf', newCartitem);
     return newCartitem;
