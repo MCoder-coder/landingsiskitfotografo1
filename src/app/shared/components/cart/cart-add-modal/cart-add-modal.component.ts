@@ -17,7 +17,7 @@ export class CartAddModalComponent implements OnInit {
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
-    
+
   }
 
 
@@ -25,25 +25,47 @@ export class CartAddModalComponent implements OnInit {
   addToCartFoto(foto : Fotos){
 
     let  isDuplicated = false
+    let getcarrito = this.cartService.getCart()
 
 
-   // console.log('foto de componente modal cart' , foto)
-   // console.log(`foto de itemcart` , this.itemCart)
-
-   
-
-  
-
-    // if (this.itemCart.foto.ID  == this.itemCart.foto.ID) {
-    //   isDuplicated = true
-    //   console.log('if' , isDuplicated)
-    //   this.cartService.addToCart(this.itemCart)
-    // }else{
-    //   isDuplicated = false
+    console.log('foto de componente modal cart' , foto)
+    console.log(`foto de itemcart` , this.itemCart)
 
 
+    console.log('id de foto ItemCart' , this.itemCart.foto.ID)
+    //console.log('id de foto : Fotos' , foto.foto.ID)
 
-    this.cartService.addToCart(this.itemCart)
+      for(const value of Object.values(getcarrito)){
+        for(const val of Object.values(value)){
+          for(const va of Object.values(val)){
+            if (va.ID == this.itemCart.foto.ID) {
+              console.log('va id' , va.ID)
+              isDuplicated = true
+              break
+            }
+          }
+        }
+      }
+
+    // for (const value of Object.values(foto)) {
+    //     console.log('foto fot' , value.ID)
+
+    //     if(value.ID == this.itemCart.foto.ID){
+    //       console.log('value id' , value.ID )
+    //       console.log('value itemcart' , this.itemCart.foto.ID)
+    //        isDuplicated = true
+    //        this.cartService.addToCart(this.itemCart)
+    //       break
+
+    //     }
+    //  }
+
+     if(!isDuplicated){
+      console.log('no es duplicada')
+      this.cartService.addToCart(this.itemCart )
+
+     }
+
 
 
 

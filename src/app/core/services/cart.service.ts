@@ -63,22 +63,20 @@ export class CartService {
     };
     //console.log('cart item', newCartitem);
     //agrego datos del model en this.cart
-    console.log('fuera del if' , foto)
-    console.log('fuera del if cart' , this.cart)
+    //console.log('fuera del if' , foto)
+    //console.log('fuera del if cart' , this.cart)
+
     //console.log('newCartItem de service' , newCartitem)
-    for (let index = 0; index < this.cart.length; index++) {
+   // for (let index = 0; index < this.cart.length; index++) {
       //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
       // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
       //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
-        console.log('dentro del fot itemcart service' , this.cart[index].foto)
-       if (foto.foto.ID == this.cart[index].foto.ID ) {
-         isDuplicate = false;
-         console.log('primer if', foto.ID);
-         break;
-       }
-     }
+       // console.log('dentro del for itemcart service' , this.cart[index].foto.ID)
 
-     
+     //}
+
+     //console.log('foto id' , foto.ID)
+
     //this.cart.push(newCartitem);
     // //console.log('segundo if')
     // this.updateLocalStorageCart();
