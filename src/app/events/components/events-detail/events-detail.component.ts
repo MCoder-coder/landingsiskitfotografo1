@@ -133,34 +133,34 @@ export class EventDetailComponent implements OnInit {
 
   //primer foto seleccionada
   firstOrNew(foto: Fotos): CartItem {
-    console.log('functionFirsOnNew', foto);
+    //console.log('functionFirsOnNew', foto);
     // throw new Error('Method not implemented.');
 
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
     let tempCart = this.cartService.getCart();
-    console.log('tempCart', tempCart);
+    //console.log('tempCart', tempCart);
     for (let index = 0; index < tempCart.length; index++) {
       //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
       //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
       //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
       if (foto.ID == tempCart[index].foto.ID) {
         //comparo la foto.id con el el objeto temCart con el indice ID si estos son iguales returno tempcart el ID de la foto seleccionada
-        console.log('tempaCarIf', tempCart[index]);
+      //  console.log('tempaCarIf', tempCart[index]);
         return tempCart[index];
       }
     }
 
     //creo un objeto basandome en el modelo carro
     let newCartitem: CartItem = <CartItem>{
-      ID: 0,
-      foto: foto,
-      cantidad: 1,
-      size: '15x18',
-      impresa: false,
+     // ID: 0,
+       foto,
+      // cantidad: 1,
+      // size: '15x18',
+      // impresa: false,
     };
     console.log('tempCartIf', newCartitem);
     return newCartitem;
-    //y retorno los ismo datos de este modelo
+    //y retfotomo datos de este modelo
     //la comparacion del if es para obtenes una sola foto en este caso la dle modelo carro y no la del modelo fotos
   }
 

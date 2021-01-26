@@ -17,6 +17,7 @@ export class CartAddModalComponent implements OnInit {
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
+    
   }
 
 
@@ -26,16 +27,12 @@ export class CartAddModalComponent implements OnInit {
     let  isDuplicated = false
 
 
-    for (let index = 0; index < this.itemCart.length; index++) {
-      for (let index = 0; index < foto.length; index++) {
+   // console.log('foto de componente modal cart' , foto)
+   // console.log(`foto de itemcart` , this.itemCart)
 
-        if (this.itemCart[index] == foto[index]) {
-            console.log('if')
-        }
+   
 
-      }
-    }
-
+  
 
     // if (this.itemCart.foto.ID  == this.itemCart.foto.ID) {
     //   isDuplicated = true
@@ -46,7 +43,7 @@ export class CartAddModalComponent implements OnInit {
 
 
 
-
+    this.cartService.addToCart(this.itemCart)
 
 
 

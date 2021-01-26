@@ -56,37 +56,40 @@ export class CartService {
 
     //modelo de cart
     let newCartitem: CartItem = <CartItem>{
-      ID: 0,
+      //ID: 0,
       foto: foto,
       cantidad: 1,
       size: '15x18',
     };
     //console.log('cart item', newCartitem);
     //agrego datos del model en this.cart
-
-   // for (let index = 0; index < this.cart.length; index++) {
+    console.log('fuera del if' , foto)
+    console.log('fuera del if cart' , this.cart)
+    //console.log('newCartItem de service' , newCartitem)
+    for (let index = 0; index < this.cart.length; index++) {
       //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
       // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
       //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
+        console.log('dentro del fot itemcart service' , this.cart[index].foto)
+       if (foto.foto.ID == this.cart[index].foto.ID ) {
+         isDuplicate = false;
+         console.log('primer if', foto.ID);
+         break;
+       }
+     }
 
-    //   if (foto.ID == this.cart[index].foto.ID) {
-    //     isDuplicate = true;
-    //     console.log('primer if', this.cart[index]);
-    //     break;
-    //   }
-    // }
-     this.cart.push(newCartitem);
+     
+    //this.cart.push(newCartitem);
     // //console.log('segundo if')
-     this.updateLocalStorageCart();
+    // this.updateLocalStorageCart();
 
-     this.totalItems.next(this.getFotosCount());
+     //this.totalItems.next(this.getFotosCount());
 
-    //   if (isDuplicate) {
-    //    this.cart.push(newCartitem);
-
-    //     this.updateLocalStorageCart();
-    //     this.totalItems.next(this.getFotosCount());
-    //  }
+       if (!isDuplicate) {
+        this.cart.push(newCartitem);
+        this.updateLocalStorageCart();
+         this.totalItems.next(this.getFotosCount());
+     }
   }
 
   updateCantidad(key, nuevaCantidad: number) {
@@ -112,7 +115,7 @@ export class CartService {
     //return this.cart.length;
     let total: number = 0;
     for (let item of this.cart) {
-      console.log(item.cantidad);
+     // console.log(item.cantidad);
       //suma el total que es igual a 0 por la la cantidad de item dentro del carrito
       total = Number(total) + Number(item.cantidad);
     }
