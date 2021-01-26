@@ -1,25 +1,47 @@
 <app-slide></app-slide>
+
 <!-- Photo Grid -->
 <div class="container-fluid ">
     <div class="row no-gutters " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()" *ngIf="!isMobile">
         <div class="column">
             <ng-container *ngFor="let foto of fotosArray let i = index">
-                <img *ngIf="i % 4 === 0" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+                <div class="box" *ngIf="i % 4 === 0">
+                    <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+                    <button class="btn" (click)="addToCartPopUp(foto)" [attr.data]="00"><fa-icon [icon]="googleIcon"></fa-icon></button>
+
+                </div>
+
+
+            </ng-container>
+
+        </div>
+        <div class="column">
+
+            <ng-container *ngFor="let foto of fotosArray let i = index">
+
+                <div class="box" *ngIf="i % 4 === 1">
+                    <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                </div>
             </ng-container>
         </div>
         <div class="column">
             <ng-container *ngFor="let foto of fotosArray let i = index">
-                <img *ngIf="i % 4 === 1" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+                <div class="box" *ngIf="i % 4 === 2">
+                    <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                </div>
+
             </ng-container>
         </div>
         <div class="column">
             <ng-container *ngFor="let foto of fotosArray let i = index">
-                <img *ngIf="i % 4 === 2" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-            </ng-container>
-        </div>
-        <div class="column">
-            <ng-container *ngFor="let foto of fotosArray let i = index">
-                <img *ngIf="i % 4 === 3" src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+
+                <div class="box" *ngIf="i % 4 === 3">
+                    <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                </div>
+
             </ng-container>
         </div>
     </div>
@@ -27,8 +49,8 @@
     <div class="row no-gutters" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()" *ngIf="isMobile">
 
         <div class="column">
-            <ng-container *ngFor="let foto of fotosArray let i = index">
-                <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
+            <ng-container>
+                <img src="" alt="" style="width:100%" />
             </ng-container>
         </div>
 

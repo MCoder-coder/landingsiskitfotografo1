@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { error } from 'protractor';
-import { EventsService } from 'src/app/core/service/events.services';
+import { EventsService } from 'src/app/core/services/events.services';
 
 
 import {Events} from '../../../core/models/events.model';

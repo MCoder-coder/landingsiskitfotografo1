@@ -8,8 +8,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, retry, catchError } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 
-import { from, Observable, throwError } from 'rxjs';
-import { environment } from './../../../environments/environment.prod';
+import { BehaviorSubject, from, Observable, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment.prod';
 import { Fotos } from '../models/fotos.model';
 
 import { ToastrService } from 'ngx-toastr';
@@ -21,6 +21,7 @@ export class EventsService {
   // propiedades / variables
   events: Events[] = [];
   fotos: Fotos[] = [];
+
 
   constructor(private http: HttpClient, public toastr: ToastrService) {}
 
@@ -39,11 +40,11 @@ export class EventsService {
     );
   }
 
-  getEventDetailService(ID: number, page: number) {
-    console.log('ID event detail service: ', ID);
+  getEventDetailService(eventos_id: number, page: number) {
+    console.log('eventos_id event detail service: ', eventos_id);
     return (
       this.http
-        .get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=4`)
+        .get(`${environment.url_api}fotos?eventos_id=${eventos_id}&page=${page}&per_page=4`)
         //return this.http.get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=20`)
         .pipe(
           map((eventosresponse: any) => {
@@ -73,11 +74,6 @@ export class EventsService {
         )
     );
 
-    // map((eventosresponse: any) =>
-    //  eventosresponse.data.eventos as Events[]),
-    // catchError(error => {
-    //     return throwError('Algo salio mal');
-    // })
   }
 
   // tslint:disable-next-line: typedef

@@ -1,22 +1,14 @@
-import { EventsService } from '../../../core/service/events.services';
+import { EventsService } from '../../../core/services/events.services';
 import { Events } from '../../../core/models/events.model';
 
-import {
-  Component, OnInit, Input,
-  Output,
-  EventEmitter
-} from '@angular/core';
-
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-gallery',
   templateUrl: './events-container.component.html',
-  styleUrls: ['./events-container.component.css']
+  styleUrls: ['./events-container.component.css'],
 })
 export class EventsGallerycontainerComponent implements OnInit {
-
-
-
   eventos: Events[] = [];
   page: number;
   //perPage = 16;
@@ -25,8 +17,6 @@ export class EventsGallerycontainerComponent implements OnInit {
   private actualPage: number;
   private nextPage: number;
   private isLoading: Boolean;
-
-
 
   constructor(private eventService: EventsService) {
     this.eventosArray = new Array<Events>();
@@ -42,58 +32,40 @@ export class EventsGallerycontainerComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   clickEvent(id: number) {
-    console.log('clickEvent en event-gallery.ts');
-    console.log(id);
-
+    //  console.log('clickEvent en event-gallery.ts');
+    //console.log(id);
   }
-
 
   // Refactorizar nombre a: getEventosPage
   // tslint:disable-next-line: typedef
   getEventPage(page: number) {
     this.isLoading = true;
-    this.eventService.getEventPageService(page)
-      .subscribe((eventosresponse) => {
-        this.isLoading = false;
-       // console.log('eventosresponse.data.eventos: ', eventosresponse);
-        //console.log('this.eventosArray: ', this.eventosArray);
-        if (eventosresponse) {
-          if (page >= this.actualPage){
-            this.actualPage = page;
+    this.eventService.getEventPageService(page).subscribe((eventosresponse) => {
+      this.isLoading = false;
+      // console.log('eventosresponse.data.eventos: ', eventosresponse);
+      //console.log('this.eventosArray: ', this.eventosArray);
+      if (eventosresponse) {
+        if (page >= this.actualPage) {
+          this.actualPage = page;
 
+          console.log('Setea this.actualPage: ', this.actualPage);
 
-            console.log('Setea this.actualPage: ', this.actualPage);
-
-            return eventosresponse[this.eventosArray.push(...eventosresponse)];
-          }
+          return eventosresponse[this.eventosArray.push(...eventosresponse)];
         }
-
-
-
-      });
-
-
+      }
+    });
   }
-
-
 
   onScroll() {
     console.log('scrolled down!!');
     if (!this.isLoading) {
-
-      console.log('actualPage: ', this.actualPage);
+      //console.log('actualPage: ', this.actualPage);
 
       this.nextPage = this.actualPage + 1;
-      console.log('nextPage: ', this.nextPage);
+      //console.log('nextPage: ', this.nextPage);
 
-      console.log('pide pagina siguiente: getEventPage() ');
-      this.getEventPage(this.nextPage);  //refactorizar a: getEventosPage
-
+      //console.log('pide pagina siguiente: getEventPage() ');
+      this.getEventPage(this.nextPage); //refactorizar a: getEventosPage
     }
-
-
   }
-
-
-
 }

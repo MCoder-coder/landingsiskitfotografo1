@@ -1,0 +1,52 @@
+<!-- <div class="container mt-4">
+    <div class="row">
+        <div class="card col-auto mb-3" style="width: 18rem;" *ngFor="let key of Object.keys(cart) ">
+            <img class="card-img-top" src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.filename}}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}</h5>
+
+            </div>
+        </div>
+
+    </div>
+</div> -->
+<div class="body">
+    <div class="box">
+        <div class="card" *ngFor="let key of Object.keys(cart)">
+            <div class="imgBx">
+                <img src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.foto.filename}}" alt="images">
+            </div>
+            <div class="details">
+                <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}
+                    <label class="card-title details labels">
+                    <select class="ice-cream" name="ice-cream">
+                      <option value="">Impresa</option>
+                      <option value="chocolate">Digital</option>
+                      <option value="sardine">Ambas</option>
+
+                    </select>
+                  </label>
+                </h5>
+                <!-- <h2>SomeOne Famous<br><span>Director</span></h2> -->
+            </div>
+            <div class="detailsdos">
+                <h5 class="card-titledos"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}
+                    <label class="titledos select ">
+                <select class="ice-cream" name="ice-cream">
+                  <option value="">Impresa</option>
+                  <option value="chocolate">Digital</option>
+                  <option value="sardine">Ambas</option>
+
+                </select>
+              </label>
+                </h5>
+                <!-- <h2>SomeOne Famous<br><span>Director</span></h2> -->
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>
