@@ -1,7 +1,2 @@
-export interface Fotos extends Array<Fotos>{
-
-  ID: number;
-  filename: string;
-
-
-}
+import { Foto } from './foto.model';
+export interface Fotos extends Array<Foto>{}

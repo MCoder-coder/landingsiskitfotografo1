@@ -1,4 +1,5 @@
-import { CartItem } from '../models/cartitem.model';
+import { CartItem } from './../models/cartitem.model';
+
 import { Injectable } from '@angular/core';
 
 import { BehaviorSubject } from 'rxjs';
@@ -7,6 +8,8 @@ import { Fotos } from '../models/fotos.model';
 import { LocalService } from './local.service';
 import { Local } from 'protractor/built/driverProviders';
 import { StorageService } from './storage.service';
+import { Foto } from '../models/foto.model';
+import { Console } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -47,20 +50,21 @@ export class CartService {
     //localStorage.setItem('cart', myCart);
   }
 
-  addToCart(foto: Fotos) {
+  addToCart(cartItem: CartItem) {
+    console.log("cart.service.ts addToCart")
     //this.cart.push(fotos);
-    let isDuplicate = false;
+    //let isDuplicate = false;
 
     //  this.fotos.push(foto);
     // console.log('cart push' ,this.fotos.push(foto) )
 
     //modelo de cart
-    let newCartitem: CartItem = <CartItem>{
-      //ID: 0,
-      foto: foto,
-      cantidad: 1,
-      size: '15x18',
-    };
+    // let newCartitem: CartItem = <CartItem>{
+    //   ID: 0,
+    //   foto: foto,
+    //   cantidad: 1,
+    //   size: '15x18',
+    // };
     //console.log('cart item', newCartitem);
     //agrego datos del model en this.cart
     //console.log('fuera del if' , foto)
@@ -83,11 +87,11 @@ export class CartService {
 
      //this.totalItems.next(this.getFotosCount());
 
-       if (!isDuplicate) {
-        this.cart.push(newCartitem);
+
+        this.cart.push(cartItem);
         this.updateLocalStorageCart();
-         this.totalItems.next(this.getFotosCount());
-     }
+        this.totalItems.next(this.getFotosCount());
+      console.log("AGREGADO CON EXITO")
   }
 
   updateCantidad(key, nuevaCantidad: number) {

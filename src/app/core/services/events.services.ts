@@ -20,7 +20,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EventsService {
   // propiedades / variables
   events: Events[] = [];
-  fotos: Fotos[] = [];
+  fotos: Fotos;
 
 
   constructor(private http: HttpClient, public toastr: ToastrService) {}
@@ -48,7 +48,7 @@ export class EventsService {
         //return this.http.get(`${environment.url_api}fotos?eventos_id=${ID}&page=${page}&per_page=20`)
         .pipe(
           map((eventosresponse: any) => {
-            return eventosresponse.data.fotos as Fotos[];
+            return eventosresponse.data.fotos as Fotos;
           }),
           retry(0),
           catchError(this.handleError)

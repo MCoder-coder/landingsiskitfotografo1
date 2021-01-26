@@ -21,7 +21,7 @@
 
                 <div class="box" *ngIf="i % 4 === 1">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto)"><fa-icon [icon]="googleIcon"></fa-icon></button>
                 </div>
             </ng-container>
         </div>
@@ -29,7 +29,7 @@
             <ng-container *ngFor="let foto of fotosArray let i = index">
                 <div class="box" *ngIf="i % 4 === 2">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto)"><fa-icon [icon]="googleIcon"></fa-icon></button>
                 </div>
 
             </ng-container>
@@ -39,7 +39,7 @@
 
                 <div class="box" *ngIf="i % 4 === 3">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCartPopUp(foto  )"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto)"><fa-icon [icon]="googleIcon"></fa-icon></button>
                 </div>
 
             </ng-container>

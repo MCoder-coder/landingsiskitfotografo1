@@ -1,4 +1,4 @@
-import { Fotos } from './../../../../core/models/fotos.model';
+import { Foto } from './../../../../core/models/foto.model';
 import { CartService } from './../../../../core/services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { flatten } from '@angular/compiler';
@@ -22,32 +22,30 @@ export class CartAddModalComponent implements OnInit {
 
 
 
-  addToCartFoto(foto : Fotos){
-
+  addToCartFoto(){
+    console.log("car-add-modal funcion addToCart");
     let  isDuplicated = false
     let getcarrito = this.cartService.getCart()
 
 
-    console.log('foto de componente modal cart' , foto)
-    console.log('foto ID' , foto.foto.ID)
+    //console.log('foto de componente modal cart' , foto)
+    console.log('foto ID' , this.itemCart.foto.ID)
     console.log(`foto de itemcart` , this.itemCart)
 
 
     console.log('id de foto ItemCart' , this.itemCart.foto.ID)
     //console.log('id de foto : Fotos' , foto.foto.ID)
 
-      for(const value of Object.values(getcarrito)){
-        for(const val of Object.values(value)){
-          console.log('val ')
-          for(const va of Object.values(val)){
+      for(const forCartItem of getcarrito){
+          console.log('forCartItem' , forCartItem);
+          console.log('forCartItem.foto' , forCartItem.foto);
+          console.log('this.itemCart.foto.ID' , this.itemCart.foto.ID);
+            if ( this.itemCart.foto.ID ==  forCartItem.foto.ID) {
 
-            if ( Object.keys(va.ID)== this.itemCart.foto.ID) {
-              console.log('va id' , va)
               isDuplicated = true
               break
             }
-          }
-        }
+
       }
 
     // for (const value of Object.values(foto)) {
@@ -65,8 +63,10 @@ export class CartAddModalComponent implements OnInit {
 
      if(!isDuplicated){
       console.log('no es duplicada')
-      this.cartService.addToCart(this.itemCart )
+      this.cartService.addToCart(this.itemCart)
 
+     }else{
+      console.log('es duplicada')
      }
 
 
