@@ -7,7 +7,7 @@
             <ng-container *ngFor="let foto of fotosArray let i = index">
                 <div class="box" *ngIf="i % 4 === 0">
                     <img src="{{'//www.juanschtrefotografo.com/' + foto.filename }}" [attr.data-index]="i" alt="" style="width:100%" />
-                    <button class="btn" (click)="addToCartPopUp(foto  )" [attr.data]="foto"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                    <button class="btn" (click)="addToCartPopUp(foto)" [attr.data]="00"><fa-icon [icon]="googleIcon"></fa-icon></button>
 
                 </div>
 

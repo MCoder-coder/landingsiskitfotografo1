@@ -29,6 +29,7 @@ export class CartAddModalComponent implements OnInit {
 
 
     console.log('foto de componente modal cart' , foto)
+    console.log('foto ID' , foto.foto.ID)
     console.log(`foto de itemcart` , this.itemCart)
 
 
@@ -37,9 +38,10 @@ export class CartAddModalComponent implements OnInit {
 
       for(const value of Object.values(getcarrito)){
         for(const val of Object.values(value)){
+          console.log('val ')
           for(const va of Object.values(val)){
 
-            if (va.ID == this.itemCart.foto.ID) {
+            if ( Object.keys(va.ID)== this.itemCart.foto.ID) {
               console.log('va id' , va)
               isDuplicated = true
               break
