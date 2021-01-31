@@ -1,4 +1,4 @@
-<!-- <div class="container mt-4">
+<!-- <!-- <div class="container mt-4">
     <div class="row">
         <div class="card col-auto mb-3" style="width: 18rem;" *ngFor="let key of Object.keys(cart) ">
             <img class="card-img-top" src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.filename}}" alt="Card image cap">
@@ -10,43 +10,70 @@
 
     </div>
 </div> -->
-<div class="body">
-    <div class="box">
-        <div class="card" *ngFor="let key of Object.keys(cart)">
-            <div class="imgBx">
-                <img src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.foto.filename}}" alt="images">
-            </div>
-            <div class="details">
-                <h5 class="card-title"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}
-                    <label class="card-title details labels">
-                    <select class="ice-cream" name="ice-cream">
-                      <option value="">Impresa</option>
-                      <option value="chocolate">Digital</option>
-                      <option value="sardine">Ambas</option>
 
-                    </select>
-                  </label>
-                </h5>
-                <!-- <h2>SomeOne Famous<br><span>Director</span></h2> -->
-            </div>
-            <div class="detailsdos">
-                <h5 class="card-titledos"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"> fotos de {{cart[key].size}}
-                    <label class="titledos select ">
-                <select class="ice-cream" name="ice-cream">
-                  <option value="">Impresa</option>
-                  <option value="chocolate">Digital</option>
-                  <option value="sardine">Ambas</option>
-
-                </select>
-              </label>
-                </h5>
-                <!-- <h2>SomeOne Famous<br><span>Director</span></h2> -->
+<div class="container px-4 py-5 mx-auto mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-5">
+            <h4 class="heading">Carrito</h4>
+        </div>
+        <div class="col-7">
+            <div class="row text-right">
+                <div class="col-4">
+                    <h6 class="mt-2">Formato</h6>
+                </div>
+                <div class="col-4">
+                    <h6 class="mt-2">Cantidad</h6>
+                </div>
+                <div class="col-4">
+                    <h6 class="mt-2">Precio</h6>
+                </div>
             </div>
         </div>
-
-
-
-
-
     </div>
+    <div class="row d-flex justify-content-center border-top" *ngFor="let key of Object.keys(cart)">
+        <div class="col-5">
+            <div class="row d-flex box">
+                <div class="card ">
+                    <div class="imgBx">
+                        <img src="{{ '//www.juanschtrefotografo.com/'  + cart[key].foto.filename}}" class="images">
+                    </div>
+
+                </div>
+                <div class="my-auto flex-column d-flex pad-left">
+                    <h6 class="mob-text"></h6>
+                    <p class="mob-text"></p>
+                </div>
+            </div>
+        </div>
+        <div class="my-auto col-7">
+            <div class="row text-right">
+                <div class="col-4">
+                    <p class="mob-text">Digital</p>
+                    <p class="mob-text">fotos de {{cart[key].size}}</p>
+                </div>
+                <div class="col-4">
+                    <div class="row d-flex justify-content-end px-3">
+                        <p class="mb-0" id="cnt1"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"></p>
+                        <h5 class="card-titledos">
+
+
+
+                        </h5>
+
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h6 class="mob-text">$9.99</h6>
+
+                </div>
+                <div class="col-4 mt-5 pl-5">
+
+
+                    <button class="btn " (click)="deleteItemCart(cart[key].foto.ID)"><fa-icon [icon]="googleIcon"></fa-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>

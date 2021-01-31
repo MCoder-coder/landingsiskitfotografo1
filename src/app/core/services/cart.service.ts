@@ -104,10 +104,11 @@ export class CartService {
     return this.cart;
   }
 
-  clearCart() {
+  clearCart( value) {
     this.fotos = [];
     this.cart = [];
-
+    console.log( 'el carrito de delete' ,this.cart)
+    this.localService.clearToken('cart' , value )
     this.updateLocalStorageCart();
 
     this.totalItems.next(this.getFotosCount());

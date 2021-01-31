@@ -1,16 +1,18 @@
-<div class="modal-header mt-5">
-    <h4 class="modal-title pull-left"></h4>
-    <button type="button" class="close pull-right" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<div class="modal-body" *ngIf="itemCart">
-    <img src="{{'//www.juanschtrefotografo.com/' +   itemCart.foto.filename}}" alt="" style="width:100%" />
-    <!-- tipos -->
+<div class="modal-content">
+    <div class="modal-header ">
+        <h4 class="modal-title pull-left"></h4>
+        <button type="button" class="close pull-right" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body" *ngIf="itemCart">
+        <img src="{{'//www.juanschtrefotografo.com/' +   itemCart.foto.filename}}" alt="" />
+        <!-- tipos -->
 
-    <br>
-    <input type="number">
-    <select class="ice-cream" name="ice-cream">
+
+        <form action="">
+            <input type="number">
+            <select class="ice-cream" name="ice-cream">
         <option value="">15x21</option>
         <option value="chocolate">30x40</option>
         <option value="chocolate">30x40</option>
@@ -21,21 +23,21 @@
         <option value="chocolate">60x120</option>
         <option value="chocolate">90x90</option>
       </select>
-    <select class="ice-cream" name="ice-cream">
+            <select class="ice-cream" name="ice-cream">
         <option value="">Impresa</option>
         <option value="chocolate">Digital</option>
 
 
       </select>
-    <select class="ice-cream" name="ice-cream">
+            <select class="ice-cream" name="ice-cream">
         <option value="">cuadro</option>
         <option value="chocolate">sobre</option>
 
 
       </select>
-    <br>
-    <input type="number">
-    <select class="ice-cream" name="ice-cream">
+
+            <input type="number">
+            <select class="ice-cream" name="ice-cream">
         <option value="">15x21</option>
         <option value="chocolate">30x40</option>
         <option value="chocolate">30x40</option>
@@ -46,22 +48,30 @@
         <option value="chocolate">60x120</option>
         <option value="chocolate">90x90</option>
       </select>
-    <select class="ice-cream" name="ice-cream">
+            <select class="ice-cream" name="ice-cream">
         <option value="">Impresa</option>
         <option value="chocolate">Digital</option>
 
 
       </select>
 
-    <select class="ice-cream" name="ice-cream">
+            <select class="ice-cream" name="ice-cream">
         <option value="">cuadro</option>
         <option value="chocolate">sobre</option>
 
 
       </select>
-    <p>Total :</p>
 
 
-    <!-- <button (click)="addToCart(foto)"></button> -->
-    <button class="btn btn-primary" (click)="addToCartFoto(itemCart)">Agregar al Carrito</button>
+        </form>
+
+
+
+
+        <p>Total :</p>
+
+        <!-- <button (click)="addToCart(foto)"></button> -->
+        <button class="btn btn-primary" (click)="addToCartFoto(itemCart)">Agregar al Carrito</button>
+    </div>
+
 </div>

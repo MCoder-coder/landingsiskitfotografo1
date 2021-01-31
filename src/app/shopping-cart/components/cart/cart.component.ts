@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../core/services/cart.service';
-
+import {
+  faCoffee,
+  fas,
+  faShoppingCart,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -8,7 +13,7 @@ import { CartService } from '../../../core/services/cart.service';
 })
 export class CartComponent implements OnInit {
   Object = Object;
-
+  googleIcon = faTrash;
   //(change)se activa cuando el usuario cambia la entrada
 
   cart = this.cartService.getCart();
@@ -18,6 +23,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(  'carrito getCart' , this.cart)
+  }
+
+  deleteItemCart(){
+    console.log( 'cart de delete de componente' ,this.cart)
+    this.cartService.clearCart(this.cart)
   }
 
   updateCartItem(event, key) {

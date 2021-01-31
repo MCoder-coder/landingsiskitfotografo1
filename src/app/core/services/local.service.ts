@@ -19,8 +19,8 @@ export class LocalService {
     return this.storageService.secureStorage.getItem(key);
   }
 
-  clearToken() {
+  clearToken(key , value) {
     // limpio los datos
-    return this.storageService.secureStorage.clear();
+    return this.storageService.secureStorage.clear(key , value);
   }
 }

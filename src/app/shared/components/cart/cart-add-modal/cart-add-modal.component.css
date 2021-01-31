@@ -1,0 +1,59 @@
+img {
+    height: 400px;
+    filter: drop-shadow(5px 5px 10px #444);
+    position: relative;
+    float: left;
+    margin-left: 150px;
+    filter: drop-shadow(5px 5px 10px #444);
+}
+
+input {
+    width: 55px;
+    margin: 4px;
+    /* float: right; */
+    margin-top: -2px;
+}
+
+button {
+    /* margin-left: 228px; */
+    float: right;
+    margin-bottom: -9px;
+    margin-top: 0px;
+}
+
+select {
+    margin: 12px;
+    /* display: inline-block; */
+    /* margin-right: 164px; */
+    /* float: left; */
+    margin-top: 2px;
+}
+
+.modal-body {
+    margin-left: -197px;
+    padding-bottom: 44px;
+}
+
+.modal-content {
+    width: 150%;
+    margin-left: -106px;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+    /* margin: 278px; */
+    padding-top: 197px;
+}
+
+form {
+    padding-top: 18px;
+    padding-left: 483px;
+}
+
+p {
+    /* padding-top: 221px; */
+    float: left;
+    /* margin-top: inherit; */
+    padding-top: 244px;
+    padding-left: 341px;
+}
