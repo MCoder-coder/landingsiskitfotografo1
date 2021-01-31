@@ -47,7 +47,8 @@ export function appInitFactory(token: TokenProvider) {
     AppRoutingModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+
 
   ],
   providers: [

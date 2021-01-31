@@ -1,6 +1,7 @@
+import { FormControl } from '@angular/forms';
 import { Foto } from './../../../../core/models/foto.model';
 import { CartService } from './../../../../core/services/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { flatten } from '@angular/compiler';
 
 
@@ -14,22 +15,28 @@ export class CartAddModalComponent implements OnInit {
   //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
   itemCart
 
+  Object = Object;
+
+  //(change)se activa cuando el usuario cambia la entrada
+
+  cart = this.cartService.getCart();
+
   constructor(private cartService : CartService) { }
 
   ngOnInit(): void {
+      console.log('itemCart modal' , this.itemCart)
 
   }
-
 
 
   addToCartFoto(){
     console.log("car-add-modal funcion addToCart");
     let  isDuplicated = false
-    let getcarrito = this.cartService.getCart()
+    let getcarrito = this.cart
 
 
     //console.log('foto de componente modal cart' , foto)
-    console.log('foto ID' , this.itemCart.foto.ID)
+    console.log('foto size' , this.itemCart.size)
     console.log(`foto de itemcart` , this.itemCart)
 
 
@@ -74,4 +81,18 @@ export class CartAddModalComponent implements OnInit {
 
   }
 
+
+  getSelect(){
+    for (let index = 0; index < this.itemCart.length; index++) {
+      console.log('itemcartSelect' , this.itemCart[index])
+
+    }
+  }
+
+
+  updateCartItem(event, key) {
+    // console.log('updateCartitem', event);
+    //actualiza la cantidad de items del cart, event observa si el input cambia
+     this.cartService.updateCantidad(key, event.target.value);
+   }
 }

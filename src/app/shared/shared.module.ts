@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -26,6 +27,7 @@ import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add
     FooterComponent,
     InfiniteScrollModule,
     FontAwesomeModule
+    ,FormsModule
 
   ],
   imports: [
@@ -33,7 +35,7 @@ import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add
     RouterModule,
     InfiniteScrollModule,
     FontAwesomeModule
-
+    ,FormsModule
   ]
 })
 

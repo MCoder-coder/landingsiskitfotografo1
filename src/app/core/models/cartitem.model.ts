@@ -1,3 +1,4 @@
+
 import { Foto } from './foto.model';
 
 export interface CartItem{
@@ -5,7 +6,8 @@ export interface CartItem{
   ID : number,
   foto : Foto,
   cantidad : number,
-  size : string
-  impresa : boolean
+  size : [],
+  impresa : string,
+  digital : string,
 
 }

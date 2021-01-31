@@ -10,54 +10,18 @@
         <!-- tipos -->
 
 
-        <form action="">
-            <input type="number">
-            <select class="ice-cream" name="ice-cream">
-        <option value="">15x21</option>
-        <option value="chocolate">30x40</option>
-        <option value="chocolate">30x40</option>
-        <option value="chocolate">40x50</option>
-        <option value="chocolate">80x80</option>
-        <option value="chocolate">100x100</option>
-        <option value="chocolate">120x120</option>
-        <option value="chocolate">60x120</option>
-        <option value="chocolate">90x90</option>
-      </select>
-            <select class="ice-cream" name="ice-cream">
-        <option value="">Impresa</option>
-        <option value="chocolate">Digital</option>
+        <form action="" *ngFor="let key of Object.keys(cart)">
 
+            <input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}">
+            <select class="ice-cream" name="ice-cream">
+        <option value="">{{itemCart.size[0]}}</option>
+        <option value="">{{itemCart.size[1]}}</option>
+        <option value="">{{itemCart.size[2]}}</option>
 
       </select>
             <select class="ice-cream" name="ice-cream">
-        <option value="">cuadro</option>
-        <option value="chocolate">sobre</option>
-
-
-      </select>
-
-            <input type="number">
-            <select class="ice-cream" name="ice-cream">
-        <option value="">15x21</option>
-        <option value="chocolate">30x40</option>
-        <option value="chocolate">30x40</option>
-        <option value="chocolate">40x50</option>
-        <option value="chocolate">80x80</option>
-        <option value="chocolate">100x100</option>
-        <option value="chocolate">120x120</option>
-        <option value="chocolate">60x120</option>
-        <option value="chocolate">90x90</option>
-      </select>
-            <select class="ice-cream" name="ice-cream">
-        <option value="">Impresa</option>
-        <option value="chocolate">Digital</option>
-
-
-      </select>
-
-            <select class="ice-cream" name="ice-cream">
-        <option value="">cuadro</option>
-        <option value="chocolate">sobre</option>
+        <option value="">{{itemCart.digital}}</option>
+        <option value="chocolate">{{itemCart.impresa}}</option>
 
 
       </select>

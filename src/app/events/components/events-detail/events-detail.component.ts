@@ -1,3 +1,4 @@
+
 import { Fotos } from './../../../core/models/fotos.model';
 import { Foto } from './../../../core/models/foto.model';
 import { Events } from './../../../core/models/events.model';
@@ -136,6 +137,7 @@ export class EventDetailComponent implements OnInit {
   firstOrNew(foto: Foto): CartItem {
     //console.log('functionFirsOnNew', foto);
     // throw new Error('Method not implemented.');
+    let sieze  = ['15x18' , '30x40', '40x50' ]
 
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
     let tempCart = this.cartService.getCart();
@@ -156,14 +158,17 @@ export class EventDetailComponent implements OnInit {
       ID: 0,
       foto: foto,
       cantidad: 1,
-      size: '15x18',
-      impresa: false,
+      size: sieze,
+      impresa: "Impresa",
+      digital: "Digital",
     };
     console.log('tempCartIf', newCartitem);
     return newCartitem;
     //y retfotomo datos de este modelo
     //la comparacion del if es para obtenes una sola foto en este caso la dle modelo carro y no la del modelo fotos
   }
+
+
 
   onScroll() {
     console.log('estas haciendo scroll');

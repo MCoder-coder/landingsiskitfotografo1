@@ -114,6 +114,8 @@ export class CartService {
     this.totalItems.next(this.getFotosCount());
   }
 
+
+
   getFotosCount() {
     //return this.cart.length;
     let total: number = 0;
@@ -129,4 +131,6 @@ export class CartService {
   getTotalItemsObserver() {
     return this.totalItems;
   }
+
+
 }
