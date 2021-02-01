@@ -1,3 +1,4 @@
+import { Size } from './../../../core/models/sieze.model';
 
 import { Fotos } from './../../../core/models/fotos.model';
 import { Foto } from './../../../core/models/foto.model';
@@ -45,6 +46,7 @@ export class EventDetailComponent implements OnInit {
   photo: any;
   googleIcon = faShoppingCart;
   Object = Object;
+  newItemCart : CartItem
 
   //BsModalService nos permite abrir el modal
 
@@ -120,11 +122,11 @@ export class EventDetailComponent implements OnInit {
   addToCartPopUp(foto: Foto) {
     //existe en el carrito?
     //una variable asignada al modelos CarItem que obtiene de la funcion firstNew la foto seleccionada , este metodo compara si la fotos son iguales, para poder mostrar una sola y no ambas
-    let newItemCart: CartItem = this.firstOrNew(foto);
-    console.log('newCartItem addTOcarModal', newItemCart);
+    this.newItemCart = this.firstOrNew(foto);
+    console.log('newCartItem addTOcarModal', this.newItemCart);
     //initialState lo inicializo en appModule
     const initialState = {
-      itemCart: newItemCart,
+      itemCart: this.newItemCart,
     };
     console.log('initialState', initialState);
     //muestro el modal paso el nombre del Componente modal y paso los datos en initialState para mostrar los datos
@@ -137,7 +139,8 @@ export class EventDetailComponent implements OnInit {
   firstOrNew(foto: Foto): CartItem {
     //console.log('functionFirsOnNew', foto);
     // throw new Error('Method not implemented.');
-    let sieze  = ['15x18' , '30x40', '40x50' ]
+    let size  = ['15x18' , '30x40', '40x50' ]
+
 
 
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
@@ -159,9 +162,8 @@ export class EventDetailComponent implements OnInit {
       ID: 0,
       foto: foto,
       cantidad: 1,
-      size: sieze,
-      impresa: "Impresa",
-      digital: "Digital",
+      size: size,
+      digital: true,
     };
     console.log('tempCartIf', newCartitem);
     return newCartitem;

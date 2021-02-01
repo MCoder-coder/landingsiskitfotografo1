@@ -7,7 +7,6 @@ export interface CartItem{
   foto : Foto,
   cantidad : number,
   size : [],
-  impresa : string,
-  digital : string,
+  digital : boolean,
 
 }
