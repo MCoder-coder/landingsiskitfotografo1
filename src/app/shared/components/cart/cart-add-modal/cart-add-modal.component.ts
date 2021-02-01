@@ -26,10 +26,7 @@ export class CartAddModalComponent implements OnInit {
 
   ngOnInit(): void {
       console.log('itemCart modal' , this.itemCart)
-      for (let index = 0; index < this.itemCart.size.length; index++) {
-        console.log('size' ,this.itemCart.size)
-
-      }
+     
 
   }
 
@@ -75,6 +72,7 @@ export class CartAddModalComponent implements OnInit {
 
      if(!isDuplicated){
       console.log('no es duplicada')
+      
       this.cartService.addToCart(this.itemCart)
 
      }else{
