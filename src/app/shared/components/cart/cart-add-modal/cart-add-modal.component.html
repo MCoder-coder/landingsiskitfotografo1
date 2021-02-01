@@ -5,16 +5,16 @@
       <span aria-hidden="true">&times;</span>
     </button>
     </div>
-    <div class="modal-body" *ngIf="itemCart">
+    <div class="modal-body" *ngIf="Object.keys(itemCart)">
         <img src="{{'//www.juanschtrefotografo.com/' +   itemCart.foto.filename}}" alt="" />
         <!-- tipos -->
 
 
-        <form action="" *ngFor="let key of Object.keys(cart)">
+        <form action="" *ngFor="let key of Object.keys(itemCart)">
 
-            <input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}">
+            <input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{itemCart[key].cantidad}}">
             <select class="ice-cream" name="ice-cream">
-        <option value="">{{itemCart.size[0]}}</option>
+        <option value=""  [ngValue]="key">{{itemCart.size[0]}}</option>
         <option value="">{{itemCart.size[1]}}</option>
         <option value="">{{itemCart.size[2]}}</option>
 

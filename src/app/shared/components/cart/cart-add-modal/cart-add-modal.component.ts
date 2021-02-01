@@ -1,3 +1,4 @@
+import { Size } from './../../../../core/models/sieze.model';
 import { FormControl } from '@angular/forms';
 import { Foto } from './../../../../core/models/foto.model';
 import { CartService } from './../../../../core/services/cart.service';
@@ -25,6 +26,10 @@ export class CartAddModalComponent implements OnInit {
 
   ngOnInit(): void {
       console.log('itemCart modal' , this.itemCart)
+      for (let index = 0; index < this.itemCart.size.length; index++) {
+        console.log('size' ,this.itemCart.size)
+
+      }
 
   }
 

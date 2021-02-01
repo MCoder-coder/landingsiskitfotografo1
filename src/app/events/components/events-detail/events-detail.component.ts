@@ -139,6 +139,7 @@ export class EventDetailComponent implements OnInit {
     // throw new Error('Method not implemented.');
     let sieze  = ['15x18' , '30x40', '40x50' ]
 
+
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
     let tempCart = this.cartService.getCart();
     //console.log('tempCart', tempCart);
