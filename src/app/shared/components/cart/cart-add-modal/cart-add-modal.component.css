@@ -7,7 +7,7 @@ img {
     filter: drop-shadow(5px 5px 10px #444);
 }
 
-input {
+input[jesus] {
     width: 55px;
     margin: 4px;
     /* float: right; */
@@ -56,4 +56,12 @@ p {
     /* margin-top: inherit; */
     padding-top: 244px;
     padding-left: 341px;
+}
+
+.inputHidden {
+    display: none;
+}
+
+.show {
+    display: inline;
 }

@@ -100,4 +100,30 @@ export class CartAddModalComponent implements OnInit {
     //actualiza la cantidad de items del cart, event observa si el input cambia
      this.cartService.updateCantidad(key, event.target.value);
    }
+
+   typeChange(event){
+      console.log('event' , event)
+
+     let type_el = event.target
+
+     console.log('type_el' , type_el)
+    //es impresa?
+     if (type_el.value == 0) {
+       let ty = document.getElementsByClassName('inputHidden')
+        console.log('ty' , ty)
+        for (let index = 0; index < ty.length; index++) {
+          const element = ty[index];
+          console.log('element' , element)
+            if (element.classList.contains('show')) {
+
+            }else{
+              element.classList.add('show')
+            }
+
+        }
+
+
+     }
+
+   }
 }

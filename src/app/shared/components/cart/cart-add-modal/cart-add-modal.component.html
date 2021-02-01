@@ -12,16 +12,16 @@
 
         <form action="">
 
-            <select class="digital">
-                <option value="1"     ng-select="{{ itemCart.digital===true ? ('selected') : ('') }}">Digital</option>
-                <option value="0"    ng-select="{{ itemCart.digital===false ? ('selected') : ('') }}">Impresa</option>
+            <select class=" type" (change)="typeChange($event)">
+                <option value="1" >Digital</option>
+                <option value="0" >Impresa</option>
             </select>
-            <select class="size">
+            <select class=" size inputHidden">
                 <option value="">{{itemCart.size[0]}}</option>
                 <option value="">{{itemCart.size[1]}}</option>
                 <option value="">{{itemCart.size[2]}}</option>
             </select>
-            <input type="number" class="cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
+            <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
         </form>
 
         <p>Total :</p>
