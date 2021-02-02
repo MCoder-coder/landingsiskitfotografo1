@@ -5,7 +5,7 @@ import { CartService } from './../../../../core/services/cart.service';
 import { Component, OnInit  } from '@angular/core';
 import { flatten } from '@angular/compiler';
 
-
+import { FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-cart-add-modal',
   templateUrl: './cart-add-modal.component.html',
@@ -16,13 +16,16 @@ export class CartAddModalComponent implements OnInit {
   //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
   itemCart
 
-  Object = Object;
+  form: FormGroup;
 
   //(change)se activa cuando el usuario cambia la entrada
 
   cart = this.cartService.getCart();
 
-  constructor(private cartService : CartService) { }
+  constructor(private cartService : CartService) {
+
+
+   }
 
   ngOnInit(): void {
       console.log('itemCart modal' , this.itemCart)
@@ -125,5 +128,27 @@ export class CartAddModalComponent implements OnInit {
 
      }
 
+     if (type_el.value == 1) {
+       let ty = document.getElementsByClassName('inputHidden')
+
+       for (let index = 0; index < ty.length; index++) {
+         const element = ty[index];
+            console.log('element 1' , element)
+            if (element.classList.contains('show')) {
+              element.classList.remove('show')
+            }
+       }
+
+     }
+
    }
+
+   onSelectedChange(value: number) {
+    // do something else with the value
+    console.log(value);
+
+    // remember to update the selectedValue
+    this.itemCart.size = value;
+  }
+
 }

@@ -8,24 +8,19 @@
     <div class="modal-body" *ngIf="itemCart">
         <img src="{{'//www.juanschtrefotografo.com/' +   itemCart.foto.filename}}" alt="" />
         <!-- tipos -->
-
-
-        <form action="">
-
-            <select class=" type" (change)="typeChange($event)">
+        <form>
+            <ng-container>
+                <select class=" type" (change)="typeChange($event)">
                 <option value="1" >Digital</option>
                 <option value="0" >Impresa</option>
-            </select>
-            <select class=" size inputHidden">
-                <option value="">{{itemCart.size[0]}}</option>
-                <option value="">{{itemCart.size[1]}}</option>
-                <option value="">{{itemCart.size[2]}}</option>
+              </select>
+            </ng-container>
+            <select class=" size inputHidden" [ngModel]="itemCart.size" name="size">
+                <option *ngFor="let size of itemCart.size"  [value]="size">{{size}}</option>
             </select>
             <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
         </form>
-
         <p>Total :</p>
-
         <!-- <button (click)="addToCart(foto)"></button> -->
         <button class="btn btn-primary" (click)="addToCartFoto(this.itemCart)">Agregar al Carrito</button>
     </div>
