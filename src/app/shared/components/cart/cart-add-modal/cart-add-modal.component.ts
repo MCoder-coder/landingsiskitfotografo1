@@ -24,11 +24,11 @@ export class CartAddModalComponent implements OnInit {
 
   constructor(private cartService : CartService) {
 
-
    }
 
   ngOnInit(): void {
       console.log('itemCart modal' , this.itemCart)
+
 
 
   }
@@ -143,12 +143,8 @@ export class CartAddModalComponent implements OnInit {
 
    }
 
-   onSelectedChange(value: number) {
-    // do something else with the value
-    console.log(value);
-
-    // remember to update the selectedValue
-    this.itemCart.size = value;
-  }
+   getselectedSizeOption(){
+    return this.form ? this.form.get('size').value : '';
+   }
 
 }
