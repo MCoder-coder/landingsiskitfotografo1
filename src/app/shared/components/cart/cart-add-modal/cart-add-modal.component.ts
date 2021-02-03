@@ -15,8 +15,9 @@ export class CartAddModalComponent implements OnInit {
 
   //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
   itemCart
-
+  Object = Object;
   form: FormGroup;
+
 
   //(change)se activa cuando el usuario cambia la entrada
 
@@ -29,10 +30,12 @@ export class CartAddModalComponent implements OnInit {
   ngOnInit(): void {
       console.log('itemCart modal' , this.itemCart)
 
-
-
+      //console.log('itemcar Size' , this.itemCart.size)
   }
 
+  private builderForm(){
+
+  }
 
   addToCartFoto(item){
     console.log('item ' , item)
@@ -42,7 +45,7 @@ export class CartAddModalComponent implements OnInit {
 
 
     //console.log('foto de componente modal cart' , foto)
-    console.log('foto size' , this.itemCart.size)
+    //console.log('foto size' , this.itemCart.size)
     console.log(`foto de itemcart` , this.itemCart)
 
 
@@ -89,13 +92,25 @@ export class CartAddModalComponent implements OnInit {
 
   }
 
+  selectSizeOption(){
+        let tam = this.itemCart
 
-  getSelect(){
-    for (let index = 0; index < this.itemCart.length; index++) {
-      console.log('itemcartSelect' , this.itemCart[index])
+        for (let index = 0; index < tam.length; index++) {
+          const element = tam[index];
 
-    }
+            for (let index = 0; index < element[index].size.length; index++) {
+              const siz = element[index].size;
+                console.log('siz', siz)
+                return siz
+            }
+
+        }
+
+
+
   }
+
+
 
 
   updateCartItem(event, key) {
@@ -143,8 +158,6 @@ export class CartAddModalComponent implements OnInit {
 
    }
 
-   getselectedSizeOption(){
-    return this.form ? this.form.get('size').value : '';
-   }
+
 
 }

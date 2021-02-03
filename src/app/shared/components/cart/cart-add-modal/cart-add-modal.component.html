@@ -11,13 +11,15 @@
         <form>
             <ng-container>
                 <select class=" type" (change)="typeChange($event)">
-                    <option value="1" >Digital</option>
-                    <option value="0" >Impresa</option>
+                    <option value="1"  >Digital</option>
+                    <option value="0"   >Impresa</option>
                 </select>
             </ng-container>
             <ng-container>
                 <select class=" size inputHidden" [(ngModel)]="itemCart.size" name="size">
-                    <option *ngFor="let size of itemCart.size; let i = index"  [value]="size" >{{size}}</option>
+                    <!-- <option *ngFor="let size of itemCart.size"  [ngValue]="size" >{{size }}</option> -->
+                    <option *ngFor="let item of itemCart.size " [value]="item" >{{item}}</option>
+
                 </select>
             </ng-container>
             <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
