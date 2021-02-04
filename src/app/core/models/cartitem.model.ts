@@ -1,3 +1,4 @@
+import { Size } from './sieze.model';
 
 import { Foto } from './foto.model';
 

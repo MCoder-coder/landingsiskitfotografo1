@@ -7,7 +7,7 @@ img {
     filter: drop-shadow(5px 5px 10px #444);
 }
 
-input[jesus] {
+input {
     width: 55px;
     margin: 4px;
     /* float: right; */

@@ -1,8 +1,8 @@
-export interface Size extends Array<Size>{
+export enum Size {
 
 
-    primer : '15x18';
-    segundo: '30x40';
-    tercero: '40x50';
+     one  ='15x18',
+    two = '30x40',
+    three = '40x50',
 
 }

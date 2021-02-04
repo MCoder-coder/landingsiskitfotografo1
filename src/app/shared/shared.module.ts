@@ -26,7 +26,8 @@ import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add
     FooterComponent,
     InfiniteScrollModule,
     FontAwesomeModule
-    ,FormsModule
+    ,FormsModule,
+    ReactiveFormsModule
 
 
   ],

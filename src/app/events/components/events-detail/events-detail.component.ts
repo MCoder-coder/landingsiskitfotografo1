@@ -1,4 +1,4 @@
-import { Size } from './../../../core/models/sieze.model';
+import { Size} from './../../../core/models/sieze.model'
 
 import { Fotos } from './../../../core/models/fotos.model';
 import { Foto } from './../../../core/models/foto.model';
@@ -8,7 +8,7 @@ import { ActivatedRoute, Event, Params } from '@angular/router';
 
 import { EventsService } from '../../../core/services/events.services';
 
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { pipe } from 'rxjs/internal/util/pipe';
 
@@ -48,7 +48,7 @@ export class EventDetailComponent implements OnInit {
   googleIcon = faShoppingCart;
   Object = Object;
   newItemCart : CartItem
-
+   tam : Size
   //BsModalService nos permite abrir el modal
 
   constructor(
@@ -142,20 +142,27 @@ export class EventDetailComponent implements OnInit {
     // throw new Error('Method not implemented.');
     var size = ["15x18" , "30x40", "40x50"]
 
-
+      console.log( 'tamaño' ,this.tam)
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
     let tempCart = this.cartService.getCart();
-    //console.log('tempCart', tempCart);
+    console.log('tempCart', tempCart);
     for (let index = 0; index < tempCart.length; index++) {
+      let tempCar = tempCart[index].size
       //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
       //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
       //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
-      if (foto.ID == tempCart[index].foto.ID) {
+      if (foto.ID == tempCart[index].foto.ID ) {
         //comparo la foto.id con el el objeto temCart con el indice ID si estos son iguales returno tempcart el ID de la foto seleccionada
       //  console.log('tempaCarIf', tempCart[index]);
         return tempCart[index];
       }
+
+
+
     }
+
+
+
 
     //creo un objeto basandome en el modelo carro
     let newCartitem: CartItem = <any>{
@@ -165,6 +172,9 @@ export class EventDetailComponent implements OnInit {
       size: size,
       digital: true,
     };
+
+
+
     console.log('tempCartIf', newCartitem);
     return newCartitem;
     //y retfotomo datos de este modelo

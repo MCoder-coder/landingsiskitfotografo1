@@ -1,10 +1,15 @@
 import { Size } from './../../../../core/models/sieze.model';
-import { FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { Foto } from './../../../../core/models/foto.model';
 import { CartService } from './../../../../core/services/cart.service';
 import { Component, OnInit  } from '@angular/core';
 import { flatten } from '@angular/compiler';
-
+import {
+  faCoffee,
+  fas,
+  faShoppingCart,
+  faTrash,
+} from '@fortawesome/free-solid-svg-icons';
 import { FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-cart-add-modal',
@@ -17,24 +22,52 @@ export class CartAddModalComponent implements OnInit {
   itemCart
   Object = Object;
   form: FormGroup;
+  googleIcon = faTrash;
 
 
   //(change)se activa cuando el usuario cambia la entrada
 
   cart = this.cartService.getCart();
 
-  constructor(private cartService : CartService) {
-
+  constructor(private cartService : CartService , private formBuilder: FormBuilder) {
+      this.buildOptionForm()
    }
 
   ngOnInit(): void {
       console.log('itemCart modal' , this.itemCart)
-
+      console.log('save form' , this.form.value)
       //console.log('itemcar Size' , this.itemCart.size)
   }
+  objectKeys (objeto: any) {
+    const keys = Object.keys(objeto);
+    console.log(keys); // echa un vistazo por consola para que veas lo que hace "Object.keys"
+    return keys;
+ }
+  private buildOptionForm(){
+    this.form = this.formBuilder.group({
+       optionselect : this.formBuilder.array([])
+    })
+  }
 
-  private builderForm(){
+  createOptionForm(){
+    return  this.formBuilder.group({
+      size : [''],
+       cantidad : [''],
+       digital : [''],
+       impresa : [''],
+    })
+  }
 
+
+  addOptionForm(){
+      this.optionSelect.push(this.createOptionForm())
+  }
+
+  get optionSelect(){
+    return this.form.get('optionselect') as FormArray
+  }
+  delete(index : number){
+    this.optionSelect.removeAt(index)
   }
 
   addToCartFoto(item){
@@ -91,6 +124,8 @@ export class CartAddModalComponent implements OnInit {
 
 
   }
+
+
 
   selectSizeOption(){
         let tam = this.itemCart
