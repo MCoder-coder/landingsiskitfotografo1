@@ -1,4 +1,4 @@
-import { APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, Pipe } from '@angular/core';
 import { TokenProvider } from './core/services/token.service';
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,7 +21,6 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { TokenInterceptor } from "./core/services/token.interceptor";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CartAddModalComponent } from './shared/components/cart/cart-add-modal/cart-add-modal.component';
-
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
 export function appInitFactory(token: TokenProvider) {

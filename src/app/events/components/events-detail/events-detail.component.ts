@@ -140,7 +140,7 @@ export class EventDetailComponent implements OnInit {
   firstOrNew(foto: Foto): CartItem {
     //console.log('functionFirsOnNew', foto);
     // throw new Error('Method not implemented.');
-    var size = ["15x18" , "30x40", "40x50"]
+
 
       console.log( 'tamaño' ,this.tam)
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
@@ -162,14 +162,14 @@ export class EventDetailComponent implements OnInit {
     }
 
 
-
+    let size = [] // ["15x18" , "30x40", "40x50"]
 
     //creo un objeto basandome en el modelo carro
     let newCartitem: CartItem = <any>{
       ID: 0,
       foto: foto,
       cantidad: 1,
-      size: size,
+      size,
       digital: true,
     };
 

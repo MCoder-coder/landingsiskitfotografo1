@@ -1,4 +1,4 @@
-import { Size } from './../../../../core/models/sieze.model';
+
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { Foto } from './../../../../core/models/foto.model';
 import { CartService } from './../../../../core/services/cart.service';
@@ -11,10 +11,15 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup} from '@angular/forms';
+import { Size } from '../../../../core/models/sieze.model';
+
 @Component({
   selector: 'app-cart-add-modal',
   templateUrl: './cart-add-modal.component.html',
-  styleUrls: ['./cart-add-modal.component.css']
+  styleUrls: ['./cart-add-modal.component.css'],
+
+
+
 })
 export class CartAddModalComponent implements OnInit {
 
@@ -23,7 +28,7 @@ export class CartAddModalComponent implements OnInit {
   Object = Object;
   form: FormGroup;
   googleIcon = faTrash;
-
+  selectedSize = ["15x18" , "30x40", "40x50"];
 
   //(change)se activa cuando el usuario cambia la entrada
 
@@ -31,18 +36,44 @@ export class CartAddModalComponent implements OnInit {
 
   constructor(private cartService : CartService , private formBuilder: FormBuilder) {
       this.buildOptionForm()
+
+
    }
 
   ngOnInit(): void {
-      console.log('itemCart modal' , this.itemCart)
+      console.log('itemCart modal size' , this.itemCart.size)
       console.log('save form' , this.form.value)
       //console.log('itemcar Size' , this.itemCart.size)
+
+      this.itemCart.size = this.selectedSize
+
+
   }
-  objectKeys (objeto: any) {
-    const keys = Object.keys(objeto);
-    console.log(keys); // echa un vistazo por consola para que veas lo que hace "Object.keys"
-    return keys;
+  generateArray(obj){
+
+    return Object.keys(obj).map(key => obj[key]);
  }
+
+//  selectOption(id: any) {
+//   //getted from event
+//   console.log('id', id);
+//   //getted from binding
+//   console.log('select' ,this.selectedSize)
+
+
+
+
+//   this.selectedSize = id.value
+
+
+
+
+//   //this.itemCart.size = id
+// }
+
+
+
+
   private buildOptionForm(){
     this.form = this.formBuilder.group({
        optionselect : this.formBuilder.array([])
@@ -127,24 +158,11 @@ export class CartAddModalComponent implements OnInit {
 
 
 
-  selectSizeOption(){
-        let tam = this.itemCart
 
-        for (let index = 0; index < tam.length; index++) {
-          const element = tam[index];
+  sizeChange(event){
 
-            for (let index = 0; index < element[index].size.length; index++) {
-              const siz = element[index].size;
-                console.log('siz', siz)
-                return siz
-            }
-
-        }
-
-
-
+    console.log('event' , event)
   }
-
 
 
 
