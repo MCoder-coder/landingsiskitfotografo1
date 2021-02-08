@@ -10,15 +10,15 @@
     <!-- tipos -->
     <form>
       <ng-container>
-        <select class=" type" (change)="typeChange($event)">
-          <option value="1">Digital</option>
-          <option value="0">Impresa</option>
+        <select class=" type" [(ngModel)]="itemCart.digital" name="digital" (change)="typeChange($event)">
+          <option [value]="1" >Digital</option>
+          <option [value]="0">Impresa</option>
         </select>
       </ng-container>
       <ng-container *ngIf="itemCart.size">
            <select class=" size inputHidden" [(ngModel)]="itemCart.size" name="size">
           <!-- <option *ngFor="let size of itemCart.size"  [ngValue]="size" >{{size }}</option> -->
-               <option [ngValue]="selectedSize">-- Select size --</option>
+               <option [ngValue]="selectedSize">Seleccione su Medida</option>
                <option *ngFor="let size of selectedSize | keyvalue" [ngValue]="size.value"> {{ size.value}}</option>
            </select>
       </ng-container>
@@ -28,13 +28,13 @@
       <ng-container [formGroup]="form">
         <div formArrayName="optionselect" *ngFor="let option of optionSelect.controls; let i = index">
           <div [formGroupName]="i">
-            <select class="type" (change)="typeChange($event)">
-              <option value="1" ngDefaultControl>Digital</option>
-              <option value="0" ngDefaultControl>Impresa</option>
+            <select class="type" [(ngModel)]="itemCart.digital"(change)="typeChange($event)">
+              <option [value]="1" ngDefaultControl>Digital</option>
+              <option [value]="0" ngDefaultControl>Impresa</option>
             </select>
             <select class=" size inputHidden" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size"
               name="size">
-              <option [ngValue]="selectedSize">-- Select size --</option>
+              <option [ngValue]="selectedSize"> Seleccione su Medida</option>
               <option ngDefaultControl *ngFor="let item of selectedSize | keyvalue " [value]="item.value">{{item.value}}
               </option>
             </select>

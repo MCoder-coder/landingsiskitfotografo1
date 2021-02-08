@@ -53,12 +53,13 @@
             <div class="my-auto col-7">
                 <div class="row text-right">
                     <div class="col-4">
-                        <p class="mob-text">Digital</p>
-                        <p class="mob-text">Fotos de {{cart[key].size}}</p>
+                        <p class="mob-text" *ngIf="cart[key].digital == false" >{{impresa}}</p>
+                        <p class="mob-text"*ngIf="cart[key].digital == true" >{{digital}}</p>
+                        <p class="mob-text" *ngIf="cart[key].digital == false" >Fotos de {{cart[key].size}}</p>
                     </div>
                     <div class="col-4">
                         <div class="row d-flex justify-content-end px-3">
-                            <p class="mb-0" id="cnt1"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"></p>
+                            <p class="mb-0" id="cnt1" *ngIf="cart[key].digital == false"><input type="number" (change)="updateCartItem($event , this.key  )" attr.data-key="{{key}}" value="{{cart[key].cantidad}}"></p>
                             <h5 class="card-titledos">
 
 
@@ -79,7 +80,7 @@
                 </div>
             </div>
         </div>
-
+        <button class=" btn btn-blue " style="float: right;">Comprar</button>
 
     </div>
 
