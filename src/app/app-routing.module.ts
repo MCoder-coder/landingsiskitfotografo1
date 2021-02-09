@@ -31,7 +31,12 @@ const routes: Routes = [
       {
         path: 'carrito',
         loadChildren: () => import('./shopping-cart/cart.module').then(m => m.CartModule)
-      }
+      },
+      {
+        path: 'formcompra',
+        loadChildren: () => import('./shopping-form/shopping-form.module').then(m => m.ShoppingFormModule)
+      },
+
     ]
   },
   {

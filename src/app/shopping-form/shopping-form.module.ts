@@ -1,4 +1,4 @@
-import { CartRoutingModule } from './cart-rotuing.module';
+import { ShoppingFormComponentRoutingModule } from './shopping-form-rounting.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,23 +9,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { NoRightClickDirective } from '../no-right-click.directive';
 
-import { CartComponent } from "./components/cart/cart.component";
+import { ShoppingFormComponent  } from "./components/shopping-form/shopping-form.component";
 
 @NgModule({
   declarations: [
-
-    CartComponent
+    ShoppingFormComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    CartRoutingModule,
+    ShoppingFormComponentRoutingModule,
     FormsModule,
     ReactiveFormsModule,
 
 
   ]
 })
-export class CartModule {
+export class ShoppingFormModule {
 
 }
