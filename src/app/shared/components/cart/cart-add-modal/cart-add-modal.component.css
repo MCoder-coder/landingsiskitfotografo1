@@ -1,68 +1,132 @@
 img {
-    height: 400px;
-    filter: drop-shadow(5px 5px 10px #444);
-    position: relative;
-    float: left;
-    margin-left: 150px;
-    filter: drop-shadow(5px 5px 10px #444);
+  max-height: 30%;
+  max-width: 45%;
+  filter: drop-shadow(5px 5px 10px #444);
+  position: inherit;
+
+  float: left;
+  /* margin-left: 150px; */
+  margin-right: 20px;
+  filter: drop-shadow(5px 5px 10px #444);
+  border: 16px solid #ddd;
+  border-radius: 6px;
 }
 
 input {
-    width: 55px;
-    margin: 4px;
-    /* float: right; */
-    margin-top: -2px;
+  width: 55px;
+  margin: 4px;
+  /* float: right; */
+  margin-top: -2px;
 }
 
-button {
-    /* margin-left: 228px; */
-    float: right;
-    margin-bottom: -9px;
-    margin-top: 0px;
+button ,.addcart ,.option {
+
+
+ margin-top: -7px;
+ float: right;
+ margin-bottom: -9px;
+
+ background-color: #008CBA;
+  border: none;
+  color: white;
+ /* padding: 15px 32px; */
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 17px;
+ box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%),
+ 0 6px 20px 0 rgb(0 0 0 / 19%);
+ transition-duration: 0.4s;
+}
+
+button ,.addcart:hover, .option:hover{
+  background-color: #4CAF50;
+  /* Green */
+  color: white;
+}
+
+button.option {
+  /* margin-left: 228px; */
+
+}
+
+button.addcart {
+  float: right;
+  /* margin-top: -7px; */
+      right: inherit;
+      margin: inherit;
+      padding-block: inherit;
+      /* margin: inherit; */
+      align-content: end;
+
+
+}
+
+button.trash {
+      position: sticky;
+      box-shadow: none;
+      /* background-color: snow; */
+      background-color: transparent;
 }
 
 select {
-    margin: 12px;
+  margin: 12px;
 
-    /* display: inline-block; */
-    /* margin-right: 164px; */
-    /* float: left; */
-    margin-top: 2px;
+  display: inline-block;
+  /* margin-right: 164px; */
+  /* float: left; */
+  margin-top: 2px;
 }
-
+.modal{
+   height: 400px;
+   max-height: 100%;
+}
 .modal-body {
-    margin-left: -197px;
-    padding-bottom: 44px;
+  margin-left: -197px;
+  /* padding-bottom: 44px; */
+  position: inherit;
+  /* filter: blur(2px);
+     -webkit-filter: blur(2px); */
+
 }
 
 .modal-content {
-    width: 150%;
-    margin-left: -106px;
+  width: 150%;
+  margin-left: -106px;
+
+  /* background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px); */
 }
 
 .modal.show .modal-dialog {
-    transform: none;
-    /* margin: 278px; */
-    padding-top: 197px;
+  transform: none;
+  /* margin: 278px; */
+  padding-top: 197px;
+
 }
 
+
+
 form {
-    padding-top: 18px;
-    padding-left: 483px;
+  padding-top: 18px;
+  /* padding-left: 490px; */
+  margin-left: 428px;
+
+
 }
 
 p {
-    /* padding-top: 221px; */
-    float: left;
-    /* margin-top: inherit; */
-    padding-top: 244px;
-    padding-left: 341px;
+  float: left;
+  /* padding-top: 100px; */
+  padding-left: 445px;
+  position: absolute;
+  margin-top: 15px;
 }
 
 .inputHidden {
-    display: none;
+  display: none;
 }
 
 .show {
-    display: inline;
+  display: inline;
 }

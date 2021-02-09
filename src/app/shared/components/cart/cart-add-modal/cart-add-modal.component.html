@@ -24,7 +24,7 @@
       </ng-container>
       <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad"
         [value]="itemCart.cantidad">
-      <button class="btn btn-primary" type="button" (click)="addOptionForm()">Agregar</button>
+      <button class="btn  option" type="button" (click)="addOptionForm()">Agregar</button>
       <ng-container [formGroup]="form">
         <div formArrayName="optionselect" *ngFor="let option of optionSelect.controls; let i = index">
           <div [formGroupName]="i">
@@ -40,7 +40,7 @@
             </select>
             <input class=" size inputHidden" [ngModelOptions]="{standalone: true}" ngDefaultControl type="number"
               [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
-            <button class="btn" ngDefaultControl (click)="delete(i)" style="color: red;">
+            <button class="btn trash" ngDefaultControl (click)="delete(i)" style="color: red;">
               <fa-icon [icon]="googleIcon"></fa-icon>
             </button>
           </div>
@@ -53,7 +53,7 @@
 
     <p>Total :</p>
     <!-- <button (click)="addToCart(foto)"></button> -->
-    <button class="btn btn-primary" (click)="addToCartFoto(this.itemCart)">Agregar al Carrito</button>
+    <button class="btn  addcart"  (click)="addToCartFoto(this.itemCart)">Agregar al Carrito</button>
   </div>
 
 </div>
