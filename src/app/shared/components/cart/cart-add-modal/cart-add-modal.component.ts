@@ -13,6 +13,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { Size } from '../../../../core/models/sieze.model';
 import { CartItem } from '../../../../core/models/cartitem.model';
+import { timestamp } from 'rxjs/operators';
 
 @Component({
   selector: 'app-cart-add-modal',
@@ -26,8 +27,9 @@ export class CartAddModalComponent implements OnInit {
 
   //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
   itemCart
+  fakeCart: CartItem[] = [];
   Object = Object;
-  form: FormGroup;
+  MainForm: FormGroup;
   googleIcon = faTrash;
   selectedSize = ["15x18", "30x40", "40x50"];
  // selectedSize2 = ["15x18", "30x40", "40x50"];
@@ -43,48 +45,65 @@ export class CartAddModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('itemCart modal size', this.itemCart.size)
-    console.log('save form', this.form.value)
+    console.log('save form', this.MainForm.value)
     //console.log('itemcar Size' , this.itemCart.size)
 
-    this.itemCart.size = this.selectedSize
+    // this.itemCart.size = this.selectedSize
 
 
   }
 
   //formulario de opciones, pop up
   private buildOptionForm() {
-    this.form = this.formBuilder.group({
+    this.MainForm = this.formBuilder.group({
       optionselect: this.formBuilder.array([])
     })
+    console.log("MainForm: " , this.MainForm)
   }
 
   //creo los campos
   createOptionForm() {
     let itemCar = this.itemCart
     console.log('itemcar' , itemCar)
-    return this.formBuilder.group({
-      itemCar,
 
-
+    let newFormGroup = this.formBuilder.group({
+       "type": this.formBuilder.control({value:"0"}),
+       "size": this.formBuilder.control({value:"15x18"}),
+       "cantidad": this.formBuilder.control({value:itemCar.cantidad}),
     })
+
+    console.log('newFormGroup' , newFormGroup)
+    return newFormGroup;
   }
 
   //agruega la nueva opciones medida,digital,impresa,input, del formulario bansandome en el objeto itemCart
   addOptionForm() {
-    this.optionSelect.push(this.createOptionForm())
-
+    // this.optionSelect.push(this.createOptionForm())
+    let newCartItem: CartItem = <any>{
+      ID: this.fakeCart[0].foto.ID+"-"+(this.fakeCart.length+1),
+      foto: this.fakeCart[0].foto,
+      cantidad: 1,
+      size: "",
+      digital : 1,
+    };
+    this.fakeCart.push(newCartItem)
   }
 
   //obtiene el formularios de copia
   get optionSelect() {
-    return this.form.get('optionselect') as FormArray
+    return this.MainForm.get('optionselect') as FormArray
   }
   delete(index: number) {
     this.optionSelect.removeAt(index)
   }
 
-  addToCartFoto(item) {
+  addToCartFoto(fakeCart) {
+
+    this.cartService.mergeCartItems(fakeCart)
+
+/*
+    let item = fakeCart[0]
+    console.log('fakeCart ', fakeCart)
     console.log('item ', item)
     console.log("car-add-modal funcion addToCart");
     let isDuplicated = false
@@ -157,15 +176,21 @@ export class CartAddModalComponent implements OnInit {
       console.log('no es duplicada')
 
       //this.cartService.addToCart(this.itemCart)
-     console.log('addTocart', this.cartService.addToCart(this.itemCart))
+      console.log('addTocart', this.cartService.addToCart(this.itemCart))
 
     } else {
       console.log('es duplicada')
       console.log('addTocart', this.cartService.addToCart(this.itemCart))
     }
 
-
+*/
   }
+
+
+
+
+
+
 
   groupByFieldOption(event, index) {
     console.log(event, index);
