@@ -56,8 +56,10 @@ export class CartService {
     console.log("newMergedCart", newMergedCart)
     this.cart = newMergedCart
     this.updateLocalStorageCart();
-    //this.totalItems.next(this.getFotosCount());
+    this.totalItems.next(this.getFotosCount());
   }
+
+
 
   addToCart(cartItem: CartItem) {
     console.log("cart.service.ts addToCart")
