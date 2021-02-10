@@ -11,16 +11,16 @@
     <form>
       <ng-container>
         <select class=" type" [(ngModel)]="itemCart.digital" name="digital" (change)="typeChange($event)">
-          <option [value]="1" >Digital</option>
+          <option [value]="1">Digital</option>
           <option [value]="0">Impresa</option>
         </select>
       </ng-container>
       <ng-container *ngIf="itemCart.size">
-           <select class=" size inputHidden" [(ngModel)]="itemCart.size" name="size">
+        <select class=" size inputHidden" [(ngModel)]="itemCart.size" name="size">
           <!-- <option *ngFor="let size of itemCart.size"  [ngValue]="size" >{{size }}</option> -->
-               <option [ngValue]="selectedSize">Seleccione su Medida</option>
-               <option *ngFor="let size of selectedSize | keyvalue" [ngValue]="size.value"> {{ size.value}}</option>
-           </select>
+          <option [ngValue]="selectedSize">Seleccione su Medida</option>
+          <option *ngFor="let size of selectedSize | keyvalue" [ngValue]="size.value"> {{ size.value}}</option>
+        </select>
       </ng-container>
       <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad"
         [value]="itemCart.cantidad">
@@ -28,7 +28,7 @@
       <ng-container [formGroup]="form">
         <div formArrayName="optionselect" *ngFor="let option of optionSelect.controls; let i = index">
           <div [formGroupName]="i">
-            <select class="type" [(ngModel)]="itemCart.digital"(change)="typeChange($event)">
+            <select class="type" [(ngModel)]="itemCart.digital"  name="digital"(change)="typeChange($event)">
               <option [value]="1" ngDefaultControl>Digital</option>
               <option [value]="0" ngDefaultControl>Impresa</option>
             </select>
@@ -53,7 +53,7 @@
 
     <p>Total :</p>
     <!-- <button (click)="addToCart(foto)"></button> -->
-    <button class="btn  addcart"  (click)="addToCartFoto(this.itemCart)">Agregar al Carrito</button>
+    <button class="btn  addcart" (click)="addToCartFoto(this.itemCart)">Agregar al Carrito</button>
   </div>
 
 </div>
