@@ -50,6 +50,15 @@ export class CartService {
     //localStorage.setItem('cart', myCart);
   }
 
+  // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
+  mergeCartItems(fakeCart: CartItem[]) {
+    let newMergedCart = this.mergeCart(this.cart, fakeCart)
+    console.log("newMergedCart", newMergedCart)
+    this.cart = newMergedCart
+    this.updateLocalStorageCart();
+    //this.totalItems.next(this.getFotosCount());
+  }
+
   addToCart(cartItem: CartItem) {
     console.log("cart.service.ts addToCart")
     //this.cart.push(fotos);
@@ -131,6 +140,20 @@ export class CartService {
   getTotalItemsObserver() {
     return this.totalItems;
   }
+
+
+
+
+  mergeCart(...arrays) {
+    let jointArray = []
+
+    arrays.forEach(array => {
+        jointArray = [...jointArray, ...array]
+    })
+    const uniqueArray = jointArray.filter((item,index) => jointArray.indexOf(item) === index)
+    return uniqueArray
+}
+
 
 
 }
