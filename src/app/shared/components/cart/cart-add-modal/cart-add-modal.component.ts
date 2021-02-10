@@ -30,7 +30,7 @@ export class CartAddModalComponent implements OnInit {
   form: FormGroup;
   googleIcon = faTrash;
   selectedSize = ["15x18", "30x40", "40x50"];
-  selectedSize2 = ["15x18", "30x40", "40x50"];
+ // selectedSize2 = ["15x18", "30x40", "40x50"];
 
   //(change)se activa cuando el usuario cambia la entrada
 
@@ -52,28 +52,31 @@ export class CartAddModalComponent implements OnInit {
 
   }
 
-
+  //formulario de opciones, pop up
   private buildOptionForm() {
     this.form = this.formBuilder.group({
       optionselect: this.formBuilder.array([])
     })
   }
 
+  //creo los campos
   createOptionForm() {
     let itemCar = this.itemCart
     console.log('itemcar' , itemCar)
     return this.formBuilder.group({
-      itemCar
+      itemCar,
+
 
     })
   }
 
-
+  //agruega la nueva opciones medida,digital,impresa,input, del formulario bansandome en el objeto itemCart
   addOptionForm() {
     this.optionSelect.push(this.createOptionForm())
 
   }
 
+  //obtiene el formularios de copia
   get optionSelect() {
     return this.form.get('optionselect') as FormArray
   }
@@ -164,7 +167,7 @@ export class CartAddModalComponent implements OnInit {
 
   }
 
-  groupByFielOptin(event, index) {
+  groupByFieldOption(event, index) {
     console.log(event, index);
   }
 
