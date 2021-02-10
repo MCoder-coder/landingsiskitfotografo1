@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { Size } from '../../../../core/models/sieze.model';
+import { CartItem } from '../../../../core/models/cartitem.model';
 
 @Component({
   selector: 'app-cart-add-modal',
@@ -59,11 +60,10 @@ export class CartAddModalComponent implements OnInit {
   }
 
   createOptionForm() {
+    let itemCar = this.itemCart
+    console.log('itemcar' , itemCar)
     return this.formBuilder.group({
-      size: [''],
-      cantidad: [''],
-      digital: [''],
-      impresa: [''],
+      itemCar
 
     })
   }
@@ -164,8 +164,13 @@ export class CartAddModalComponent implements OnInit {
 
   }
 
+  groupByFielOptin(event, index) {
+    console.log(event, index);
+  }
 
-
+  trackByFn(index, item) {
+    return index;
+  }
   updateCartItem(event, key) {
     // console.log('updateCartitem', event);
     //actualiza la cantidad de items del cart, event observa si el input cambia

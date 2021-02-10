@@ -16,26 +16,26 @@
         </select>
       </ng-container>
       <ng-container *ngIf="itemCart.size">
-        <select class=" size inputHidden" [(ngModel)]="itemCart.size" name="size">
+        <select class=" size inputHidden" [(ngModel)]="itemCart.size[i]" name="selectedSize[i]" (ngModelChange)="groupByFielOptin($event, i)">
           <!-- <option *ngFor="let size of itemCart.size"  [ngValue]="size" >{{size }}</option> -->
           <option [ngValue]="selectedSize">Seleccione su Medida</option>
-          <option *ngFor="let size of selectedSize | keyvalue" [ngValue]="size.value"> {{ size.value}}</option>
+          <option *ngFor="let size of selectedSize | keyvalue ; let i = index  trackBy: trackByFn"  [ngValue]="size.value"> {{ size.value}}</option>
         </select>
       </ng-container>
       <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad"
         [value]="itemCart.cantidad">
-      <button class="btn  option" type="button" (click)="addOptionForm()">Agregar</button>
+      <button class="btn  option" type="button"  (click)="addOptionForm()">Agregar</button>
       <ng-container [formGroup]="form">
         <div formArrayName="optionselect" *ngFor="let option of optionSelect.controls; let i = index">
           <div [formGroupName]="i">
-            <select class="type" [(ngModel)]="itemCart.digital"  name="digital"(change)="typeChange($event)">
+            <select class="type" [(ngModel)]="itemCart.digital" [ngModelOptions]="{standalone: true}"  name="digital"(change)="typeChange($event)">
               <option [value]="1" ngDefaultControl>Digital</option>
               <option [value]="0" ngDefaultControl>Impresa</option>
             </select>
             <select class=" size inputHidden" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size"
               name="size">
               <option [ngValue]="selectedSize"> Seleccione su Medida</option>
-              <option ngDefaultControl *ngFor="let item of selectedSize | keyvalue " [value]="item.value">{{item.value}}
+              <option ngDefaultControl *ngFor="let item of selectedSize | keyvalue ; let i = index" [value]="item.value">{{item.value}}
               </option>
             </select>
             <input class=" size inputHidden" [ngModelOptions]="{standalone: true}" ngDefaultControl type="number"
