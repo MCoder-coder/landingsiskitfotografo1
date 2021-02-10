@@ -30,15 +30,15 @@ export class CartAddModalComponent implements OnInit {
   form: FormGroup;
   googleIcon = faTrash;
   selectedSize = ["15x18", "30x40", "40x50"];
-  selectedSize2 = ["15x18", "30x40", "40x50"];
+  // selectedSize2 = ["15x18", "30x40", "40x50"];
 
   //(change)se activa cuando el usuario cambia la entrada
-
+  //obtengo los objetos del cart para comparaciones
   cart = this.cartService.getCart();
 
   constructor(private cartService: CartService, private formBuilder: FormBuilder) {
+    //creo el formulario en el contructor
     this.buildOptionForm()
-
 
   }
 
@@ -46,37 +46,41 @@ export class CartAddModalComponent implements OnInit {
     console.log('itemCart modal size', this.itemCart.size)
     console.log('save form', this.form.value)
     //console.log('itemcar Size' , this.itemCart.size)
-
+    //inisialiso la variable selectZice
     this.itemCart.size = this.selectedSize
 
 
   }
 
-
+  //asigno el nombre del array de los nuevos formularios
   private buildOptionForm() {
     this.form = this.formBuilder.group({
+      //optionSelect
       optionselect: this.formBuilder.array([])
     })
   }
-
+  //retornos los formularios del objeto de itemcart objecto newCarItem
   createOptionForm() {
     let itemCar = this.itemCart
-    console.log('itemcar' , itemCar)
+    console.log('itemcar', itemCar)
     return this.formBuilder.group({
       itemCar
 
     })
   }
 
-
+  ///agrego las nuevas opciones del formulario
   addOptionForm() {
     this.optionSelect.push(this.createOptionForm())
 
   }
 
+  //retorno el formBulder optionSelect y lo casteo a FormArray , get Obtengo el optionselect
   get optionSelect() {
     return this.form.get('optionselect') as FormArray
   }
+
+  //elimino por index el formulario agregado
   delete(index: number) {
     this.optionSelect.removeAt(index)
   }
@@ -116,18 +120,18 @@ export class CartAddModalComponent implements OnInit {
 
     for (let i = 0; i < this.selectedSize.length; i++) {
       let selecSize = this.selectedSize[i];
-      console.log('selectSizefor' , selecSize)
+      console.log('selectSizefor', selecSize)
       for (let j = 0; j < getcarrito.length; j++) {
         let sizeCart = getcarrito[j];
         console.log('sizeCart segundo for', sizeCart)
 
-         if(selecSize[i] === sizeCart.size[i]){
-            console.log('son iguales las medidas')
-            isDuplicated = true;
-            break;
-         }else{
-           isDuplicated = false
-         }
+        if (selecSize[i] === sizeCart.size[i]) {
+          console.log('son iguales las medidas')
+          isDuplicated = true;
+          break;
+        } else {
+          isDuplicated = false
+        }
 
       }
     }
@@ -154,7 +158,7 @@ export class CartAddModalComponent implements OnInit {
       console.log('no es duplicada')
 
       //this.cartService.addToCart(this.itemCart)
-     console.log('addTocart', this.cartService.addToCart(this.itemCart))
+      console.log('addTocart', this.cartService.addToCart(this.itemCart))
 
     } else {
       console.log('es duplicada')
@@ -165,12 +169,17 @@ export class CartAddModalComponent implements OnInit {
   }
 
   groupByFielOptin(event, index) {
-    console.log(event, index);
+
+    this.itemCart.size = this.selectedSize[index]
+
+    console.log('index option field',event , index);
   }
 
   trackByFn(index, item) {
+    console.log(index)
     return index;
   }
+
   updateCartItem(event, key) {
     // console.log('updateCartitem', event);
     //actualiza la cantidad de items del cart, event observa si el input cambia

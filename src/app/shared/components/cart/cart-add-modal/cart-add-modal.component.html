@@ -16,10 +16,10 @@
         </select>
       </ng-container>
       <ng-container *ngIf="itemCart.size">
-        <select class=" size inputHidden" [(ngModel)]="itemCart.size[i]" name="selectedSize[i]" (ngModelChange)="groupByFielOptin($event, i)">
+        <select class=" size inputHidden" [(ngModel)]="itemCart.size" name="selectedSize[i]">
           <!-- <option *ngFor="let size of itemCart.size"  [ngValue]="size" >{{size }}</option> -->
-          <option [ngValue]="selectedSize[i]">Seleccione su Medida</option>
-          <option *ngFor="let size of selectedSize | keyvalue ; let i = index ; trackBy: trackByFn"  [ngValue]="size.value"> {{ size.value}}</option>
+          <option [ngValue]="selectedSize">Seleccione su Medida</option>
+          <option *ngFor="let size of selectedSize | keyvalue ; let i = index "  [ngValue]="size.value"> {{ size.value}}</option>
         </select>
       </ng-container>
       <input type="number" class="inputHidden cantidad" [(ngModel)]="itemCart.cantidad" name="cantidad"
