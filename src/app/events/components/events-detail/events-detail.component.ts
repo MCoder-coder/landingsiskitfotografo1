@@ -66,7 +66,7 @@ export class EventDetailComponent implements OnInit {
     this.nextPage = 1;
     this.isLoading = false;
     this.photo = '';
-
+    //condicional para pantallas moviles
     if (window.innerWidth < 768) {
       this.isMobile = true;
     } else {
@@ -82,6 +82,7 @@ export class EventDetailComponent implements OnInit {
     this.fetchEventsFotos(ID, this.actualPage);
   }
 
+  //obtengo las fotos del request
   fetchEventsFotos(ID: number, page: number) {
     //console.log('ID Fetch Event Fotos: ', ID);
     this.isLoading = true;
@@ -151,7 +152,7 @@ export class EventDetailComponent implements OnInit {
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
     let tempCart = this.cartService.getCart();
     console.log('tempCart', tempCart);
-
+    //variable asignada a CarItem de tipo array
     let newfakeCartForPopup : CartItem[] = [];
     for (let index = 0; index < tempCart.length; index++) {
 
@@ -164,7 +165,7 @@ export class EventDetailComponent implements OnInit {
         newfakeCartForPopup.push(tempCart[index]);
       }
     }
-
+    //siempre la foto va a ser igual a cero condicional
     if(newfakeCartForPopup.length==0){
       let newCartItem: CartItem = <any>{
         ID: foto.ID+"-"+"1",
@@ -173,24 +174,27 @@ export class EventDetailComponent implements OnInit {
         size: "",
         digital : 1,
       };
+      //agrego la instancia del cartItem push
       newfakeCartForPopup.push(newCartItem)
     }
-
+      //retorno la instancia del objeto carItem
     return newfakeCartForPopup
 
   }
 
 
-
+//scroll infinito
   onScroll() {
     console.log('estas haciendo scroll');
+    ///si no esta cargado
     if (!this.isLoading) {
       // console.log('actualPage: ', this.actualPage);
-
+      // sumame mas uno de la siguiente pagina
       this.nextPage = this.actualPage + 1;
       //console.log('nextPage: ', this.nextPage);
 
       //console.log('pide pagina siguiente: getEventPage() ');
+      //obtenes las siguiente fotos del request con el id de la pag
       this.fetchEventsFotos(this.ID, this.nextPage);
     }
   }

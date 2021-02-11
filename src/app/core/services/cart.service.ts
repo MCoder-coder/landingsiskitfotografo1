@@ -82,56 +82,59 @@ export class CartService {
     //console.log('fuera del if cart' , this.cart)
 
     //console.log('newCartItem de service' , newCartitem)
-   // for (let index = 0; index < this.cart.length; index++) {
-      //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
-      // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
-      //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
-       // console.log('dentro del for itemcart service' , this.cart[index].foto.ID)
+    // for (let index = 0; index < this.cart.length; index++) {
+    //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
+    // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
+    //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
+    // console.log('dentro del for itemcart service' , this.cart[index].foto.ID)
 
-     //}
+    //}
 
-     //console.log('foto id' , foto.ID)
+    //console.log('foto id' , foto.ID)
 
     //this.cart.push(newCartitem);
     // //console.log('segundo if')
     // this.updateLocalStorageCart();
 
-     //this.totalItems.next(this.getFotosCount());
+    //this.totalItems.next(this.getFotosCount());
 
 
-        this.cart.push(cartItem);
-        this.updateLocalStorageCart();
-        this.totalItems.next(this.getFotosCount());
-      console.log("AGREGADO CON EXITO")
+    this.cart.push(cartItem);
+    this.updateLocalStorageCart();
+    this.totalItems.next(this.getFotosCount());
+    console.log("AGREGADO CON EXITO")
   }
 
+  //actualiza la cantidad de fotos dentro del carro o modal
   updateCantidad(key, nuevaCantidad: number) {
     this.cart[key].cantidad = nuevaCantidad;
     this.totalItems.next(this.getFotosCount());
     this.updateLocalStorageCart();
   }
 
+  //obtengo los objetos dentro del carro
   getCart() {
     return this.cart;
   }
 
-  clearCart( value) {
+  //limpio el carro y a su vez actualizo la cantidad actual
+  clearCart(value) {
     this.fotos = [];
     this.cart = [];
-    console.log( 'el carrito de delete' ,this.cart)
-    this.localService.clearToken('cart' , value )
+    console.log('el carrito de delete', this.cart)
+    this.localService.clearToken('cart', value)
     this.updateLocalStorageCart();
 
     this.totalItems.next(this.getFotosCount());
   }
 
 
-
+  // sumo el total de las foto por la cantidad
   getFotosCount() {
     //return this.cart.length;
     let total: number = 0;
     for (let item of this.cart) {
-     // console.log(item.cantidad);
+      // console.log(item.cantidad);
       //suma el total que es igual a 0 por la la cantidad de item dentro del carrito
       total = Number(total) + Number(item.cantidad);
     }
@@ -145,16 +148,17 @@ export class CartService {
 
 
 
-
+  // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
   mergeCart(...arrays) {
     let jointArray = []
 
     arrays.forEach(array => {
-        jointArray = [...jointArray, ...array]
+      jointArray = [...jointArray, ...array]
     })
-    const uniqueArray = jointArray.filter((item,index) => jointArray.indexOf(item) === index)
+    //El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
+    const uniqueArray = jointArray.filter((item, index) => jointArray.indexOf(item) === index)
     return uniqueArray
-}
+  }
 
 
 

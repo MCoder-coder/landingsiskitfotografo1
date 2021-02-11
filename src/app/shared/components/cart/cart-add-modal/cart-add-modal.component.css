@@ -46,6 +46,7 @@ button,
 
 button.option {
     /* margin-left: 228px; */
+    margin-top: -45px;
 }
 
 button.addcart {
@@ -66,7 +67,7 @@ button.trash {
 }
 
 select {
-    margin: 12px;
+    margin: 6px;
     display: inline-block;
     /* margin-right: 164px; */
     /* float: left; */
@@ -81,7 +82,7 @@ select {
 .modal-body {
     margin-left: -197px;
     /* padding-bottom: 44px; */
-    position: inherit;
+    margin: inherit;
     /* filter: blur(2px);
      -webkit-filter: blur(2px); */
 }
@@ -100,7 +101,7 @@ select {
 }
 
 form {
-    padding-top: 18px;
+    padding-top: 45px;
     /* padding-left: 490px; */
     margin-left: 428px;
 }

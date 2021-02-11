@@ -54,3 +54,9 @@
     width: 200px;
     height: 150px;
 }
+
+button:hover{
+  background-color: #4CAF50;
+    /* Green */
+    color: #4CAF50;
+}

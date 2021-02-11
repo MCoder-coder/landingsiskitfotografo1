@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
 import { flatten } from '@angular/compiler';
 import {
   faCoffee,
-  fas,
-  faShoppingCart,
+  faCopy,
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { Size } from '../../../../core/models/sieze.model';
 import { CartItem } from '../../../../core/models/cartitem.model';
 import { timestamp } from 'rxjs/operators';
+import { newArray } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-cart-add-modal',
@@ -31,6 +31,7 @@ export class CartAddModalComponent implements OnInit {
   Object = Object;
   MainForm: FormGroup;
   googleIcon = faTrash;
+  copyIcon = faCopy;
   selectedSize = ["15x18", "30x40", "40x50"];
  // selectedSize2 = ["15x18", "30x40", "40x50"];
 
@@ -39,6 +40,7 @@ export class CartAddModalComponent implements OnInit {
   cart = this.cartService.getCart();
 
   constructor(private cartService: CartService, private formBuilder: FormBuilder) {
+    //creo el formulario
     this.buildOptionForm()
 
 
@@ -54,6 +56,11 @@ export class CartAddModalComponent implements OnInit {
   }
 
   //formulario de opciones, pop up
+  /**
+   * Creo un metodo privado para construir un formArray
+   *    //this.MainForm : FormFG
+   *      **creo un grupo de formulario optionSelect de tipo array porque
+   */
   private buildOptionForm() {
     this.MainForm = this.formBuilder.group({
       optionselect: this.formBuilder.array([])
@@ -61,21 +68,40 @@ export class CartAddModalComponent implements OnInit {
     console.log("MainForm: " , this.MainForm)
   }
 
+  /**
+   * Metodo que crea las opciones del formulario de optionselect
+   *
+   */
   //creo los campos
   createOptionForm() {
     let itemCar = this.itemCart
     console.log('itemcar' , itemCar)
 
     let newFormGroup = this.formBuilder.group({
-       "type": this.formBuilder.control({value:"0"}),
-       "size": this.formBuilder.control({value:"15x18"}),
-       "cantidad": this.formBuilder.control({value:itemCar.cantidad}),
+      //  "type": this.formBuilder.control({value:"0"}),
+      //  "size": this.formBuilder.control({value:"15x18"}),
+      //  "cantidad": this.formBuilder.control({value:itemCar.cantidad}),
+
     })
 
     console.log('newFormGroup' , newFormGroup)
     return newFormGroup;
   }
-
+  /**
+   * *Agrego las opciones del formulario
+   *  //Creo la instante de CartItem con sus respectivos valores
+   *      *asigo el id de la foto al ID del CartItem
+   *      *obtengo el ID de la foto[0] siempre sera la misma foto
+   *      *la cantidad uno
+   *      *size "" de tipo string vacion
+   *      *digital boolean true = 1
+   * //Hago referencia a fakeCartItem es una variable global de tipo CartItem asignada a un Array
+   *    *esta variable ejecuta el metodo push
+   *    *El método push() añade uno o más elementos al final de un array y devuelve la nueva longitud del array.
+   *    *Dentro del metodo push asigno la instancia del Objeto newCartItem y añado una nueva instancia del newCarItem creo un
+   *     una instancia nueva cada vez que ejecuto el metodo push.
+   *
+   */
   //agruega la nueva opciones medida,digital,impresa,input, del formulario bansandome en el objeto itemCart
   addOptionForm() {
     // this.optionSelect.push(this.createOptionForm())
@@ -86,125 +112,92 @@ export class CartAddModalComponent implements OnInit {
       size: "",
       digital : 1,
     };
+    console.log('newCartItem' , newCartItem)
     this.fakeCart.push(newCartItem)
+    //this.optionSelect.push(newCartItem)
+
   }
 
-  //obtiene el formularios de copia
+  //obtiene el formularios de copia y los caste a un formArray para poder usar las directivas formControlName y formControlArray
   get optionSelect() {
     return this.MainForm.get('optionselect') as FormArray
   }
+
+  /**
+   *
+   * @param index
+   * Elimina el formulario de copia
+   * Para el metodo recibe un objeto CarItem (corespondiente a su index)
+   * Buscar en el cart real si existe el ID carItem (ej:654654)
+   * Si existe: pregunta si desea eliminarlo
+   *   Elimino el cartitem del carro real Buscandolo por CartItem.Id
+   * Sino no hace nada
+   *
+   * //ahora eliminos el formulario...
+   * Obtengo el objeto de "fakeCart"
+   */
+
   delete(index: number) {
-    this.optionSelect.removeAt(index)
+    this.cart = new Array<CartItem>()
+    //this.optionSelect.removeAt(index)
+    for (let j = 0; j < this.cart.length; j++) {
+      let element = this.cart[j];
+      //id = element
+
+      console.log('element', element)
+    }
+    console.log('remove' , index)
   }
 
+
+
+  /**
+   *
+   * @param fakeCart
+   * Agrego las fotos de fakeCart
+   * Obtengo el metodo de CartService ,inyeccion de dependencia para acceder al metodo
+   * //llamo al metodo mergeCartItems
+   * // que mescla el carrito falso con el real, agregando los cambios sin duplicar nada
+   *
+   */
   addToCartFoto(fakeCart) {
 
     this.cartService.mergeCartItems(fakeCart)
 
-/*
-    let item = fakeCart[0]
-    console.log('fakeCart ', fakeCart)
-    console.log('item ', item)
-    console.log("car-add-modal funcion addToCart");
-    let isDuplicated = false
-    let getcarrito = this.cart
-
-
-    //console.log('foto de componente modal cart' , foto)
-    //console.log('foto size' , this.itemCart.size)
-    console.log(`foto de itemcart`, this.itemCart)
-
-
-    console.log('id de foto ItemCart', this.itemCart.foto.ID)
-    //console.log('id de foto : Fotos' , foto.foto.ID)
-
-    // for (const forCartItem of getcarrito) {
-    //   console.log('forCartItem', forCartItem);
-    //   console.log('forCartItem.foto', forCartItem.size);
-    //   console.log('this.itemCart.foto.ID', this.itemCart.foto.ID);
-    //   // if (this.itemCart.foto.ID == forCartItem.foto.ID) {
-
-    //   //   isDuplicated = true
-    //   //   break
-    //   // }
-
-
-
-
-    // }
-
-
-
-
-    for (let i = 0; i < this.selectedSize.length; i++) {
-      let selecSize = this.selectedSize[i];
-      console.log('selectSizefor' , selecSize)
-      for (let j = 0; j < getcarrito.length; j++) {
-        let sizeCart = getcarrito[j];
-        console.log('sizeCart segundo for', sizeCart)
-
-         if(selecSize[i] === sizeCart.size[i]){
-            console.log('son iguales las medidas')
-            isDuplicated = true;
-            break;
-         }else{
-           isDuplicated = false
-         }
-
-      }
-    }
-
-    // for (let d = 0; d < getcarrito.length; d++) {
-    //   let digital = getcarrito[d];
-    //   let size = []
-    //       if (digital.digital === true){
-
-    //         console.log( 'digital', digital)
-    //         digital.cantidad = 1
-    //         digital.size = size[""]
-    //         this.itemCart.size = size[""]
-
-    //       }else{
-
-    //       }
-
-    // }
-
-
-
-    if (!isDuplicated) {
-      console.log('no es duplicada')
-
-      //this.cartService.addToCart(this.itemCart)
-      console.log('addTocart', this.cartService.addToCart(this.itemCart))
-
-    } else {
-      console.log('es duplicada')
-      console.log('addTocart', this.cartService.addToCart(this.itemCart))
-    }
-
-*/
   }
 
 
 
-
-
-
-
-  groupByFieldOption(event, index) {
-    console.log(event, index);
-  }
-
-  trackByFn(index, item) {
-    return index;
-  }
+/**
+ *
+ * @param event
+ * @param key
+ *
+ * Metodo que actualiza la cantidad de elementos del Carro
+ * Obtengo el metodo UpdateCantidad del service : CartService
+ *    Inyeccion de dependencia en el constructor
+ * //Paramentros Key y event
+ *    Dependiendo que tipo de key tenga el campo , el paramentro:
+ *    event observa si el input cambia
+ */
   updateCartItem(event, key) {
+
     // console.log('updateCartitem', event);
     //actualiza la cantidad de items del cart, event observa si el input cambia
     this.cartService.updateCantidad(key, event.target.value);
+
   }
 
+  /**
+   *
+   * @param event
+   * Metodo que observa los cambios del select
+   * //Si es digital o impresa este se ocultao muestra
+   *    compara el value tru o false de digital este es Boolean
+   * //clase html|css inputHidden
+   *      *si el valor es 0 se muestra : 0  Impresa
+   *      *si el valor es 1 se muestra : 1 Digital
+   */
   typeChange(event) {
     console.log('event', event)
 
