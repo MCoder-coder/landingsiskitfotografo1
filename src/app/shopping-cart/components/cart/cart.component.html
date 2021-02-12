@@ -31,7 +31,6 @@
         </div>
     </div>
     <div *ngIf="cart.length==0" style="min-height: 500px;">
-        sin item
         <div id="notfound">
             <div class="notfound">
                 <div class="notfound-404">
@@ -42,7 +41,7 @@
     </div>
     <div *ngIf="cart.length >= 1">
 
-        <div class="row d-flex justify-content-center border-top" *ngFor="let key of Object.keys(cart)">
+        <div class="row d-flex justify-content-center border-top" *ngFor="let key of Object.keys(cart); let i = index">
             <div class="col-5">
                 <div class="row d-flex box">
                     <div class="card ">
@@ -79,7 +78,7 @@
                     <div class="col-4 mt-5 pl-5">
 
 
-                        <button class="btn " (click)="deleteItemCart(cart[key].foto.ID)">
+                        <button class="btn " (click)="opdenDialogConfirm(i)">
               <fa-icon [icon]="googleIcon"></fa-icon>
             </button>
                     </div>

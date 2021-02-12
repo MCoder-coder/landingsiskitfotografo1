@@ -14,13 +14,15 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NoRightClickDirective } from './no-right-click.directive';
-
+import { ConfirmationDialogComponent } from './shared/confirmation-dialog/confirmation-dialog.component';
 
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 
 import { TokenInterceptor } from "./core/services/token.interceptor";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CartAddModalComponent } from './shared/components/cart/cart-add-modal/cart-add-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationDialogService } from './shared/confirmation-dialog/confirmation-dialog.service';
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
 export function appInitFactory(token: TokenProvider) {
@@ -47,7 +49,8 @@ export function appInitFactory(token: TokenProvider) {
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
 
   ],
   providers: [
@@ -63,7 +66,8 @@ export function appInitFactory(token: TokenProvider) {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    [ConfirmationDialogService]
 
   ],
   entryComponents: [CartAddModalComponent],

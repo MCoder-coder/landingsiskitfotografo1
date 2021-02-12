@@ -10,6 +10,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add-modal.component';
+import { ConfirmationDialogService  } from "./confirmation-dialog/confirmation-dialog.service";
+
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add
     NavbarComponent,
     FooterComponent,
     CartAddModalComponent,
+
+    ConfirmationDialogComponent,
 
 
   ],

@@ -12,22 +12,22 @@
 
       <button class="btn  option" type="button" title="Agregar  Opciones" (click)="addOptionForm()"><fa-icon [icon]="copyIcon"></fa-icon></button>
 
-      <ng-container formArrayName="optionselect" >
+      <ng-container  >
         <div *ngFor="let itemCart of fakeCart; let i = index">
-          <div >
+          <div formArrayName="optionselect">
             <select class="type" [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event)">
               <option [value]="1" ngDefaultControl>Digital</option>
               <option [value]="0" ngDefaultControl>Impresa</option>
             </select>
             <select class="size inputHidden" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size"
               name="size">
-              <option [ngValue]="selectedSize"> Seleccione su Medida</option>
-              <option ngDefaultControl *ngFor="let item of selectedSize | keyvalue ; let i = index" [value]="item.value">{{item.value}}
+
+              <option ngDefaultControl *ngFor="let item of selecteSize | keyvalue ; let i = index" [ngValue]="item.value">{{item.value}}
               </option>
             </select>
             <input class="size inputHidden"  [ngModelOptions]="{standalone: true}" ngDefaultControl type="number"
               [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
-            <button class="btn trash" ngDefaultControl (click)="delete(i)" style="color: red;">
+            <button type="button" class="btn trash" ngDefaultControl (click)="opdenDialogConfirm(i)" >
               <fa-icon [icon]="googleIcon"></fa-icon>
             </button>
           </div>

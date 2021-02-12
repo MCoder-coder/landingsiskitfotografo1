@@ -45,7 +45,7 @@ export class CartService {
 
   updateLocalStorageCart() {
     //El JSON.stringify()método convierte un objeto o valor de JavaScript en una cadena
-    this.localService.setJsonValue('cart', this.cart);
+    this.localService.setJsonValue('cart', this.cart)
     // let myCart = JSON.stringify(this.cart);
     //localStorage.setItem('cart', myCart);
   }
@@ -117,15 +117,32 @@ export class CartService {
     return this.cart;
   }
 
-  //limpio el carro y a su vez actualizo la cantidad actual
+
+/**
+ * Metodo que se encarga de eliminar el item
+ * de acuerdo a su index
+ *  //actualizo la cantidad de items contados despues de la eliminacion del elemento
+ *
+ */
+deleteItem(index : number){
+
+  this.cart.splice( index ,1);
+  this.updateLocalStorageCart();
+  this.totalItems.next(this.getFotosCount());
+
+
+}
+
+  //limpio el cart completo y a su vez actualizo la cantidad actual
   clearCart(value) {
     this.fotos = [];
     this.cart = [];
-    console.log('el carrito de delete', this.cart)
+    // console.log('el carrito de delete', this.cart)
     this.localService.clearToken('cart', value)
     this.updateLocalStorageCart();
 
     this.totalItems.next(this.getFotosCount());
+    console.log('value clearCart' , value)
   }
 
 

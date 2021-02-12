@@ -20,7 +20,12 @@ export class LocalService {
   }
 
   clearToken(key , value) {
-    // limpio los datos
-    return this.storageService.secureStorage.clear(key , value);
+    // limpio todo el carro
+    return this.storageService.secureStorage.removeItem(key , value);
+  }
+
+  deleteItem( key: string ,index : number){
+    //elimina el item de acuerdo al index del mismo
+    return this.storageService.secureStorage.removeItem( key ,index)
   }
 }

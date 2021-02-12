@@ -64,6 +64,13 @@ button.trash {
     box-shadow: none;
     /* background-color: snow; */
     background-color: transparent;
+    color: darkgray;
+}
+
+button.trash:hover{
+
+  color: red;
+
 }
 
 select {
