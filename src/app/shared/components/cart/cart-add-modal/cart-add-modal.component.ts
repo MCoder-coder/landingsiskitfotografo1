@@ -17,6 +17,7 @@ import { newArray } from '@angular/compiler/src/util';
 import { isObject } from 'util';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog/confirmation-dialog.service';
+import { inflate } from 'zlib';
 
 @Component({
   selector: 'app-cart-add-modal',
@@ -166,22 +167,26 @@ export class CartAddModalComponent implements OnInit {
           if (fake.ID == cart.ID) {
              if (index > -1) {
               //El método splice() cambia el contenido de un array eliminando elementos existentes
-               this.fakeCart.splice(index, 1);
+               this.fakeCart.splice(index, 1 );
                this.cartService.deleteItem(index)
+
                return this.fakeCart
             }
 
-          }
+           }
 
       }
 
       if(index > -1){
         this.fakeCart.splice(index, 1);
+
         return this.fakeCart
       }
 
 
     }
+
+
 
   }
 
@@ -256,23 +261,25 @@ export class CartAddModalComponent implements OnInit {
    *      *si el valor es 0 se muestra : 0  Impresa
    *      *si el valor es 1 se muestra : 1 Digital
    */
-  typeChange(event) {
+  typeChange(event, index ) {
     console.log('event', event)
+    console.log('index event byclasname' , index)
 
     let type_el = event.target
-
+    let indx = index
     console.log('type_el', type_el)
     //es impresa?
     if (type_el.value == 0) {
       let ty = document.getElementsByClassName('inputHidden')
-      //console.log('ty', ty)
-      for (let index = 0; index < ty.length; index++) {
-        const element = ty[index];
-        //console.log('element', element)
+
+      for (let j = 0; j < ty.length; j++) {
+        let element = ty[j];
+
+        console.log('element', element)
         if (element.classList.contains('show')) {
 
         } else {
-          element.classList.add('show')
+           element.classList.add('show')
         }
 
       }
@@ -280,14 +287,16 @@ export class CartAddModalComponent implements OnInit {
 
     }
 
-    if (type_el.value == 1) {
+    if (type_el.value == 1 ) {
       let ty = document.getElementsByClassName('inputHidden')
 
-      for (let index = 0; index < ty.length; index++) {
-        const element = ty[index];
-        //console.log('element 1', element)
+      for (let h = 0; h < ty.length; h++) {
+        const element = ty[h];
+
         if (element.classList.contains('show')) {
-          element.classList.remove('show')
+
+            element.classList.remove('show')
+
         }
       }
 
