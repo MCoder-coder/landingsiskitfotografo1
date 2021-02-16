@@ -8,25 +8,27 @@
   <div class="modal-body" *ngIf="fakeCart.length">
   <img src="{{'//www.juanschtrefotografo.com/' +   fakeCart[0].foto.filename}}" alt="" />
     <!-- tipos -->
-    <form [formGroup]="MainForm">
+    <form >
 
-      <button class="btn  option" type="button" title="Agregar  Opciones" (click)="addOptionForm()"><fa-icon [icon]="copyIcon"></fa-icon></button>
+      <button class="btn  option" type="button" title="Agregar Mas copias" (click)="addOptionForm()"><fa-icon [icon]="copyIcon"></fa-icon></button>
 
-      <ng-container  >
+      <ng-container [formGroup]="MainForm" >
         <div *ngFor="let itemCart of fakeCart; let i = index">
-          <div formArrayName="optionselect">
-            <select class="type" [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, [i])">
-              <option [value]="1" ngDefaultControl>Digital</option>
-              <option [value]="0" ngDefaultControl>Impresa</option>
+          <div formArrayName="optionselect" >
+              <h4>Option {{ i + 1 }} </h4>
+            <select class="type"   [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
+                <option [value]="1" ngDefaultControl>Digital</option>
+                <option [value]="0" ngDefaultControl>Impresa</option>
             </select>
-            <select class="size inputHidden" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size"
-              name="size">
-
-              <option ngDefaultControl *ngFor="let item of selecteSize | keyvalue ; let i = index" [ngValue]="item.value">{{item.value}}
-              </option>
-            </select>
-            <input class="size inputHidden"  [ngModelOptions]="{standalone: true}" ngDefaultControl type="number"
-              [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
+              <div class="size inputHidden" >
+                <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size" name="size" >
+                  <option ngDefaultControl *ngFor="let item of selecteSize | keyvalue" [ngValue]="item.value">
+                    {{item.value}}
+                  </option>
+                </select>
+                <input  [ngModelOptions]="{standalone: true}" ngDefaultControl type="number"
+                  [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
+              </div>
             <button type="button" class="btn trash" ngDefaultControl (click)="opdenDialogConfirm(i)" >
               <fa-icon [icon]="googleIcon"></fa-icon>
             </button>

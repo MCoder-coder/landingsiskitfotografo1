@@ -18,6 +18,7 @@ import { isObject } from 'util';
 import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog/confirmation-dialog.service';
 import { inflate } from 'zlib';
+import { type } from 'os';
 
 @Component({
   selector: 'app-cart-add-modal',
@@ -37,7 +38,7 @@ export class CartAddModalComponent implements OnInit {
   googleIcon = faTrash;
   copyIcon = faCopy;
   selecteSize = ["15x18", "30x40", "40x50"];
- // selectedSize2 = ["15x18", "30x40", "40x50"];
+  // selectedSize2 = ["15x18", "30x40", "40x50"];
 
   //(change)se activa cuando el usuario cambia la entrada
 
@@ -54,7 +55,7 @@ export class CartAddModalComponent implements OnInit {
     console.log('save form', this.MainForm.value)
     //console.log('itemcar Size' , this.itemCart.size)
 
-     //this.itemCart.size = this.selectedSize
+    //this.itemCart.size = this.selectedSize
 
 
   }
@@ -69,7 +70,7 @@ export class CartAddModalComponent implements OnInit {
     this.MainForm = this.formBuilder.group({
       optionselect: this.formBuilder.array([])
     })
-    console.log("MainForm: " , this.MainForm)
+    console.log("MainForm: ", this.MainForm)
   }
 
   /**
@@ -89,7 +90,7 @@ export class CartAddModalComponent implements OnInit {
 
     })
 
-    console.log('newFormGroup' , newFormGroup)
+    console.log('newFormGroup', newFormGroup)
     return newFormGroup;
   }
   /**
@@ -110,13 +111,13 @@ export class CartAddModalComponent implements OnInit {
   //agruega la nueva opciones medida,digital,impresa,input, del formulario bansandome en el objeto itemCart
   addOptionForm() {
 
-     let newCartItem: CartItem = <any>{
-       ID: this.fakeCart[0].foto.ID+"-"+(this.fakeCart.length+1),
-       foto: this.fakeCart[0].foto,
-       cantidad: 1,
-       size: "",
-       digital : 1,
-     };
+    let newCartItem: CartItem = <any>{
+      ID: this.fakeCart[0].foto.ID + "-" + (this.fakeCart.length + 1),
+      foto: this.fakeCart[0].foto,
+      cantidad: 1,
+      size: "",
+      digital: 1,
+    };
     //console.log('newCartItem' , newCartItem)
     this.fakeCart.push(newCartItem)
     //this.optionSelect.push(newCartItem)
@@ -160,32 +161,36 @@ export class CartAddModalComponent implements OnInit {
 
   delete(index: number) {
 
+    let cartFake = this.fakeCart
+    let cartItme = this.itemCart
+    console.log('cartItme', cartItme)
+    console.log('cartFake', cartFake)
+
     for (let j = 0; j < this.fakeCart.length; j++) {
       let fake = this.fakeCart[j];
       for (let h = 0; h < this.cart.length; h++) {
         let cart = this.cart[h];
-          if (fake.ID == cart.ID) {
-             if (index > -1) {
-              //El método splice() cambia el contenido de un array eliminando elementos existentes
-               this.fakeCart.splice(index, 1 );
-               this.cartService.deleteItem(index)
+        if (fake.ID == cart.ID) {
+          if (index > -1) {
+            //El método splice() cambia el contenido de un array eliminando elementos existentes
+            // this.fakeCart.splice(index, 1);
+            this.fakeCart.splice(index, 1);
+            this.cartService.deleteItem(index)
 
-               return this.fakeCart
-            }
+            return this.fakeCart
+          }
 
-           }
+        }
 
       }
 
-      if(index > -1){
+      if (index > -0) {
         this.fakeCart.splice(index, 1);
-
         return this.fakeCart
       }
 
 
     }
-
 
 
   }
@@ -206,7 +211,7 @@ export class CartAddModalComponent implements OnInit {
    *
    */
 
-  opdenDialogConfirm(index: number){
+  opdenDialogConfirm(index: number) {
     this.confirmationDialogService.confirm('', 'Esta seguro que desea Eliminar esta Foto')
       .then((confirmed) => this.delete(index) + '' + confirmed)
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
@@ -231,18 +236,18 @@ export class CartAddModalComponent implements OnInit {
 
 
 
-/**
- *
- * @param event
- * @param key
- *
- * Metodo que actualiza la cantidad de elementos del Carro
- * Obtengo el metodo UpdateCantidad del service : CartService
- *    Inyeccion de dependencia en el constructor
- * //Paramentros Key y event
- *    Dependiendo que tipo de key tenga el campo , el paramentro:
- *    event observa si el input cambia
- */
+  /**
+   *
+   * @param event
+   * @param key
+   *
+   * Metodo que actualiza la cantidad de elementos del Carro
+   * Obtengo el metodo UpdateCantidad del service : CartService
+   *    Inyeccion de dependencia en el constructor
+   * //Paramentros Key y event
+   *    Dependiendo que tipo de key tenga el campo , el paramentro:
+   *    event observa si el input cambia
+   */
   updateCartItem(event, key) {
 
     // console.log('updateCartitem', event);
@@ -261,44 +266,42 @@ export class CartAddModalComponent implements OnInit {
    *      *si el valor es 0 se muestra : 0  Impresa
    *      *si el valor es 1 se muestra : 1 Digital
    */
-  typeChange(event, index ) {
+  typeChange(event , indx) {
     console.log('event', event)
-    console.log('index event byclasname' , index)
+    console.log('index', indx)
 
-    let type_el = event.target
-    let indx = index
-    console.log('type_el', type_el)
-    //es impresa?
-    if (type_el.value == 0) {
-      let ty = document.getElementsByClassName('inputHidden')
+    let type_el = event.target;
+    console.log('type_el' , type_el)
+    var id = document.getElementById('itemCart')
+    console.log('id' , id)
 
-      for (let j = 0; j < ty.length; j++) {
-        let element = ty[j];
+    let hiddenClassName = 'inputHidden'
+    var nodesQuerySelector = document.getElementsByClassName(hiddenClassName)
 
-        console.log('element', element)
-        if (element.classList.contains('show')) {
+    for (let index = 0; index < nodesQuerySelector.length; index++) {
+      var nodeQuerySelector = nodesQuerySelector[index];
+      var classCOntainsShow = nodeQuerySelector.classList.contains('show')
+      console.log('nodehtml',nodeQuerySelector)
 
-        } else {
-           element.classList.add('show')
+
+        if (type_el.value == 0) {
+          if (classCOntainsShow  ) {
+
+          } else {
+            nodeQuerySelector.classList.add('show')
+
+          }
         }
 
-      }
+        if (type_el.value == 1) {
+          if (classCOntainsShow ) {
 
+            nodeQuerySelector.classList.remove('show')
 
-    }
-
-    if (type_el.value == 1 ) {
-      let ty = document.getElementsByClassName('inputHidden')
-
-      for (let h = 0; h < ty.length; h++) {
-        const element = ty[h];
-
-        if (element.classList.contains('show')) {
-
-            element.classList.remove('show')
-
+          }
         }
-      }
+
+
 
     }
 
