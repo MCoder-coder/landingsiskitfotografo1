@@ -57,7 +57,6 @@ export class CartAddModalComponent implements OnInit {
 
     //this.itemCart.size = this.selectedSize
 
-
   }
 
   //formulario de opciones, pop up
@@ -159,38 +158,37 @@ export class CartAddModalComponent implements OnInit {
    *
    */
 
-  delete(index: number) {
+  delete(itemCart: CartItem, index: number) {
 
     let cartFake = this.fakeCart
-    let cartItme = this.itemCart
-    console.log('cartItme', cartItme)
+
+    console.log('itemCart', itemCart)
     console.log('cartFake', cartFake)
 
+    // Borro en FakeCart
     for (let j = 0; j < this.fakeCart.length; j++) {
       let fake = this.fakeCart[j];
-      for (let h = 0; h < this.cart.length; h++) {
-        let cart = this.cart[h];
-        if (fake.ID == cart.ID) {
-          if (index > -1) {
-            //El método splice() cambia el contenido de un array eliminando elementos existentes
-            // this.fakeCart.splice(index, 1);
-            this.fakeCart.splice(index, 1);
-            this.cartService.deleteItem(index)
 
-            return this.fakeCart
-          }
-
-        }
-
+      if(fake.ID==itemCart.ID){
+           // borro el itemCart Temporal que tiene el fakeCart
+          this.fakeCart.splice(j, 1);
       }
-
-      if (index > -0) {
-        this.fakeCart.splice(index, 1);
-        return this.fakeCart
-      }
-
-
     }
+
+    // Borro en Cart (real)
+    // for (let h = 0; h < this.cart.length; h++) {
+    //   let cart = this.cart[h];
+
+    //   if (cart.ID==itemCart.ID) {
+    //        //El método splice() cambia el contenido de un array eliminando elementos existentes
+    //        // this.fakeCart.splice(index, 1);
+    //        this.cartService.deleteItem(h)
+    //   }
+    // }
+
+
+
+    return this.fakeCart
 
 
   }
@@ -211,9 +209,9 @@ export class CartAddModalComponent implements OnInit {
    *
    */
 
-  opdenDialogConfirm(index: number) {
+  opdenDialogConfirm(itemCart: CartItem, index: number) {
     this.confirmationDialogService.confirm('', 'Esta seguro que desea Eliminar esta Foto')
-      .then((confirmed) => this.delete(index) + '' + confirmed)
+      .then((confirmed) => this.delete(itemCart, index) + '' + confirmed)
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
@@ -271,40 +269,56 @@ export class CartAddModalComponent implements OnInit {
     console.log('event', event)
     console.log('index', indx)
 
-    let type_el = event.target;
-    console.log('type_el' , type_el)
-    var id = document.getElementById("item")
-    console.log('id' , id)
+    let tipoFormato_el = event.target;
+    console.log('tipoFormato_el' , tipoFormato_el)
 
-    let hiddenClassName = 'inputHidden'
-    var nodesQuerySelector = document.getElementsByClassName(hiddenClassName)
+    var form_de_copia_el = document.getElementById("itemCart-" + indx )
+    console.log('form_de_copia_el:' , form_de_copia_el)
 
-    for (let index = 0; index < nodesQuerySelector.length; index++) {
-      var nodeQuerySelector = nodesQuerySelector[index];
+    let campos_ocultos = document.getElementById("contenedor-de-campos-ocultables-" + indx )
+
+    var classContainsShow = campos_ocultos.classList.contains('show')
+
+    if ( classContainsShow  ) {
+        campos_ocultos.classList.remove('show')
+    } else {
+        campos_ocultos.classList.add('show')
+    }
+
+
+
+    /*
+
+    // Contenedores de inputHidden
+    var campos_ocultables_arr = document.getElementsByClassName('inputHidden')
+
+    for (let index = 0; index < campos_ocultables_arr.length; index++) {
+
+      var nodeQuerySelector = campos_ocultables_arr[index];
       var classCOntainsShow = nodeQuerySelector.classList.contains('show')
       console.log('nodehtml',nodeQuerySelector)
 
 
-        if (type_el.value == 0) {
+        if (tipoFormato_el.value == 0) {
           if (classCOntainsShow  ) {
 
           } else {
-            nodeQuerySelector.classList.add('show')
-
+            //nodeQuerySelector.classList.add('show')
+            form_de_copia_el.classList.add('show')
           }
         }
 
-        if (type_el.value == 1) {
+        if (tipoFormato_el.value == 1) {
           if (classCOntainsShow ) {
 
-            nodeQuerySelector.classList.remove('show')
-
+            //nodeQuerySelector.classList.remove('show')
+            form_de_copia_el.classList.remove('show')
           }
         }
 
 
-
-    }
+      }
+    */
 
   }
 

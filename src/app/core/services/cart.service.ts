@@ -53,6 +53,7 @@ export class CartService {
   // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
   mergeCartItems(fakeCart: CartItem[]) {
     let newMergedCart = this.mergeCart(this.cart, fakeCart)
+
     console.log("newMergedCart", newMergedCart)
     this.cart = newMergedCart
     this.updateLocalStorageCart();
@@ -166,7 +167,7 @@ deleteItem(index : number){
 
 
   // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
-  mergeCart(...arrays) {
+  mergeCart2(...arrays) {
     let jointArray = []
 
     arrays.forEach(array => {
@@ -174,9 +175,47 @@ deleteItem(index : number){
     })
     //El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
     const uniqueArray = jointArray.filter((item, index) => jointArray.indexOf(item) === index)
+
     return uniqueArray
+  }
+
+  // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
+  mergeCart(cart, fakeCart) {
+    let jointArray = []
+    let arrays = [cart, fakeCart]
+
+    // agrego items nuevos juntando los arrays (quedando duplicados quizá algunos)
+    arrays.forEach(array => {
+      jointArray = [...jointArray, ...array]
+    })
+    //El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
+    let uniqueArray = jointArray.filter((item, index) => jointArray.indexOf(item) === index)
+
+
+    let copiasEnCart = this.ObtenerCopiasMismaFotoCart(fakeCart[0].foto);
+
+    let difference = copiasEnCart.filter(x => !fakeCart.includes(x));
+
+    let uniqueArrayFinal = uniqueArray.filter(x => !difference.includes(x));
+
+    return uniqueArrayFinal
   }
 
 
 
+  ObtenerCopiasMismaFotoCart(foto){
+
+    let copiasEnCart: CartItem[] = []
+
+    for (let index = 0; index < this.cart.length; index++) {
+      const cartItem = this.cart[index];
+
+      if(cartItem.foto==foto){
+          copiasEnCart.push(cartItem)
+      }
+
+    }
+
+    return copiasEnCart
+  }
 }
