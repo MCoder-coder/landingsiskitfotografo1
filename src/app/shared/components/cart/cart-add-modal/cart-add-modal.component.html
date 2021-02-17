@@ -14,7 +14,7 @@
 
       <ng-container [formGroup]="MainForm" >
         <div *ngFor="let itemCart of fakeCart; let i = index">
-          <div id="contenedor-de-formulario-de-copia-numero-{{i}}" class="contenedor-de-formulario-de-copia-numero-{{i}}"  formArrayName="optionselect" >
+          <div  id="{{ item + index }}" class="contenedor-de-formulario-de-copia-numero-{{i}}"  formArrayName="optionselect" >
               <h4>Option {{ i + 1 }} </h4>
               <select class="type"   [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
                   <option [value]="1" ngDefaultControl>Digital</option>

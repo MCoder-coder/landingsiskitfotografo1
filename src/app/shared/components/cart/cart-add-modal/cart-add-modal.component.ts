@@ -266,13 +266,14 @@ export class CartAddModalComponent implements OnInit {
    *      *si el valor es 0 se muestra : 0  Impresa
    *      *si el valor es 1 se muestra : 1 Digital
    */
+
   typeChange(event , indx) {
     console.log('event', event)
     console.log('index', indx)
 
     let type_el = event.target;
     console.log('type_el' , type_el)
-    var id = document.getElementById('itemCart')
+    var id = document.getElementById("item")
     console.log('id' , id)
 
     let hiddenClassName = 'inputHidden'
