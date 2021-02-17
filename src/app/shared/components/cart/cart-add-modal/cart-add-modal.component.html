@@ -16,18 +16,18 @@
         <div *ngFor="let itemCart of fakeCart; let i = index">
           <div formArrayName="optionselect" >
               <h4>Option {{ i + 1 }} </h4>
-            <select class="type"   [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
+            <select class="type"   [(ngModel)]="itemCart.digital[i]"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
                 <option [value]="1" ngDefaultControl>Digital</option>
                 <option [value]="0" ngDefaultControl>Impresa</option>
             </select>
-              <div class="size inputHidden" >
-                <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size" name="size" >
-                  <option ngDefaultControl *ngFor="let item of selecteSize | keyvalue" [ngValue]="item.value">
+              <div class="size inputHidden"  (change)="typeChange($event, i)">
+                <select  [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size[i]" name="size" >
+                  <option ngDefaultControl *ngFor="let item of selecteSize | keyvalue" [ngValue]="item.value[i]">
                     {{item.value}}
                   </option>
                 </select>
                 <input  [ngModelOptions]="{standalone: true}" ngDefaultControl type="number"
-                  [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
+                  [(ngModel)]="itemCart.cantidad[i]" name="cantidad" [value]="itemCart.cantidad[i]">
               </div>
             <button type="button" class="btn trash" ngDefaultControl (click)="opdenDialogConfirm(i)" >
               <fa-icon [icon]="googleIcon"></fa-icon>

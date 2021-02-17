@@ -272,8 +272,6 @@ export class CartAddModalComponent implements OnInit {
 
     let type_el = event.target;
     console.log('type_el' , type_el)
-    var id = document.getElementById('itemCart')
-    console.log('id' , id)
 
     let hiddenClassName = 'inputHidden'
     var nodesQuerySelector = document.getElementsByClassName(hiddenClassName)
@@ -290,6 +288,7 @@ export class CartAddModalComponent implements OnInit {
           } else {
             nodeQuerySelector.classList.add('show')
 
+            return nodeQuerySelector
           }
         }
 
@@ -297,6 +296,8 @@ export class CartAddModalComponent implements OnInit {
           if (classCOntainsShow ) {
 
             nodeQuerySelector.classList.remove('show')
+
+            return nodeQuerySelector
 
           }
         }
