@@ -126,14 +126,15 @@ export class EventDetailComponent implements OnInit {
     //existe en el carrito?
     //una variable asignada al modelos CarItem que obtiene de la funcion firstNew la foto seleccionada , este metodo compara si la fotos son iguales, para poder mostrar una sola y no ambas
     // this.newItemCart = this.firstOrNew(foto);
-    this.fakeCartForPopup = this.firstOrNew(foto);
-
+    this.fakeCartForPopup  = this.firstOrNew(foto);
     console.log('newCartItem addTOcarModal', this.newItemCart);
     //initialState lo inicializo en appModule
     const initialState = {
+     // pic : foto,
       fakeCart: this.fakeCartForPopup,
       itemCart: this.newItemCart
     };
+    console.log('fakeCartForPopup addTOcarModal', this.fakeCartForPopup);
     console.log('initialState', initialState);
     //muestro el modal paso el nombre del Componente modal y paso los datos en initialState para mostrar los datos
     this.modalRef = this.modalService.show(CartAddModalComponent, {
@@ -147,7 +148,7 @@ export class EventDetailComponent implements OnInit {
     // throw new Error('Method not implemented.');
 
     //let size = ["15x18" , "30x40", "40x50"]
-    let size = []
+    //let size = []
 
     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
     let tempCart = this.cartService.getCart();
@@ -165,8 +166,12 @@ export class EventDetailComponent implements OnInit {
         newfakeCartForPopup.push(tempCart[index]);
       }
     }
+    console.log( "newfakeCartForPopup " + newfakeCartForPopup.length)
+
+    let newf = newfakeCartForPopup.length+1
+    console.log( "newf " + newf)
     //siempre la foto va a ser igual a cero condicional
-    if(newfakeCartForPopup.length==0){
+    if(newfakeCartForPopup.length ==0){
       let newCartItem: CartItem = <any>{
         ID: foto.ID+"-"+"1",
         foto: foto,

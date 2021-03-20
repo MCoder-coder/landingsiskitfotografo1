@@ -13,6 +13,8 @@ import { CartAddModalComponent } from './components/cart/cart-add-modal/cart-add
 import { ConfirmationDialogService  } from "./confirmation-dialog/confirmation-dialog.service";
 
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,10 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
     InfiniteScrollModule,
     FontAwesomeModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ModalModule.forRoot(),
+    NgbModule,
+
   ]
 })
 

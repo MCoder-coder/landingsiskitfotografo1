@@ -41,6 +41,7 @@ export class CartComponent implements OnInit {
 
   deleteItemCart(index) {
     this.cartService.deleteItem(index)
+    console.log(  "delteCartComponent" ,index)
   }
 
   /**

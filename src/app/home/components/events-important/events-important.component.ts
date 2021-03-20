@@ -35,12 +35,7 @@ export class EventsImportantComponent implements OnInit {
     this.eventService.getEventImportantService()
     .subscribe( (eventosresponse: any) => {
       this.eventos = eventosresponse;
-
-
     });
-
-
-
   }
 
 }

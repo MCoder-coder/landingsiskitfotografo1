@@ -21,7 +21,7 @@ import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { TokenInterceptor } from "./core/services/token.interceptor";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CartAddModalComponent } from './shared/components/cart/cart-add-modal/cart-add-modal.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogService } from './shared/confirmation-dialog/confirmation-dialog.service';
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
@@ -67,9 +67,10 @@ export function appInitFactory(token: TokenProvider) {
       useClass: TokenInterceptor,
       multi: true
     },
-    [ConfirmationDialogService]
-
+    [ConfirmationDialogService],
+    [NgbActiveModal]
   ],
+
   entryComponents: [CartAddModalComponent],
   bootstrap: [AppComponent]
 })

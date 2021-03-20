@@ -2,13 +2,13 @@
 
     <div class="modal-header ">
         <h4 class="modal-title pull-left"></h4>
-        <button type="button" class="close pull-right" aria-label="Close">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="dismiss()"  >
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
 
 
-    <div class="modal-body" *ngIf="fakeCart.length">
+    <div class="modal-body" >
 
         <img src="{{'//www.juanschtrefotografo.com/' +   fakeCart[0].foto.filename}}" alt="" />
 
@@ -18,15 +18,15 @@
             <ng-container [formGroup]="MainForm" >
 
                 <!-- CADA FILA -->
-                <div *ngFor="let itemCart of fakeCart; let i = index">
+                <div *ngFor="let itemCart of fakeCart ; let i = index">
 
-
+                  <!-- | slice:1 -->
                     <div id="{{ 'itemCart-' + i }}" class="{{ 'itemCart-' + i }}" formArrayName="optionselect" >
                         <!-- subtitulo copia -->
                         <h4>Copia N°{{ i + 1 }} </h4>
 
                         <!-- Tipo de formato -->
-                        <select id="select-tipo-formato-{{i}}" class="select-tipo-formato"   [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
+                        <select id="select-tipo-formato-{{i}}" class="select-tipo-formato dropdown-menu"   [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
                             <option [value]="1" ngDefaultControl>Digital</option>
                             <option [value]="0" ngDefaultControl>Impresa</option>
                         </select>
@@ -35,19 +35,19 @@
                         <div id="contenedor-de-campos-ocultables-{{i}}" class="contenedor-campos-ocultables inputHidden {{ ''+ ( itemCart.digital==false ? 'show' : '' ) +'' }}   " >
 
                             <!-- tamaño -->
-                            <select id="select-size-{{i}}" class="select-size" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size" name="size" >
+                            <select id="select-size-{{i}}" class="select-size  dropdown-menu" [ngModelOptions]="{standalone: true}" [(ngModel)]="itemCart.size" name="size" >
                                 <option *ngFor="let item of selecteSize | keyvalue" [ngValue]="item.value" ngDefaultControl>
                                     {{item.value}}
                                 </option>
                             </select>
 
                             <!-- cantidad -->
-                            <input id="cantidad-{{i}}" class="cantidad" [ngModelOptions]="{standalone: true}" ngDefaultControl type="number" [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
+                            <input id="cantidad-{{i}}" class="cantidad input-group-text" [ngModelOptions]="{standalone: true}" ngDefaultControl type="number" [(ngModel)]="itemCart.cantidad" name="cantidad" [value]="itemCart.cantidad">
 
                         </div>
 
                         <!--  -->
-                        <button type="button" class="btn trash" ngDefaultControl (click)="opdenDialogConfirm(itemCart, i)" >
+                        <button type="button" class="btn trash" title="Eliminar" ngDefaultControl (click)="opdenDialogConfirm(itemCart, i)" >
                             <fa-icon [icon]="googleIcon"></fa-icon>
                         </button>
                     </div>
@@ -63,7 +63,7 @@
 
         <p>Total :</p>
         <!-- <button (click)="addToCart(foto)"></button> -->
-        <button class="btn  addcart" (click)="addToCartFoto(fakeCart)">Agregar al Carrito</button>
+        <button class="box  btn  addcart" (click)="addToCartFoto(fakeCart)">Agregar al Carrito</button>
 
     </div>
 

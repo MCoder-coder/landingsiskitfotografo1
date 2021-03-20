@@ -200,11 +200,11 @@ deleteItem(index : number){
 
     return uniqueArrayFinal
   }
-  
+
 //   miMerge(array1 , array2){
 
 //     let concat = array1.concat(array2)
-    
+
 //     let unicoArray = []
 
 //     for(let i of concat){
@@ -213,7 +213,7 @@ deleteItem(index : number){
 //           unicoArray.push(i)
 //         }
 //     }
-  
+
 //   }
 
 
