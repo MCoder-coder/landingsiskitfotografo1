@@ -1,0 +1,6 @@
+.centered-modal {
+  display: flex !important;
+}
+.centered-modal .modal-dialog {
+  margin: auto;
+}

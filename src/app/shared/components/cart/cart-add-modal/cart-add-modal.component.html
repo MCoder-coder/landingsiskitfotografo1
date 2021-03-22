@@ -11,18 +11,19 @@
     <div class="modal-body" >
 
         <img src="{{'//www.juanschtrefotografo.com/' +   fakeCart[0].foto.filename}}" alt="" />
-
+         <!-- <button (click)="addToCart(foto)"></button> -->
+         <button class="box  btn  addcart" title="Agregar todas las copias al carrito" (click)="addToCartFoto(fakeCart)">Agregar al Carrito</button>
         <form id="popup-main-form" class="popup-main-form">
 
             <button class="btn  option" type="button" title="Agregar Mas copias" (click)="addOptionForm()"><fa-icon [icon]="copyIcon"></fa-icon></button>
             <ng-container [formGroup]="MainForm" >
 
                 <!-- CADA FILA -->
-                <div *ngFor="let itemCart of fakeCart ; let i = index">
+                <div *ngFor="let itemCart of fakeCart  ; let i = index">
 
                   <!-- | slice:1 -->
                     <div id="{{ 'itemCart-' + i }}" class="{{ 'itemCart-' + i }}" formArrayName="optionselect" >
-                        <!-- subtitulo copia -->
+                        <!  -- subtitulo copia -->
                         <h4>Copia N°{{ i + 1 }} </h4>
 
                         <!-- Tipo de formato -->
@@ -47,7 +48,7 @@
                         </div>
 
                         <!--  -->
-                        <button type="button" class="btn trash" title="Eliminar" ngDefaultControl (click)="opdenDialogConfirm(itemCart, i)" >
+                        <button type="button" class="btn trash" title="Eliminar" ngDefaultControl (click)="opdenDialogConfirm(itemCart)" >
                             <fa-icon [icon]="googleIcon"></fa-icon>
                         </button>
                     </div>
@@ -62,8 +63,7 @@
 
 
         <p>Total :</p>
-        <!-- <button (click)="addToCart(foto)"></button> -->
-        <button class="box  btn  addcart" (click)="addToCartFoto(fakeCart)">Agregar al Carrito</button>
+
 
     </div>
 

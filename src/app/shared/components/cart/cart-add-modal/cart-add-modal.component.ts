@@ -118,7 +118,7 @@ export class CartAddModalComponent implements OnInit {
 	addOptionForm() {
 
 		let newCartItem: CartItem = <any>{
-			ID: this.fakeCart[0].foto.ID + "-" + (this.fakeCart.length + 1),
+			ID: this.fakeCart[0].foto.ID + Math.random().toString(16).slice(2),
 			foto: this.fakeCart[0].foto,
 			cantidad: 1,
 			size: "",
@@ -172,7 +172,7 @@ export class CartAddModalComponent implements OnInit {
 	 *
 	 */
 
-	delete(itemCart: CartItem, index: number) {
+	delete(itemCart: CartItem) {
 
 		let cartFake = this.fakeCart
 
@@ -232,9 +232,9 @@ export class CartAddModalComponent implements OnInit {
 	 *
 	 */
 
-	opdenDialogConfirm(itemCart: CartItem, index: number) {
+	opdenDialogConfirm(itemCart: CartItem) {
 		this.confirmationDialogService.confirm('', 'Esta seguro que desea Eliminar esta Foto')
-			.then((confirmed) => this.delete(itemCart, index) + '' + confirmed)
+			.then((confirmed) => this.delete(itemCart) + '' + confirmed)
 			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
 	}
 

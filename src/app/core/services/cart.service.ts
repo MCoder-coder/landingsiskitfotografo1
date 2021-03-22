@@ -52,10 +52,10 @@ export class CartService {
 
   // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
   mergeCartItems(fakeCart: CartItem[]) {
-    let newMergedCart = this.mergeCart(this.cart, fakeCart)
-
-    console.log("newMergedCart", newMergedCart)
-    this.cart = newMergedCart
+  //  let newMergedCart = this.mergeCart(this.cart, fakeCart)
+    let merge = this.miMerge(this.cart , fakeCart)
+    console.log("newMergedCart", merge)
+    this.cart = merge
     this.updateLocalStorageCart();
     this.totalItems.next(this.getFotosCount());
   }
@@ -183,7 +183,9 @@ deleteItem(index : number){
   mergeCart(cart, fakeCart) {
     let jointArray = []
     let arrays = [cart, fakeCart]
+    let concat = cart.concat(fakeCart)
 
+    let set = new Set(concat)
     // agrego items nuevos juntando los arrays (quedando duplicados quizá algunos)
     arrays.forEach(array => {
       jointArray = [...jointArray, ...array]
@@ -201,20 +203,24 @@ deleteItem(index : number){
     return uniqueArrayFinal
   }
 
-//   miMerge(array1 , array2){
+   miMerge(array1 , array2){
 
-//     let concat = array1.concat(array2)
+     let concat = array1.concat(array2)
 
-//     let unicoArray = []
+     let unicoArray: CartItem[] = []
 
-//     for(let i of concat){
+     let me = new Set(unicoArray)
 
-//         if (unicoArray.indexOf(i) === -1) {
-//           unicoArray.push(i)
-//         }
-//     }
+     for(let i of concat){
 
-//   }
+         if (unicoArray.indexOf(i) === -1) {
+          unicoArray.push(i)
+         }
+     }
+
+     return unicoArray
+
+   }
 
 
 
