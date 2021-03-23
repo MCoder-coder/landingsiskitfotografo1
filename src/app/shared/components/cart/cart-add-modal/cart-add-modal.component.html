@@ -23,8 +23,8 @@
 
                   <!-- | slice:1 -->
                     <div id="{{ 'itemCart-' + i }}" class="{{ 'itemCart-' + i }}" formArrayName="optionselect" >
-                        <!  -- subtitulo copia -->
-                        <h4>Copia N°{{ i + 1 }} </h4>
+                        <!-- <!  -- subtitulo copia -->
+                        <h4>ID N°{{ itemCart.ID + "- Posicion del array " +  i  }} </h4>
 
                         <!-- Tipo de formato -->
                         <select id="select-tipo-formato-{{i}}" class="select-tipo-formato dropdown-menu"   [(ngModel)]="itemCart.digital"  [ngModelOptions]="{standalone: true}" name="digital" (change)="typeChange($event, i)" >
