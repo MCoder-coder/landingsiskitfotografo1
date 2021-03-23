@@ -118,7 +118,7 @@ export class CartAddModalComponent implements OnInit {
 	addOptionForm() {
 
 		let newCartItem: CartItem = <any>{
-			ID: this.fakeCart[0].foto.ID + Math.random().toString(16).slice(2),
+			ID: this.fakeCart[0].foto.ID+"-"+(this.fakeCart.length+1),
 			foto: this.fakeCart[0].foto,
 			cantidad: 1,
 			size: "",
@@ -172,49 +172,58 @@ export class CartAddModalComponent implements OnInit {
 	 *
 	 */
 
-	delete(itemCart: CartItem) {
+	 delete(itemCart: CartItem) {
 
-		let cartFake = this.fakeCart
+	 	let cartFake = this.fakeCart
 
-		console.log('itemCart', itemCart)
-		console.log('cartFake', cartFake)
+	 	console.log('itemCart', itemCart)
+	 	console.log('cartFake', cartFake)
 
-		// Borro en FakeCart
-		for (let j = 0; j < this.fakeCart.length; j++) {
-			let fake = this.fakeCart[j];
+	 	 //Borro en FakeCart
+	 	for (let j = 0; j < cartFake.length; j++) {
+	 		let fake = cartFake[j];
 
-			if(fake.ID==itemCart.ID){
-				this.toastr.info(
-					'Eliminada Correctamente',
-				);
+	 		if(fake.ID==itemCart.ID){
+	 			this.toastr.info(
+	 				'Eliminada Correctamente',
+	 			);
 
-					 // borro el itemCart Temporal que tiene el fakeCart
-				this.cartService.deleteItem(j)
-				this.fakeCart.splice(j, 1);
+	 		//		  borro el itemCart Temporal que tiene el fakeCart
+	 			//this.cartService.deleteItem(fake[j])
+	 			this.fakeCart.splice(fake[j], 1);
 
-			}
-
-
-
-		}
-
-		// Borro en Cart (real)
-		// for (let h = 0; h < this.cart.length; h++) {
-		//   let cart = this.cart[h];
-
-		//   if (cart.ID==itemCart.ID) {
-		//        //El método splice() cambia el contenido de un array eliminando elementos existentes
-		//        // this.fakeCart.splice(index, 1);
-		//        this.cartService.deleteItem(h)
-		//   }
-		// }
+	 		}
 
 
 
-		return this.fakeCart
+	 	}
 
 
-	}
+
+	// 	// Borro en Cart (real)
+	// 	// for (let h = 0; h < this.cart.length; h++) {
+	// 	//   let cart = this.cart[h];
+
+	// 	//   if (cart.ID==itemCart.ID) {
+	// 	//        //El método splice() cambia el contenido de un array eliminando elementos existentes
+	// 	//        // this.fakeCart.splice(index, 1);
+	// 	//        this.cartService.deleteItem(h)
+	// 	//   }
+	// 	// }
+
+
+
+	// 	return this.fakeCart
+
+
+	 }
+
+
+  deleteItemCart(index) {
+    this.cartService.deleteItem(index)
+    console.log(  "delteCartComponent" ,index)
+  }
+
 
 	/**
 	 *
@@ -232,9 +241,9 @@ export class CartAddModalComponent implements OnInit {
 	 *
 	 */
 
-	opdenDialogConfirm(itemCart: CartItem) {
+	opdenDialogConfirm(index : CartItem) {
 		this.confirmationDialogService.confirm('', 'Esta seguro que desea Eliminar esta Foto')
-			.then((confirmed) => this.delete(itemCart) + '' + confirmed)
+			.then((confirmed) => this.delete(index) + '' + confirmed)
 			.catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
 	}
 

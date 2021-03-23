@@ -53,7 +53,8 @@ export class CartService {
   // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
   mergeCartItems(fakeCart: CartItem[]) {
   //  let newMergedCart = this.mergeCart(this.cart, fakeCart)
-    let merge = this.miMerge(this.cart , fakeCart)
+
+    let merge = this.obteniendoValorUnicoDespuesMerge(this.cart , fakeCart)
     console.log("newMergedCart", merge)
     this.cart = merge
     this.updateLocalStorageCart();
@@ -126,10 +127,19 @@ export class CartService {
  *
  */
 deleteItem(index : number){
+  //delete this.cart[index]
+  // const valueRemove = index
+  //  this.cart.filter(function(item) {
+  //   return item !== valueRemove
+  // })
 
-  this.cart.splice( index ,1);
-  this.updateLocalStorageCart();
-  this.totalItems.next(this.getFotosCount());
+
+  //  this.cart.splice(cart.ID , 1)
+   // this.cart.slice(index , 1)
+    console.log("index service" , this.cart.splice(index , 1) )
+    this.updateLocalStorageCart();
+    this.totalItems.next(this.getFotosCount());
+
 
 
 }
@@ -176,7 +186,7 @@ deleteItem(index : number){
     //El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
     const uniqueArray = jointArray.filter((item, index) => jointArray.indexOf(item) === index)
 
-    return uniqueArray
+    return [...new Set([...uniqueArray])]
   }
 
   // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
@@ -203,26 +213,31 @@ deleteItem(index : number){
     return uniqueArrayFinal
   }
 
-   miMerge(array1 , array2){
-
-     let concat = array1.concat(array2)
-
-     let unicoArray: CartItem[] = []
-
-     let me = new Set(unicoArray)
-
-     for(let i of concat){
-
-         if (unicoArray.indexOf(i) === -1) {
-          unicoArray.push(i)
-         }
-     }
-
-     return unicoArray
-
-   }
 
 
+
+    obteniendoValorUnicoDespuesMerge(array1 , array2){
+    /**7
+     * Las dos matrices se combinan mediante el método.concat()
+        El bucle se utiliza para recorrer en bucle todos los elementos de .for...of arr
+        El método devuelve -1 si el elemento no está en la matriz.indexOf()
+        Por lo tanto, durante cada iteración, si el elemento es igual a -1,el elemento se agrega a la matriz mediante el método.uniqueArrpush()
+     */
+        let concat = array1.concat(array2);
+
+        let unicoArray : CartItem[] = []
+
+        for(let i of concat){
+
+            if (unicoArray.indexOf(i) === -1) {
+                unicoArray.push(i)
+            }
+        }
+
+        console.log( 'unico array dentro for'  ,unicoArray)
+
+        return unicoArray
+    }
 
 
   ObtenerCopiasMismaFotoCart(foto){

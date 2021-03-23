@@ -180,7 +180,7 @@ export class EventDetailComponent implements OnInit {
       //siempre la foto va a ser igual a cero condicional
       if (newfakeCartForPopup.length == 0) {
         let newCartItem: CartItem = <any>{
-          ID: foto.ID + Math.random().toString(16).slice(2),
+          ID: foto.ID +"-"+"1",
           foto: foto,
           cantidad: 1,
           size: '',
