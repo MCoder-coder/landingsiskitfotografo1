@@ -17,6 +17,8 @@ export class CartComponent implements OnInit {
   Object = Object;
   googleIcon = faTrash;
   //(change)se activa cuando el usuario cambia la entrada
+
+
   Cart: CartItem[] = [];
   cart = this.cartService.getCart();
   digital: String

@@ -110,7 +110,7 @@ export class CartService {
         this.cart.push(cartItem);
         this.updateLocalStorageCart();
         this.totalItems.next(this.getFotosCount());
-        console.log("AGREGADO CON EXITO")
+       // console.log("AGREGADO CON EXITO")
     }
 
     //actualiza la cantidad de fotos dentro del carro o modal
@@ -212,19 +212,6 @@ export class CartService {
 
 
     // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
-    mergeCart2(...arrays) {
-        let jointArray = []
-
-        arrays.forEach(array => {
-            jointArray = [...jointArray, ...array]
-        })
-        //El método filter() crea un nuevo array con todos los elementos que cumplan la condición implementada por la función dada.
-        const uniqueArray = jointArray.filter((item, index) => jointArray.indexOf(item) === index)
-
-        return [...new Set([...uniqueArray])]
-    }
-
-    // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
     mergeCart(cart, fakeCart) {
         let jointArray = []
         let arrays = [cart, fakeCart]
@@ -248,33 +235,6 @@ export class CartService {
         let uniqueArrayFinal = uniqueArray.filter(x => !difference.includes(x));
 
         return uniqueArrayFinal
-    }
-
-
-
-
-    obteniendoValorUnicoDespuesMerge(array1, array2) {
-        /**7
-         * Las dos matrices se combinan mediante el método.concat()
-            El bucle se utiliza para recorrer en bucle todos los elementos de .for...of arr
-            El método devuelve -1 si el elemento no está en la matriz.indexOf()
-            Por lo tanto, durante cada iteración, si el elemento es igual a -1,el elemento se agrega a la matriz mediante el método.uniqueArrpush()
-         */
-        let concat = array1.concat(array2);
-
-        let unicoArray: CartItem[] = []
-
-        for (let i of concat) {
-            // si no existe en el array
-            if (unicoArray.indexOf(i) === -1) {
-                // agrego
-                unicoArray.push(i)
-            }
-        }
-
-        console.log('unico array dentro for', unicoArray)
-
-        return unicoArray
     }
 
     /**

@@ -28,7 +28,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 export class CartAddModalComponent implements OnInit {
 
     //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
-    pic
+    tempFoto
     itemCart
     fakeCart: CartItem[] = [];
     Object = Object;
@@ -117,10 +117,12 @@ export class CartAddModalComponent implements OnInit {
      */
     //agruega la nueva opciones medida,digital,impresa,input, del formulario bansandome en el objeto itemCart
     addOptionForm() {
-
+        let tempFotoID = this.tempFoto.ID
+        let tempFoto = this.tempFoto
+        console.log("tempfoto" , tempFoto)
         let newCartItem: CartItem = <any>{
-            ID: this.fakeCart[0].foto.ID + "-" + (this.fakeCart.length + 1),
-            foto: this.fakeCart[0].foto,
+            ID: tempFotoID + "-" + (this.fakeCart.length + 1) + new Date().getUTCMilliseconds(),
+            foto: tempFoto,
             cantidad: 1,
             size: "",
             digital: 1,
@@ -199,38 +201,6 @@ export class CartAddModalComponent implements OnInit {
         }
 
 
-        //  	for (let j = 0; j < cartFake.length; j++) {
-        //  		let fake = cartFake[j];
-        //   console.log("fake for" , fake.ID)
-        //  		// if(fake.ID){
-        //  		// 	this.toastr.info(
-        //  		// 		'Eliminada Correctamente',
-        //  		// 	);
-
-        //  		// //		  borro el itemCart Temporal que tiene el fakeCart
-        //  		// 	//this.cartService.deleteItem(itemCart.ID)
-        //  		// 	//this.fakeCart.splice(fake.ID, 1);
-
-        //  		// }
-
-
-
-        //  	}
-
-
-
-        // 	// Borro en Cart (real)
-        // 	// for (let h = 0; h < this.cart.length; h++) {
-        // 	//   let cart = this.cart[h];
-
-        // 	//   if (cart.ID==itemCart.ID) {
-        // 	//        //El método splice() cambia el contenido de un array eliminando elementos existentes
-        // 	//        // this.fakeCart.splice(index, 1);
-        // 	//        this.cartService.deleteItem(h)
-        // 	//   }
-        // 	// }
-
-
 
         return this.fakeCart
 
@@ -287,7 +257,6 @@ export class CartAddModalComponent implements OnInit {
                 'Vuelva a intentarlo Mas tarde',
             );
         }
-
 
         this.cartService.mergeCartItems(fakeCart)
 
