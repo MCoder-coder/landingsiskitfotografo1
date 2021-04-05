@@ -1,13 +1,9 @@
-
 import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { Foto } from './../../../../core/models/foto.model';
 import { CartService } from './../../../../core/services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { flatten, ThrowStmt } from '@angular/compiler';
-import {
-    faCopy,
-    faTrash,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCopy, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup } from '@angular/forms';
 import { Size } from '../../../../core/models/sieze.model';
 import { CartItem } from '../../../../core/models/cartitem.model';
@@ -15,57 +11,50 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog/confirmation-dialog.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalService } from 'ngx-bootstrap/modal';
-
+import { isEmpty } from 'rxjs/operators';
 
 @Component({
     selector: 'app-cart-add-modal',
     templateUrl: './cart-add-modal.component.html',
     styleUrls: ['./cart-add-modal.component.scss'],
-
-
-
 })
 export class CartAddModalComponent implements OnInit {
-
     //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
-    tempFoto
-    itemCart
+    tempFoto;
+    itemCart;
     fakeCart: CartItem[] = [];
     Object = Object;
     MainForm: FormGroup;
     googleIcon = faTrash;
     copyIcon = faCopy;
-    selecteSize = ["15x18", "30x40", "40x50"];
+    selecteSize = ['15x18', '30x40', '40x50'];
+    disabledbutton: boolean;
     // selectedSize2 = ["15x18", "30x40", "40x50"];
 
     //(change)se activa cuando el usuario cambia la entrada
 
     cart = this.cartService.getCart();
 
-    constructor(private cartService: CartService,
+    constructor(
+        private cartService: CartService,
         private formBuilder: FormBuilder,
         private confirmationDialogService: ConfirmationDialogService,
         public toastr: ToastrService,
 
         private activeModal: NgbActiveModal,
-        private modalService: BsModalService,
+        private modalService: BsModalService
     ) {
         //creo el formulario
-        this.buildOptionForm()
-
-
+        this.buildOptionForm();
     }
 
     ngOnInit(): void {
-        console.log('save form', this.MainForm.value)
+        console.log('save form', this.MainForm.value);
         //console.log('itemcar Size' , this.itemCart.size)
         //console.log("itemCar init" , this.fakeCart)
-        //this.itemCart.size = this.selectedSize
-        console.log("fake car ngONinit", this.fakeCart)
 
+        console.log('fake car ngONinit', this.fakeCart);
     }
-
-
 
     //formulario de opciones, pop up
     /**
@@ -75,9 +64,8 @@ export class CartAddModalComponent implements OnInit {
      */
     private buildOptionForm() {
         this.MainForm = this.formBuilder.group({
-            optionselect: this.formBuilder.array([])
-        })
-
+            optionselect: this.formBuilder.array([]),
+        });
     }
 
     /**
@@ -93,9 +81,7 @@ export class CartAddModalComponent implements OnInit {
             //  "type": this.formBuilder.control({value:"0"}),
             //  "size": this.formBuilder.control({value:"15x18"}),
             //  "cantidad": this.formBuilder.control({value:itemCar.cantidad}),
-
-
-        })
+        });
 
         //		console.log('newFormGroup', newFormGroup)
         return newFormGroup;
@@ -117,33 +103,33 @@ export class CartAddModalComponent implements OnInit {
      */
     //agruega la nueva opciones medida,digital,impresa,input, del formulario bansandome en el objeto itemCart
     addOptionForm() {
-        let tempFotoID = this.tempFoto.ID
-        let tempFoto = this.tempFoto
-        console.log("tempfoto" , tempFoto)
+        let tempFotoID = this.tempFoto.ID;
+        let tempFoto = this.tempFoto;
+        // console.log("tempfoto", tempFoto)
         let newCartItem: CartItem = <any>{
-            ID: tempFotoID + "-" + (this.fakeCart.length + 1) + new Date().getUTCMilliseconds(),
+            ID:
+                tempFotoID +
+                '-' +
+                (this.fakeCart.length + 1) +
+                new Date().getUTCMilliseconds(),
             foto: tempFoto,
             cantidad: 1,
-            size: "",
+            size: '',
             digital: 1,
         };
-        //console.log('newCartItem' , newCartItem)
-        this.fakeCart.push(newCartItem)
+        console.log('newCartItem', newCartItem);
+
+        this.fakeCart.push(newCartItem);
         //this.optionSelect.push(newCartItem)
-
-
-
     }
-
 
     public dismiss() {
-        this.modalService.hide()
+        this.modalService.hide();
     }
-
 
     //obtiene el formularios de copia y los caste a un formArray para poder usar las directivas formControlName y formControlArray
     get optionSelect() {
-        return this.MainForm.get('optionselect') as FormArray
+        return this.MainForm.get('optionselect') as FormArray;
     }
 
     /**
@@ -176,43 +162,35 @@ export class CartAddModalComponent implements OnInit {
      */
 
     delete(cart: CartItem) {
-        console.log("medoto cart-add-modal.component@delete()");
-        let cartFake = this.fakeCart
+        console.log('medoto cart-add-modal.component@delete()');
+        let cartFake = this.fakeCart;
 
-        console.log('Objeto CartItem para borrar', cart)
-        console.log('cartFake', cartFake)
+        console.log('Objeto CartItem para borrar', cart);
+        console.log('cartFake', cartFake);
 
         //Borro en FakeCart
         for (let h = 0; h < cartFake.length; h++) {
             let cartfakeSelected = cartFake[h];
             //console.log("cart splice modal" , cartfake)
             if (cartfakeSelected.ID === cart.ID) {
+                this.fakeCart.splice(h, 1);
+                console.log('FakeCart despues de borrar: ', this.fakeCart);
 
-              this.fakeCart.splice(h, 1);
-              console.log("FakeCart despues de borrar: " , this.fakeCart)
-
-              this.cartService.deleteModalitem(cartfakeSelected.ID)
-              console.log("cartService despues de borrar: " , this.cartService.getCart())
-
+                //this.cartService.deleteModalitem(cartfakeSelected.ID)
+                // console.log("cartService despues de borrar: ", this.cartService.getCart())
             }
             // console.log("delete service modal" , this.cartService.deleteModalitem(cart))
 
             //onsole.log("delete modal cartfake ID "  )
         }
 
-
-
-        return this.fakeCart
-
-
+        return this.fakeCart;
     }
-
 
     deleteItemCart(index) {
-        this.cartService.deleteItem(index)
-        console.log("delteCartComponent", index)
+        this.cartService.deleteItem(index);
+        console.log('delteCartComponent', index);
     }
-
 
     /**
      *
@@ -231,12 +209,15 @@ export class CartAddModalComponent implements OnInit {
      */
 
     opdenDialogConfirm(cartItem: CartItem) {
-        this.confirmationDialogService.confirm('', 'Esta seguro que desea Eliminar esta Foto')
+        this.confirmationDialogService
+            .confirm('', 'Esta seguro que desea Eliminar esta Foto')
             .then((confirmed) => this.delete(cartItem) + '' + confirmed)
-            .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+            .catch(() =>
+                console.log(
+                    'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+                )
+            );
     }
-
-
 
     /**
      *
@@ -248,21 +229,36 @@ export class CartAddModalComponent implements OnInit {
      *
      */
     addToCartFoto(fakeCart) {
-        if (fakeCart) {
-            this.toastr.success(
-                'Agregado Correctamente',
-            );
+        // ejecuto funcion de validacion
+        // this.validarFakeCart()
+        console.log('fake cart btn add', fakeCart);
+
+
+        if (this.fakeCart.length > 0) {
+
+
+            this.fakeCart.forEach(fake => {
+
+                if (fake.size.length === 0) {
+
+                    console.log("se requiere campo")
+
+                }else{
+
+                }
+
+
+            });
+
+            this.cartService.mergeCartItems(fakeCart);
+            this.toastr.success('Agregado Correctamente');
         } else {
-            this.toastr.error(
-                'Vuelva a intentarlo Mas tarde',
-            );
+            this.toastr.error('Debe agregar almenos una copia.');
         }
 
-        this.cartService.mergeCartItems(fakeCart)
+
 
     }
-
-
 
     /**
      *
@@ -277,11 +273,9 @@ export class CartAddModalComponent implements OnInit {
      *    event observa si el input cambia
      */
     updateCartItem(event, key) {
-
         // console.log('updateCartitem', event);
         //actualiza la cantidad de items del cart, event observa si el input cambia
         this.cartService.updateCantidad(key, event.target.value);
-
     }
 
     /**
@@ -296,62 +290,66 @@ export class CartAddModalComponent implements OnInit {
      */
 
     typeChange(event, indx) {
-        console.log('event', event)
-        console.log('index', indx)
+        //console.log('event', event)
+        // console.log('index', indx)
 
-        let tipoFormato_el = event.target;
-        console.log('tipoFormato_el', tipoFormato_el)
+        let tipoFormato_el = event.target.value;
+        console.log('tipoFormato_el', tipoFormato_el);
 
-        var form_de_copia_el = document.getElementById("itemCart-" + indx)
-        console.log('form_de_copia_el:', form_de_copia_el)
+        var form_de_copia_el = document.getElementById('itemCart-' + indx);
+        console.log('form_de_copia_el:', form_de_copia_el);
 
-        let campos_ocultos = document.getElementById("contenedor-de-campos-ocultables-" + indx)
-
-        var classContainsShow = campos_ocultos.classList.contains('show')
+        let campos_ocultos = document.getElementById(
+            'contenedor-de-campos-ocultables-' + indx
+        );
+        console.log('campos_ocultos', campos_ocultos);
+        var classContainsShow = campos_ocultos.classList.contains('show');
 
         if (classContainsShow) {
-            campos_ocultos.classList.remove('show')
+            this.disabledbutton = false;
+            campos_ocultos.classList.remove('show');
         } else {
-            campos_ocultos.classList.add('show')
+            this.disabledbutton = true;
+            campos_ocultos.classList.add('show');
         }
 
-
-
-        /*
-
-        // Contenedores de inputHidden
-        var campos_ocultables_arr = document.getElementsByClassName('inputHidden')
-
-        for (let index = 0; index < campos_ocultables_arr.length; index++) {
-
-            var nodeQuerySelector = campos_ocultables_arr[index];
-            var classCOntainsShow = nodeQuerySelector.classList.contains('show')
-            console.log('nodehtml',nodeQuerySelector)
-
-
-                if (tipoFormato_el.value == 0) {
-                    if (classCOntainsShow  ) {
-
-                    } else {
-                        //nodeQuerySelector.classList.add('show')
-                        form_de_copia_el.classList.add('show')
-                    }
-                }
-
-                if (tipoFormato_el.value == 1) {
-                    if (classCOntainsShow ) {
-
-                        //nodeQuerySelector.classList.remove('show')
-                        form_de_copia_el.classList.remove('show')
-                    }
-                }
-
-
-            }
-        */
-
+        if (tipoFormato_el === 0) {
+        }
     }
 
+    /*
+  Control de opciones de formularios por onchange de size beta
+  controla la activacion del boton si no se selecciona ninguna medida
+  el boton quedara desactivado
 
+  */
 
+    public onChangeOptionValid(event, i) {
+        let target = event.target[event.target.selectedIndex].value;
+        let selectSize = (document.getElementById(
+            'select-size-' + i
+        ) as HTMLInputElement).value;
+
+        console.log('i', i);
+        console.log('select-size', selectSize);
+        let fake = this.fakeCart;
+        console.log('fake change', fake);
+        console.log('target', target);
+
+        fake.forEach((cart, index) => {
+            console.log('size for', cart.size);
+            if (cart.size) {
+            }
+        });
+
+        // if (selectSize == "") {
+        //     console.log("paso por el if")
+        //     this.disabledbutton = true
+        // }
+
+        if (target === '40x50' || target === '30x40' || target === '15x18') {
+            console.log('paso por el if');
+            //this.disabledbutton = false
+        }
+    }
 }

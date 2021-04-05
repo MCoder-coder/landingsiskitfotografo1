@@ -3,5 +3,5 @@
         "eventosresponse"
     ],
     "prettier.tabWidth": 4,
-    "editor.detectIndentation": false
+    "workbench.preferredLightColorTheme": "Default Dark+"
 }

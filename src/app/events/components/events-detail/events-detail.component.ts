@@ -171,7 +171,7 @@ export class EventDetailComponent implements OnInit {
             ID: foto.ID + '-' + '1' + new Date().getUTCMilliseconds(),
             foto: foto,
             cantidad: 1,
-            size: '',
+            size:  '',
             digital: 1,
         };
 

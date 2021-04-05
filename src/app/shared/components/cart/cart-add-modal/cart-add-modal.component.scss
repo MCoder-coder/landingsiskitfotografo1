@@ -8,7 +8,7 @@ img {
   /* margin-left: 150px; */
   margin-right: 20px;
   filter: drop-shadow(5px 5px 10px #444);
-  border: 16px solid #ddd;
+  border: 6px solid #ddd;
   border-radius: 6px;
 }
 
@@ -36,6 +36,7 @@ input {
 .box.addcart {
   position: absolute;
   /* bottom: 0px; */
+
   margin-bottom: 157px;
   right: 535px;
 }
@@ -49,6 +50,7 @@ button,
   background-color: #a58142;
   border: none;
   color: white;
+
 
   /* padding: 15px 32px; */
   text-align: center;
@@ -78,6 +80,8 @@ button.option {
   padding-block: inherit;
   align-content: end;
   position: absolute;
+  padding: 15px;
+  margin-top: -53px;
 }
 
 button.trash {
