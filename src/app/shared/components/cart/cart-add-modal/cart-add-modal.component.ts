@@ -239,17 +239,12 @@ export class CartAddModalComponent implements OnInit {
 
             this.fakeCart.forEach(fake => {
 
-                if (fake.size.length === 0) {
 
-                    console.log("se requiere campo")
 
-                }else{
-
-                }
 
 
             });
-
+            this.validarFakeCart()
             this.cartService.mergeCartItems(fakeCart);
             this.toastr.success('Agregado Correctamente');
         } else {
@@ -259,6 +254,56 @@ export class CartAddModalComponent implements OnInit {
 
 
     }
+
+
+    validarFakeCart() {
+
+        let size = document.getElementsByClassName('select-size')
+        let cantidad = document.getElementsByClassName("cantidad")
+        let tipoFormato = document.getElementsByClassName("select-tipo-formato")
+        //console.log("cantidad validate" , cantidad)
+        console.log("size validate", size)
+
+        for (let index = 0; index < size.length; index++) {
+            let indexSize = size[index];
+
+            let valorSize = (indexSize as HTMLInputElement).value
+
+
+            for (let h = 0; h < tipoFormato.length; h++) {
+                let tipoFormatIndex = tipoFormato[h];
+
+                let valorTipoFormato = (tipoFormatIndex as HTMLInputElement).value
+
+               // console.log("valorTipoFormato" , valorTipoFormato)
+                if (valorTipoFormato != "0") {
+
+                    if (valorSize === "") {
+
+                         let tam = indexSize as HTMLElement
+
+                         tam.style.border = "1px solid red"
+                         tam.classList.add('was-validated')
+
+                        console.log(indexSize.innerHTML)
+
+
+
+
+                    }
+
+
+
+                }
+
+            }
+
+            //console.log("element", (indexSize as HTMLInputElement).value)
+        }
+
+
+    }
+
 
     /**
      *
