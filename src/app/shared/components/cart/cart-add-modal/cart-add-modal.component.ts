@@ -236,17 +236,15 @@ export class CartAddModalComponent implements OnInit {
 
         if (this.fakeCart.length > 0) {
 
+            if (this.validarFakeCart() == true) {
+                this.toastr.error('Debe Seleccionar una Medida')
+            } else {
 
-            this.fakeCart.forEach(fake => {
+                this.cartService.mergeCartItems(fakeCart);
+                this.toastr.success('Agregado Correctamente');
+            }
 
 
-
-
-
-            });
-            this.validarFakeCart()
-            this.cartService.mergeCartItems(fakeCart);
-            this.toastr.success('Agregado Correctamente');
         } else {
             this.toastr.error('Debe agregar almenos una copia.');
         }
@@ -265,32 +263,35 @@ export class CartAddModalComponent implements OnInit {
         console.log("size validate", size)
 
         for (let index = 0; index < size.length; index++) {
-            let indexSize = size[index];
+            let indexSize = size[index] as HTMLElement;
 
             let valorSize = (indexSize as HTMLInputElement).value
 
 
-            for (let h = 0; h < tipoFormato.length; h++) {
-                let tipoFormatIndex = tipoFormato[h];
+            for (let h = 0; h < this.fakeCart.length; h++) {
+                let tipoFormatIndex = this.fakeCart[h];
 
-                let valorTipoFormato = (tipoFormatIndex as HTMLInputElement).value
+                //let valorTipoFormato = (tipoFormatIndex as HTMLInputElement).value
 
-               // console.log("valorTipoFormato" , valorTipoFormato)
-                if (valorTipoFormato != "0") {
+                // console.log("valorTipoFormato" , valorTipoFormato)
+                if (tipoFormatIndex.digital[0] == "0") {
 
                     if (valorSize === "") {
 
-                         let tam = indexSize as HTMLElement
 
-                         tam.style.border = "1px solid red"
-                         tam.classList.add('was-validated')
+                        indexSize.style.border = "2px solid red"
+                        // tam.classList.add('was-validated')
 
                         console.log(indexSize.innerHTML)
 
+                        ///return true
+                    } else {
 
+                        indexSize.style.border = ""
 
-
+                        //return false
                     }
+
 
 
 
@@ -301,6 +302,8 @@ export class CartAddModalComponent implements OnInit {
             //console.log("element", (indexSize as HTMLInputElement).value)
         }
 
+
+        return true
 
     }
 
