@@ -7,7 +7,7 @@ export interface CartItem{
   ID : number,
   foto : Foto,
   cantidad : number,
-  size : [],
+  size : '',
   digital : boolean,
 
 }

@@ -132,6 +132,56 @@ export class CartAddModalComponent implements OnInit {
         return this.MainForm.get('optionselect') as FormArray;
     }
 
+
+    /**
+     * Delete All borra todas las fotos del fake cart
+     *
+     *
+     */
+
+    deletAll(fakeCart) {
+
+        //parametro le asigno los items de this.fakeCart("carrito falso")
+        fakeCart = this.fakeCart
+
+        //si el contenido del fake cart esta lleno elimino todas las fotos
+        if (fakeCart) {
+            //borro todos los elemento del fake cart = splice 0
+            this.fakeCart.splice(0)
+            //borro todas las fotos copia del carrito real
+            this.cartService.clearCart(fakeCart)
+            console.log("value", fakeCart)
+            // mensaje de informacion de eliminacion de las copias
+            this.toastr.info("Se Eliminaron todas las copias ")
+
+        } else {
+            console.log("value else", fakeCart)
+            //mensaje de error si fallaron a eliminarse todas las copias
+            this.toastr.error("Hubo un Error al Intertar eliminar todas la copias")
+        }
+
+
+    }
+
+
+    /**
+     * Dialogo pop up de confirmacion de todas las fotos
+     *
+     * @param cartItem
+     */
+    opdenDialogConfirmDeleteAll(cartItem: CartItem) {
+        this.confirmationDialogService
+            .confirm('', 'Esta seguro que desea Eliminar Todas Las Copias')
+            .then((confirmed) => this.deletAll(cartItem) + '' + confirmed)
+            .catch(() =>
+                console.log(
+                    'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+                )
+            );
+    }
+
+
+
     /**
      *
      *
@@ -160,6 +210,7 @@ export class CartAddModalComponent implements OnInit {
      * //ahora eliminos este elemento del formulario...
      *
      */
+
 
     delete(cart: CartItem) {
         console.log('medoto cart-add-modal.component@delete()');
@@ -237,11 +288,10 @@ export class CartAddModalComponent implements OnInit {
         if (this.fakeCart.length > 0) {
 
             if (this.validarFakeCart() == true) {
-                this.toastr.error('Debe Seleccionar una Medida')
-            } else {
-
                 this.cartService.mergeCartItems(fakeCart);
                 this.toastr.success('Agregado Correctamente');
+            } else {
+                this.toastr.error('Debe Seleccionar una Medida')
             }
 
 
@@ -282,42 +332,40 @@ export class CartAddModalComponent implements OnInit {
 
         console.log("comienzo isvalid", isValid)
 
-        let size = document.getElementsByClassName('select-size')
+        let sizesArr = document.getElementsByClassName('select-size')
 
 
-        for (let index = 0; index < size.length; index++) {
-            let indexSize = size[index] as HTMLElement;
+        //recorro cada copia de fakeCart
+        for (let h = 0; h < this.fakeCart.length; h++) {
+            let tipoFormatIndex = this.fakeCart[h];
 
-            let valorSize = (indexSize as HTMLInputElement).value
+            let indexSize = sizesArr[h];
 
+            let valorTipoSize = (indexSize as HTMLInputElement).value
 
-            for (let h = 0; h < this.fakeCart.length; h++) {
-                let tipoFormatIndex = this.fakeCart[h];
+            // console.log("valorTipoFormato" , valorTipoFormato)
+            if (tipoFormatIndex.digital[0] == "0") {
 
-                //let valorTipoFormato = (tipoFormatIndex as HTMLInputElement).value
+                //si size  el campo esta vacio agregame el border rojo
+                if (tipoFormatIndex.size == "") {
 
-                // console.log("valorTipoFormato" , valorTipoFormato)
-                if (tipoFormatIndex.digital[0] == "0") {
+                    document.getElementById("select-size-" + h).setAttribute("style", "border: 2px solid red;");
+                    // tam.classList.add('was-validated')
+                    console.log("isvalid if", isValid)
 
-                    if (valorSize === "") {
-
-                        indexSize.style.border = "2px solid red"
-                        // tam.classList.add('was-validated')
-
-                    } else {
-
-                        indexSize.style.border = ""
-
-                        isValid = false
-                    }
-
-
+                    isValid = false
+                } else {
+                    indexSize.setAttribute("style", "");
+                    console.log("isvalid else", isValid)
                 }
+
 
             }
 
-
         }
+
+
+
 
 
         return isValid

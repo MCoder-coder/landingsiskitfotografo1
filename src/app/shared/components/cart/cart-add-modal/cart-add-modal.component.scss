@@ -76,6 +76,27 @@ button.option {
   margin-top: -45px;
 }
 
+button.borrar{
+    margin-top: -45px;
+    /* margin-left: 19px; */
+    margin-right: 43px;
+    float: right;
+    margin-bottom: -9px;
+    background-color: #a58142;
+    border: none;
+    color: white;
+
+
+    /* padding: 15px 32px; */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    transition-duration: 0.4s;
+}
+
+
 .btn.addcart {
   padding-block: inherit;
   align-content: end;
