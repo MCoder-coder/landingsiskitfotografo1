@@ -154,6 +154,7 @@ export class CartAddModalComponent implements OnInit {
             // mensaje de informacion de eliminacion de las copias
             this.toastr.info("Se Eliminaron todas las copias ")
 
+
         } else {
             console.log("value else", fakeCart)
             //mensaje de error si fallaron a eliminarse todas las copias

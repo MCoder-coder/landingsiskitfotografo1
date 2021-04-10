@@ -25,4 +25,10 @@ export class ConfirmationDialogService {
     return modalRef.result;
   }
 
+  public close(){
+    const modalRef = this.modalService.dismissAll(ConfirmationDialogComponent);
+
+    return modalRef
+  }
+
 }
