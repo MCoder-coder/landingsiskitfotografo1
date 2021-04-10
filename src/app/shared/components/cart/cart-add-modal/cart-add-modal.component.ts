@@ -254,13 +254,36 @@ export class CartAddModalComponent implements OnInit {
     }
 
 
+
+
+    /**
+     * validarFakeCart
+     *
+     * Tomo el identificador del elemento html select-size
+     * y lo almacenos en una variable de tipo let con nombre size
+     *
+     * la recorro con un for y obtengo el index de cada elemento , lo casteo a HTMLElement para poder acceder a las funciones de style de js
+     *
+     * creo otra variable llamada ValorSize para obtener el value de los selects (HTMLInputElement creo un casteo en la variable para poder tener estos datos)
+     *
+     * creo otro for que recorre el carrito falso, para poder saber el tipo de formato de la foto si es digital = 1 , o es impresa = 1
+     *
+     * tengo una condicional que verifica si es digital o impresa, si es impresa y no tiene los valores de las medidas seleccionadas macrco el border del input en rojo
+     * y si selecciona el valor lo desmarco
+     *
+     *
+     * @returns
+     */
+
+
     validarFakeCart() {
 
+        let isValid: Boolean = true
+
+        console.log("comienzo isvalid", isValid)
+
         let size = document.getElementsByClassName('select-size')
-        let cantidad = document.getElementsByClassName("cantidad")
-        let tipoFormato = document.getElementsByClassName("select-tipo-formato")
-        //console.log("cantidad validate" , cantidad)
-        console.log("size validate", size)
+
 
         for (let index = 0; index < size.length; index++) {
             let indexSize = size[index] as HTMLElement;
@@ -278,32 +301,26 @@ export class CartAddModalComponent implements OnInit {
 
                     if (valorSize === "") {
 
-
                         indexSize.style.border = "2px solid red"
                         // tam.classList.add('was-validated')
 
-                        console.log(indexSize.innerHTML)
-
-                        ///return true
                     } else {
 
                         indexSize.style.border = ""
 
-                        //return false
+                        isValid = false
                     }
-
-
 
 
                 }
 
             }
 
-            //console.log("element", (indexSize as HTMLInputElement).value)
+
         }
 
 
-        return true
+        return isValid
 
     }
 
