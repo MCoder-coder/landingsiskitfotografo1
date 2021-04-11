@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Size } from 'src/app/core/models/sieze.model';
 
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
 
@@ -25,9 +26,15 @@ export class ConfirmationDialogService {
     return modalRef.result;
   }
 
-  public close(){
+  public close(
+    title: string,
+    message: string,
+    btnOkText: string = 'OK',
+    btnCancelText: string = 'Cancel',
+    dialogSize: 'sm' | 'lg' = 'sm') {
     const modalRef = this.modalService.dismissAll(ConfirmationDialogComponent);
 
+    console.log("modalref" , modalRef)
     return modalRef
   }
 

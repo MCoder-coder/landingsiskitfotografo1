@@ -153,7 +153,7 @@ export class CartAddModalComponent implements OnInit {
             console.log("value", fakeCart)
             // mensaje de informacion de eliminacion de las copias
             this.toastr.info("Se Eliminaron todas las copias ")
-
+            this.dismiss()
 
         } else {
             console.log("value else", fakeCart)
@@ -173,12 +173,16 @@ export class CartAddModalComponent implements OnInit {
     opdenDialogConfirmDeleteAll(cartItem: CartItem) {
         this.confirmationDialogService
             .confirm('', 'Esta seguro que desea Eliminar Todas Las Copias')
-            .then((confirmed) => this.deletAll(cartItem) + '' + confirmed)
+            .then((confirmed) => this.deletAll(cartItem) + '' + console.log(confirmed))
             .catch(() =>
+
+
                 console.log(
                     'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
                 )
             );
+
+
     }
 
 
