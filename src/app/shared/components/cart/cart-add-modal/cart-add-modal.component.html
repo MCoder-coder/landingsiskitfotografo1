@@ -52,7 +52,7 @@
 
               <!-- cantidad -->
               <input id="cantidad-{{i}}" class="cantidad input-group-text" [ngModelOptions]="{standalone: true}"
-                ngDefaultControl type="number" [(ngModel)]="itemCart.cantidad" name="cantidad" title="cantidad de copias de las fotos"
+                ngDefaultControl type="number" min="1"  [(ngModel)]="itemCart.cantidad" name="cantidad" title="cantidad de copias de las fotos"
                 [value]="itemCart.cantidad">
 
             </div>
