@@ -295,6 +295,7 @@ export class CartAddModalComponent implements OnInit {
             if (this.validarFakeCart() == true) {
                 this.cartService.mergeCartItems(fakeCart);
                 this.toastr.success('Agregado Correctamente');
+                this.dismiss()
             } else {
                 this.toastr.error('Debe Seleccionar una Medida')
             }
