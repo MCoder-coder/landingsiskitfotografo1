@@ -30,7 +30,7 @@
     </div>
     <div *ngIf="cart.length >= 1">
 
-        <div class="row d-flex justify-content-center border-top" *ngFor="let key of Object.keys(cart); let i = index">
+        <div class="row d-flex justify-content-center border-top" *ngFor="let key of Object.keys(cartUnique); let i = index">
             <div class="col-5">
                 <div class="row d-flex box">
                     <div class="card ">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="my-auto col-7">
+            <!-- <div class="my-auto col-7">
                 <div class="row text-right">
                     <div class="col-4">
                         <p class="mob-text" *ngIf="cart[key].digital == false">{{impresa}}</p>
@@ -69,11 +69,11 @@
 
 
                         <button class="btn trash" (click)="opdenDialogConfirm(i)">
-              <fa-icon [icon]="googleIcon"></fa-icon>
-            </button>
+                        <fa-icon [icon]="googleIcon"></fa-icon>
+                        </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
         <button class=" btn btn-blue " style="float: right;" routerLink="/formcompra">Comprar</button>
 

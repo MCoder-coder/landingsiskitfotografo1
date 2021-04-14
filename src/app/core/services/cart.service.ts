@@ -111,15 +111,25 @@ export class CartService {
         let foto = this.foto
         let copiasEnCart: CartItem[] = []
 
-        for (let index = 0; index < this.cart.length; index++) {
-            const cartItem = this.cart[index];
+
+        // for (let index = 0; index < this.cart.length; index++) {
+        //     const cartItem = this.cart[index];
 
 
-            return this.cart[index]
+        //     this.cart[index]
 
-        }
+        // }
+
+        // let cartUniqueArray = this.cart.filter( (item, index) => {
 
 
+        //         return this.cart.indexOf(item) === index
+        //     }
+        // )
+
+        let cartUniqueArray= this.cart.filter((v,i,a)=>a.findIndex(t=>(t.foto.ID === v.foto.ID))===i)
+
+        return cartUniqueArray
 
     }
 
