@@ -97,6 +97,16 @@ export class CartService {
         return this.cart;
     }
 
+    /**
+     * getCartUnique
+     * la idea de este metodo seria obtener las fotos del cart sin duplicados, poder filtrar los datos importante de cada copia y poder mostrar los
+     * detalles de cada foto
+     * por ejemplo si tengo  copias de la foto 15 pero cada copia tiene diferentes atributos poder obtener esos detalles como la medida , la cantidad etc
+     *
+     * @returns
+     */
+
+
     getCartUnique(){
         let foto = this.foto
         let copiasEnCart: CartItem[] = []
@@ -108,9 +118,6 @@ export class CartService {
             return this.cart[index]
 
         }
-
-
-
 
 
 
