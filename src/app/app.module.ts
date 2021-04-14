@@ -22,7 +22,8 @@ import { TokenInterceptor } from "./core/services/token.interceptor";
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CartAddModalComponent } from './shared/components/cart/cart-add-modal/cart-add-modal.component';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ConfirmationDialogService } from './shared/confirmation-dialog/confirmation-dialog.service';
+import { ConfirmationDialogService } from './core/services/confirmation-dialog.service';
+import { CartModalDialogService } from './core/services/cart.modal.service';
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
 export function appInitFactory(token: TokenProvider) {
@@ -68,6 +69,7 @@ export function appInitFactory(token: TokenProvider) {
       multi: true
     },
     [ConfirmationDialogService],
+    [CartModalDialogService],
     [NgbActiveModal]
   ],
 

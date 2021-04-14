@@ -12,8 +12,8 @@
 
     .card {
         position: relative;
-        width: 150px;
-        height: 200px;
+        width: 272px;
+        height: 365px;
         background: #fff;
         margin: 0 auto;
         border-radius: 2px;
@@ -258,14 +258,16 @@
         color: white;
     }
 
-    button {
+    button  {
+
+    }
+
+     .trash {
         margin-left: 542px;
         margin-top: 67px;
         font-size: 24px;
         color: #ff6873;
     }
-
-
 
 
     #notfound {
@@ -358,4 +360,14 @@
     .notfound h2 {
         font-size: 16px;
     }
+}
+
+
+.btncopias{
+    height: 53px;
+    width: 273px;
+    margin-top: 361px;
+    margin-left: -11px;
+    font-family: 'FontAwesome';
+    font-size: 15px;
 }

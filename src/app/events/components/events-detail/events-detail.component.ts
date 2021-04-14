@@ -22,6 +22,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { CartService } from 'src/app/core/services/cart.service';
 import { CartItem } from './../../../core/models/cartitem.model';
 import { CartAddModalComponent } from 'src/app/shared/components/cart/cart-add-modal/cart-add-modal.component';
+import { CartModalDialogService } from 'src/app/core/services/cart.modal.service';
 
 @Component({
     selector: 'app-photo-detail',
@@ -56,7 +57,8 @@ export class EventDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private eventService: EventsService,
         private modalService: BsModalService,
-        private cartService: CartService
+        private cartService: CartService,
+        private cartModalService : CartModalDialogService
     ) {
         // console.log(this.route.snapshot.paramMap.get('id/page'));
 
@@ -122,90 +124,82 @@ export class EventDetailComponent implements OnInit {
     // }
 
     //modal para preferencias de la fotos para el carrito
-    addToCartPopUp(foto: Foto) {
-        //existe en el carrito?
-        //una variable asignada al modelos CarItem que obtiene de la funcion firstNew la foto seleccionada , este metodo compara si la fotos son iguales, para poder mostrar una sola y no ambas
-        // this.newItemCart = this.firstOrNew(foto);
-        this.fakeCartForPopup = this.firstOrNew(foto);
-        console.log('newCartItem addTOcarModal', this.newItemCart);
-        //initialState lo inicializo en appModule
-        const initialState = {
-            tempFoto: foto,
-            fakeCart: this.fakeCartForPopup,
-           // itemCart: this.newItemCart,
-        };
-        console.log('fakeCartForPopup addTOcarModal', this.fakeCartForPopup);
-        console.log('initialState', initialState);
-        //muestro el modal paso el nombre del Componente modal y paso los datos en initialState para mostrar los datos
-        this.modalRef = this.modalService.show(CartAddModalComponent, {
-            initialState,
-        });
+    // addToCartPopUp(foto: Foto) {
+    //     //existe en el carrito?
+    //     //una variable asignada al modelos CarItem que obtiene de la funcion firstNew la foto seleccionada , este metodo compara si la fotos son iguales, para poder mostrar una sola y no ambas
+    //     // this.newItemCart = this.firstOrNew(foto);
+    //     this.fakeCartForPopup = this.firstOrNew(foto);
+    //     console.log('newCartItem addTOcarModal', this.newItemCart);
+    //     //initialState lo inicializo en appModule
+    //     const initialState = {
+    //         tempFoto: foto,
+    //         fakeCart: this.fakeCartForPopup,
+    //        // itemCart: this.newItemCart,
+    //     };
+    //     console.log('fakeCartForPopup addTOcarModal', foto);
+    //     console.log('initialState', {initialState});
+    //     //muestro el modal paso el nombre del Componente modal y paso los datos en initialState para mostrar los datos
+    //     //  this.modalRef = this.modalService.show(CartAddModalComponent, {
+    //     //      initialState,
+    //     //  });
+
+    //     this.cartModalService.cartOpenDialogModal(initialState)
+    // }
+
+    // //primer foto seleccionada
+    // firstOrNew(foto: Foto): CartItem[] {
+
+
+    //     // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
+    //     let tempCart = this.cartService.getCart();
+    //     console.log('tempCart', tempCart);
+    //     //variable asignada a CarItem de tipo array
+    //     let newfakeCartForPopup: CartItem[] = [];
+
+    //     for (let index = 0; index < tempCart.length; index++) {
+    //         //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
+    //         //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
+    //         //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
+    //         let i = tempCart[index].foto.ID;
+
+    //         if (foto.ID == i) {
+    //             //comparo la foto.id con el el objeto temCart con el indice ID si estos son iguales returno tempcart el ID de la foto seleccionada
+    //             console.log('tempaCarIf', tempCart[index]);
+
+    //             newfakeCartForPopup.push(tempCart[index])
+
+    //         }
+    //     }
+
+    //     let newCartItem: CartItem = <any>{
+    //         ID: foto.ID + '-' + '1' + new Date().getUTCMilliseconds(),
+    //         foto: foto,
+    //         cantidad: 1,
+    //         size:  '',
+    //         digital: 1,
+    //     };
+
+    //     console.log('newfakeCartForPopup', newfakeCartForPopup)
+    //     //retorno la instancia del objeto carItem
+
+    //     //console.log("shift" , shift)
+    //     //siempre la foto va a ser igual a cero condicional
+    //      if (newfakeCartForPopup.length == 0) {
+    //          //   agrego la instancia del cartItem push
+    //          newfakeCartForPopup.push(  newCartItem)
+
+    //        }
+
+    //     return  newfakeCartForPopup;
+
+
+    // }
+
+
+
+    addToCartPopUp(foto : Foto){
+        this.cartService.addToCartPopUp(foto)
     }
-
-    //primer foto seleccionada
-    firstOrNew(foto: Foto): CartItem[] {
-
-
-        // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
-        let tempCart = this.cartService.getCart();
-        console.log('tempCart', tempCart);
-        //variable asignada a CarItem de tipo array
-        let newfakeCartForPopup: CartItem[] = [];
-
-        for (let index = 0; index < tempCart.length; index++) {
-            //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
-            //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
-            //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
-            let i = tempCart[index].foto.ID;
-
-            if (foto.ID == i) {
-                //comparo la foto.id con el el objeto temCart con el indice ID si estos son iguales returno tempcart el ID de la foto seleccionada
-                console.log('tempaCarIf', tempCart[index]);
-
-                newfakeCartForPopup.push(tempCart[index])
-
-            }
-        }
-
-        let newCartItem: CartItem = <any>{
-            ID: foto.ID + '-' + '1' + new Date().getUTCMilliseconds(),
-            foto: foto,
-            cantidad: 1,
-            size:  '',
-            digital: 1,
-        };
-
-        console.log('newfakeCartForPopup', newfakeCartForPopup)
-        //retorno la instancia del objeto carItem
-
-
-
-
-
-
-        //console.log("shift" , shift)
-        //siempre la foto va a ser igual a cero condicional
-         if (newfakeCartForPopup.length == 0) {
-             //   agrego la instancia del cartItem push
-
-             newfakeCartForPopup.push(  newCartItem)
-
-
-
-           }
-
-
-
-
-
-        return  newfakeCartForPopup;
-
-
-    }
-
-
-
-
 
 
     //scroll infinito

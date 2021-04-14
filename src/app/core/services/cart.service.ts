@@ -10,6 +10,7 @@ import { Local } from 'protractor/built/driverProviders';
 import { StorageService } from './storage.service';
 import { Foto } from '../models/foto.model';
 import { Console } from 'console';
+import { CartModalDialogService } from './cart.modal.service';
 
 @Injectable({
     providedIn: 'root',
@@ -18,10 +19,13 @@ export class CartService {
     private fotos: Fotos[] = [];
     private cart: CartItem[] = [];
     private tempCartItem: CartItem;
+    fakeCartForPopup: CartItem[] = [];
+    newItemCart: CartItem;
+    foto : Foto
     //Behaviour Subject nos permite utilizar una característica realmente útil y que es la de poder "recodar¨ el último valor emitido por el Observable a todas las nuevas subscripciones, al margen del momento temporal en que éstas se establezcan
     private totalItems: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     //inyecto servicio de encriptacion para acceder a sus metodos
-    constructor(private localService: LocalService) {
+    constructor(private localService: LocalService , private cartModalService : CartModalDialogService) {
         // cargo el carrito desde el local storage
         this.loadLocalStorageCart();
         this.totalItems.next(this.getFotosCount());
@@ -71,41 +75,6 @@ export class CartService {
 
     addToCart(cartItem: CartItem) {
         console.log("cart.service.ts addToCart")
-        //this.cart.push(fotos);
-        //let isDuplicate = false;
-
-        //  this.fotos.push(foto);
-        // console.log('cart push' ,this.fotos.push(foto) )
-
-        //modelo de cart
-        // let newCartitem: CartItem = <CartItem>{
-        //   ID: 0,
-        //   foto: foto,
-        //   cantidad: 1,
-        //   size: '15x18',
-        // };
-        //console.log('cart item', newCartitem);
-        //agrego datos del model en this.cart
-        //console.log('fuera del if' , foto)
-        //console.log('fuera del if cart' , this.cart)
-
-        //console.log('newCartItem de service' , newCartitem)
-        // for (let index = 0; index < this.cart.length; index++) {
-        //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
-        // en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
-        //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
-        // console.log('dentro del for itemcart service' , this.cart[index].foto.ID)
-
-        //}
-
-        //console.log('foto id' , foto.ID)
-
-        //this.cart.push(newCartitem);
-        // //console.log('segundo if')
-        // this.updateLocalStorageCart();
-
-        //this.totalItems.next(this.getFotosCount());
-
 
         this.cart.push(cartItem);
         this.updateLocalStorageCart();
@@ -122,9 +91,30 @@ export class CartService {
 
     //obtengo los objetos dentro del carro
     getCart() {
+
+        console.log("cart de service" , this.cart)
+
         return this.cart;
     }
 
+    getCartUnique(){
+        let foto = this.foto
+        let copiasEnCart: CartItem[] = []
+
+        for (let index = 0; index < this.cart.length; index++) {
+            const cartItem = this.cart[index];
+
+
+            return this.cart[index]
+
+        }
+
+
+
+
+
+
+    }
 
     /**
      * Metodo que se encarga de eliminar el item
@@ -133,15 +123,7 @@ export class CartService {
      *
      */
     deleteItem(index: number) {
-        //delete this.cart[index]
-        // const valueRemove = index
-        //  this.cart.filter(function(item) {
-        //   return item !== valueRemove
-        // })
 
-
-        //  this.cart.splice(cart.ID , 1)
-        // this.cart.slice(index , 1)
         console.log("index service", this.cart.splice(index, 1))
         this.updateLocalStorageCart();
         this.totalItems.next(this.getFotosCount());
@@ -237,6 +219,8 @@ export class CartService {
         return uniqueArrayFinal
     }
 
+
+
     /**
      * Recibe una foto X por parametro
      * Genera un array nuevo vacio llamado copiasEnCart, el cual almacenará las copias de la misma foto del carro real, en el nuevo array
@@ -256,7 +240,87 @@ export class CartService {
             }
 
         }
+        console.log("copias de la misma fotos" , copiasEnCart)
 
         return copiasEnCart
     }
+
+
+
+     //modal para preferencias de la fotos para el carrito
+    addToCartPopUp(foto: Foto) {
+        //existe en el carrito?
+        //una variable asignada al modelos CarItem que obtiene de la funcion firstNew la foto seleccionada , este metodo compara si la fotos son iguales, para poder mostrar una sola y no ambas
+        // this.newItemCart = this.firstOrNew(foto);
+        this.fakeCartForPopup = this.firstOrNew(foto);
+        console.log('newCartItem addTOcarModal', this.newItemCart);
+        //initialState lo inicializo en appModule
+        const initialState = {
+            tempFoto: foto,
+            fakeCart: this.fakeCartForPopup,
+           // itemCart: this.newItemCart,
+        };
+        console.log('fakeCartForPopup addTOcarModal', foto);
+        console.log('initialState', {initialState});
+        //muestro el modal paso el nombre del Componente modal y paso los datos en initialState para mostrar los datos
+        //  this.modalRef = this.modalService.show(CartAddModalComponent, {
+        //      initialState,
+        //  });
+
+        this.cartModalService.cartOpenDialogModal(initialState)
+    }
+
+    //primer foto seleccionada
+    firstOrNew(foto: Foto): CartItem[] {
+
+
+        // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
+        let tempCart = this.getCart();
+        console.log('tempCart', tempCart);
+        //variable asignada a CarItem de tipo array
+        let newfakeCartForPopup: CartItem[] = [];
+
+        for (let index = 0; index < tempCart.length; index++) {
+            //recorro el array cart hago una comparacion del id de la fotografia basandome en el modelo
+            //en this.cart obtengo el index la ubiacion del array y los comparo con el foto id dentro de este array
+            //si el booleano es true osea el id duplicado en ambos detengo el bucle para no seguir agregando datos
+            let i = tempCart[index].foto.ID;
+
+            if (foto.ID == i) {
+                //comparo la foto.id con el el objeto temCart con el indice ID si estos son iguales returno tempcart el ID de la foto seleccionada
+                console.log('tempaCarIf', tempCart[index]);
+
+                newfakeCartForPopup.push(tempCart[index])
+
+            }
+        }
+
+        let newCartItem: CartItem = <any>{
+            ID: foto.ID + '-' + '1' + new Date().getUTCMilliseconds(),
+            foto: foto,
+            cantidad: 1,
+            size:  '',
+            digital: 1,
+        };
+
+        console.log('newfakeCartForPopup', newfakeCartForPopup)
+        //retorno la instancia del objeto carItem
+
+        //console.log("shift" , shift)
+        //siempre la foto va a ser igual a cero condicional
+         if (newfakeCartForPopup.length == 0) {
+             //   agrego la instancia del cartItem push
+             newfakeCartForPopup.push(  newCartItem)
+
+           }
+
+        return  newfakeCartForPopup;
+
+
+    }
+
+
+
+
+
 }

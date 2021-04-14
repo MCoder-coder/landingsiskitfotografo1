@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { Size } from '../../../../core/models/sieze.model';
 import { CartItem } from '../../../../core/models/cartitem.model';
 import { ToastrService } from 'ngx-toastr';
-import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog/confirmation-dialog.service';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation-dialog.service';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { isEmpty } from 'rxjs/operators';
@@ -20,6 +20,7 @@ import { isEmpty } from 'rxjs/operators';
 })
 export class CartAddModalComponent implements OnInit {
     //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal
+    initialState;
     tempFoto;
     itemCart;
     fakeCart: CartItem[] = [];
@@ -52,7 +53,7 @@ export class CartAddModalComponent implements OnInit {
         console.log('save form', this.MainForm.value);
         //console.log('itemcar Size' , this.itemCart.size)
         //console.log("itemCar init" , this.fakeCart)
-
+        console.log("tempFOto" , this.initialState)
         console.log('fake car ngONinit', this.fakeCart);
     }
 

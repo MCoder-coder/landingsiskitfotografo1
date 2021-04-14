@@ -7,7 +7,10 @@ import {
   faTrash,
 } from '@fortawesome/free-solid-svg-icons';
 import { CartItem } from 'src/app/core/models/cartitem.model';
-import { ConfirmationDialogService } from 'src/app/shared/confirmation-dialog/confirmation-dialog.service';
+import { ConfirmationDialogService } from 'src/app/core/services/confirmation-dialog.service';
+import { CartModalDialogService } from 'src/app/core/services/cart.modal.service';
+import { Fotos } from 'src/app/core/models/fotos.model';
+import { Foto } from 'src/app/core/models/foto.model';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -18,19 +21,38 @@ export class CartComponent implements OnInit {
   googleIcon = faTrash;
   //(change)se activa cuando el usuario cambia la entrada
 
-
+  fotos: Fotos[] = [];
   Cart: CartItem[] = [];
+
   cart = this.cartService.getCart();
+  cartUnique = this.cartService.getCartUnique();
+
   digital: String
   impresa: String
 
-  constructor(private cartService: CartService, private confirmationDialogService: ConfirmationDialogService) { }
+  constructor(private cartService: CartService, private confirmationDialogService: ConfirmationDialogService ) { }
 
   ngOnInit(): void {
     console.log('carrito getCart', this.cart)
     this.formaterStringBoolean()
 
+    console.log("cart 000" , this.cartService.getCartUnique())
+
   }
+
+
+
+
+  cartOpenModal(foto : Foto){
+
+
+        return this.cartService.addToCartPopUp(foto)
+
+
+    //this.cartModalService.cartOpenDialogModal()
+
+  }
+
 
 
   /**
