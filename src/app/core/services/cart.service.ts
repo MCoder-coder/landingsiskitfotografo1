@@ -128,7 +128,7 @@ export class CartService {
         // )
 
         let cartUniqueArray= this.cart.filter((v,i,a)=>a.findIndex(t=>(t.foto.ID === v.foto.ID))===i)
-
+        console.log("CartUnique" , cartUniqueArray)
         return cartUniqueArray
 
     }
