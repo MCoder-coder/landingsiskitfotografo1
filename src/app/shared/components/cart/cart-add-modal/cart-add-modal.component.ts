@@ -50,11 +50,11 @@ export class CartAddModalComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('save form', this.MainForm.value);
+        //console.log('save form', this.MainForm.value);
         //console.log('itemcar Size' , this.itemCart.size)
         //console.log("itemCar init" , this.fakeCart)
-        console.log("tempFOto" , this.initialState)
-        console.log('fake car ngONinit', this.fakeCart);
+        //console.log("tempFOto" , this.initialState)
+        //console.log('fake car ngONinit', this.fakeCart);
     }
 
     //formulario de opciones, pop up
@@ -143,15 +143,16 @@ export class CartAddModalComponent implements OnInit {
     deletAll(fakeCart) {
 
         //parametro le asigno los items de this.fakeCart("carrito falso")
-        fakeCart = this.fakeCart
-
+         fakeCart = this.fakeCart
+        console.log("values de fake" ,  fakeCart)
         //si el contenido del fake cart esta lleno elimino todas las fotos
         if (fakeCart) {
             //borro todos los elemento del fake cart = splice 0
-            this.fakeCart.splice(0)
+            this.fakeCart.splice( fakeCart ,0)
             //borro todas las fotos copia del carrito real
-            this.cartService.clearCart(fakeCart)
-            console.log("value", fakeCart)
+            this.cartService.deleteAllFakeCart(fakeCart)
+
+            console.log("values dsp de delete", fakeCart)
             // mensaje de informacion de eliminacion de las copias
             this.toastr.info("Se Eliminaron todas las copias ")
             this.dismiss()
@@ -171,7 +172,7 @@ export class CartAddModalComponent implements OnInit {
      *
      * @param cartItem
      */
-    opdenDialogConfirmDeleteAll(cartItem: CartItem) {
+    opdenDialogConfirmDeleteAll(cartItem) {
         this.confirmationDialogService
             .confirm('', 'Esta seguro que desea Eliminar Todas Las Copias')
             .then((confirmed) => this.deletAll(cartItem) + '' + console.log(confirmed))
@@ -219,11 +220,11 @@ export class CartAddModalComponent implements OnInit {
 
 
     delete(cart: CartItem) {
-        console.log('medoto cart-add-modal.component@delete()');
+        //console.log('medoto cart-add-modal.component@delete()');
         let cartFake = this.fakeCart;
 
-        console.log('Objeto CartItem para borrar', cart);
-        console.log('cartFake', cartFake);
+        //console.log('Objeto CartItem para borrar', cart);
+        //console.log('cartFake', cartFake);
 
         //Borro en FakeCart
         for (let h = 0; h < cartFake.length; h++) {
@@ -231,7 +232,7 @@ export class CartAddModalComponent implements OnInit {
             //console.log("cart splice modal" , cartfake)
             if (cartfakeSelected.ID === cart.ID) {
                 this.fakeCart.splice(h, 1);
-                console.log('FakeCart despues de borrar: ', this.fakeCart);
+                //console.log('FakeCart despues de borrar: ', this.fakeCart);
 
                 //this.cartService.deleteModalitem(cartfakeSelected.ID)
                 // console.log("cartService despues de borrar: ", this.cartService.getCart())
@@ -246,7 +247,7 @@ export class CartAddModalComponent implements OnInit {
 
     deleteItemCart(index) {
         this.cartService.deleteItem(index);
-        console.log('delteCartComponent', index);
+        //console.log('delteCartComponent', index);
     }
 
     /**
@@ -288,7 +289,7 @@ export class CartAddModalComponent implements OnInit {
     addToCartFoto(fakeCart) {
         // ejecuto funcion de validacion
         // this.validarFakeCart()
-        console.log('fake cart btn add', fakeCart);
+        //console.log('fake cart btn add', fakeCart);
 
 
         if (this.fakeCart.length > 0) {
@@ -337,7 +338,7 @@ export class CartAddModalComponent implements OnInit {
 
         let isValid: Boolean = true
 
-        console.log("comienzo isvalid", isValid)
+        //console.log("comienzo isvalid", isValid)
 
         let sizesArr = document.getElementsByClassName('select-size')
 
@@ -358,12 +359,12 @@ export class CartAddModalComponent implements OnInit {
 
                     document.getElementById("select-size-" + h).setAttribute("style", "border: 2px solid red;");
                     // tam.classList.add('was-validated')
-                    console.log("isvalid if", isValid)
+                   // console.log("isvalid if", isValid)
 
                     isValid = false
                 } else {
                     indexSize.setAttribute("style", "");
-                    console.log("isvalid else", isValid)
+                   // console.log("isvalid else", isValid)
                 }
 
 
@@ -414,15 +415,15 @@ export class CartAddModalComponent implements OnInit {
         // console.log('index', indx)
 
         let tipoFormato_el = event.target.value;
-        console.log('tipoFormato_el', tipoFormato_el);
+        //console.log('tipoFormato_el', tipoFormato_el);
 
         var form_de_copia_el = document.getElementById('itemCart-' + indx);
-        console.log('form_de_copia_el:', form_de_copia_el);
+        //console.log('form_de_copia_el:', form_de_copia_el);
 
         let campos_ocultos = document.getElementById(
             'contenedor-de-campos-ocultables-' + indx
         );
-        console.log('campos_ocultos', campos_ocultos);
+       // console.log('campos_ocultos', campos_ocultos);
         var classContainsShow = campos_ocultos.classList.contains('show');
 
         if (classContainsShow) {
@@ -450,14 +451,14 @@ export class CartAddModalComponent implements OnInit {
             'select-size-' + i
         ) as HTMLInputElement).value;
 
-        console.log('i', i);
-        console.log('select-size', selectSize);
+        //console.log('i', i);
+        //console.log('select-size', selectSize);
         let fake = this.fakeCart;
-        console.log('fake change', fake);
-        console.log('target', target);
+        //console.log('fake change', fake);
+       // console.log('target', target);
 
         fake.forEach((cart, index) => {
-            console.log('size for', cart.size);
+           // console.log('size for', cart.size);
             if (cart.size) {
             }
         });
@@ -468,7 +469,7 @@ export class CartAddModalComponent implements OnInit {
         // }
 
         if (target === '40x50' || target === '30x40' || target === '15x18') {
-            console.log('paso por el if');
+            //console.log('paso por el if');
             //this.disabledbutton = false
         }
     }

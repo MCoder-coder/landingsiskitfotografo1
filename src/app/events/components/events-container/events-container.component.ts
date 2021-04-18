@@ -48,7 +48,7 @@ export class EventsGallerycontainerComponent implements OnInit {
         if (page >= this.actualPage) {
           this.actualPage = page;
 
-          console.log('Setea this.actualPage: ', this.actualPage);
+          //console.log('Setea this.actualPage: ', this.actualPage);
 
           return eventosresponse[this.eventosArray.push(...eventosresponse)];
         }
@@ -57,7 +57,7 @@ export class EventsGallerycontainerComponent implements OnInit {
   }
 
   onScroll() {
-    console.log('scrolled down!!');
+    //console.log('scrolled down!!');
     if (!this.isLoading) {
       //console.log('actualPage: ', this.actualPage);
 

@@ -204,7 +204,7 @@ export class EventDetailComponent implements OnInit {
 
     //scroll infinito
     onScroll() {
-        console.log('estas haciendo scroll');
+        //console.log('estas haciendo scroll');
         ///si no esta cargado
         if (!this.isLoading) {
             // console.log('actualPage: ', this.actualPage);

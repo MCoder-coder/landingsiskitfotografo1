@@ -41,7 +41,7 @@ export class EventsService {
   }
 
   getEventDetailService(eventos_id: number, page: number) {
-    console.log('eventos_id event detail service: ', eventos_id);
+    //console.log('eventos_id event detail service: ', eventos_id);
     return (
       this.http
         .get(`${environment.url_api}fotos?eventos_id=${eventos_id}&page=${page}&per_page=4`)
@@ -78,8 +78,8 @@ export class EventsService {
 
   // tslint:disable-next-line: typedef
   public handleError(error: HttpErrorResponse) {
-    console.log('Algo salio mal');
-    console.log('error', error.status);
+    //console.log('Algo salio mal');
+    //console.log('error', error.status);
     if (error instanceof HttpErrorResponse) {
       if (error.error instanceof ErrorEvent) {
         console.error('Error Event');
@@ -88,19 +88,19 @@ export class EventsService {
         console.log(`error status : ${error.status} ${error.statusText}`);
         switch (error.status) {
           case 404:
-            console.log(`redirect to 404`);
-            console.log('esto es un 404');
+            //console.log(`redirect to 404`);
+           // console.log('esto es un 404');
             // this.router.navigateByUrl('404')
             //this.toastr.error('Hello world!', 'Toastr fun!');
             //this.zone.run(()=> this.toastr.error('error'));
             break;
           case 403: //forbidden
-            console.log('esto es un 403');
+            //console.log('esto es un 403');
             break;
         }
       }
     } else {
-      console.error('some thing else happened');
+      //console.error('some thing else happened');
     }
 
     return throwError('Algo salio mal');
