@@ -323,7 +323,7 @@ export class CartService {
     firstOrNew(foto: Foto): CartItem[] {
         // tempCarte almacenos los datos obtenidos en una variable temporal : getCart servicio de CartService obtiene los datos de carrito
         let tempCart = this.getCart();
-        //console.log('tempCart', tempCart);
+        console.log('tempCart', tempCart);
         //variable asignada a CarItem de tipo array
         let newfakeCartForPopup: CartItem[] = [];
 

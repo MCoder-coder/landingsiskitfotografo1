@@ -116,12 +116,31 @@ export class CartAddModalComponent implements OnInit {
             foto: tempFoto,
             cantidad: 1,
             size: '',
-            digital: 1,
+            digital: "0",
         };
         console.log('newCartItem', newCartItem);
 
+
+
         this.fakeCart.push(newCartItem);
         //this.optionSelect.push(newCartItem)
+        for (let index = 0; index < this.fakeCart.length; index++) {
+            const element = this.fakeCart[index];
+
+            let seleccionTam = document.getElementById('select-tipo-formato-' + index)
+            let campos_ocultos = document.getElementById(
+                'contenedor-de-campos-ocultables-' + index
+            );
+            if (seleccionTam != null) {
+                let dos = (<HTMLInputElement>document.getElementById('select-tipo-formato-' + index)).value;
+                var classContainsShow = campos_ocultos.classList.contains('inputHidden');
+                //console.log("dos" , dos)
+                //console.log("add Opciones de form" , seleccionTam)
+
+            }
+
+        }
+
     }
 
     public dismiss() {
@@ -351,8 +370,8 @@ export class CartAddModalComponent implements OnInit {
 
             let valorTipoSize = (indexSize as HTMLInputElement).value
 
-            // console.log("valorTipoFormato" , valorTipoFormato)
-            if (tipoFormatIndex.digital[0] == "0") {
+            console.log("valorTipoFormato" , valorTipoSize)
+            if (tipoFormatIndex.digital[0]) {
 
                 //si size  el campo esta vacio agregame el border rojo
                 if (tipoFormatIndex.size == "") {
@@ -419,7 +438,7 @@ export class CartAddModalComponent implements OnInit {
 
         var form_de_copia_el = document.getElementById('itemCart-' + indx);
         //console.log('form_de_copia_el:', form_de_copia_el);
-
+        let tipoFormato_el_Foto = document.getElementById('select-tipo-formato-' + indx)
         let campos_ocultos = document.getElementById(
             'contenedor-de-campos-ocultables-' + indx
         );
@@ -434,8 +453,7 @@ export class CartAddModalComponent implements OnInit {
             campos_ocultos.classList.add('show');
         }
 
-        if (tipoFormato_el === 0) {
-        }
+
     }
 
     /*
