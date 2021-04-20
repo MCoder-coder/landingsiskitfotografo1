@@ -170,20 +170,6 @@ export class CartService {
         }
 
 
-        // items.forEach(element  => {
-        //     //const iD = items.findIndex(value => value.ID == items.ID)
-        //     //console.log("ID de find Index" , iD)
-        //     console.log("Foreach" , element.ID)
-        //     //this.cart.splice(iD)
-        //     this.updateLocalStorageCart();
-        //     this.totalItems.next(this.getFotosCount())
-        // });
-        //let splic = this.cart.splice(items.length)
-        //console.log("Splice" , splic)
-
-
-
-
 
 
     }

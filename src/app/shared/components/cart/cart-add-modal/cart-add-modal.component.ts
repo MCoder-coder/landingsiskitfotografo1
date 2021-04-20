@@ -116,7 +116,7 @@ export class CartAddModalComponent implements OnInit {
             foto: tempFoto,
             cantidad: 1,
             size: '',
-            digital: "0",
+            digital: 0,
         };
         console.log('newCartItem', newCartItem);
 
@@ -133,10 +133,14 @@ export class CartAddModalComponent implements OnInit {
             );
             if (seleccionTam != null) {
                 let dos = (<HTMLInputElement>document.getElementById('select-tipo-formato-' + index)).value;
-                var classContainsShow = campos_ocultos.classList.contains('inputHidden');
+                var classContainsShow = campos_ocultos.classList.contains('select-tipo-formato');
                 //console.log("dos" , dos)
                 //console.log("add Opciones de form" , seleccionTam)
-
+                if(dos === '0'){
+                    seleccionTam[0].classList.add('inputHidden');
+                }else{
+                    seleccionTam[1].classList.remove('inputHidden');
+                }
             }
 
         }
@@ -369,9 +373,9 @@ export class CartAddModalComponent implements OnInit {
             let indexSize = sizesArr[h];
 
             let valorTipoSize = (indexSize as HTMLInputElement).value
-
+            let seleccionTipoFormatoFoto = (document.getElementById('select-tipo-formato-' + h) as HTMLInputElement).value
             console.log("valorTipoFormato" , valorTipoSize)
-            if (tipoFormatIndex.digital[0]) {
+            if (seleccionTipoFormatoFoto === '0') {
 
                 //si size  el campo esta vacio agregame el border rojo
                 if (tipoFormatIndex.size == "") {

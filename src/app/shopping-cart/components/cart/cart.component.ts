@@ -63,9 +63,22 @@ export class CartComponent implements OnInit {
    * a traves de su index
    */
 
-  deleteItemCart(index) {
-    this.cartService.deleteItem(index)
-    console.log(  "delteCartComponent" ,index)
+  deleteItemCart(fakeCart) {
+        console.log("tachito de carro real" , fakeCart)
+
+
+
+
+        console.log("valor despues del carro real", fakeCart)
+
+        // for (let index = 0; index < this.cartUnique.length; index++) {
+        //     const element = this.cartUnique[index];
+        //     console.log("tachito.length" , element)
+        //     //this.cartService.deleteAllFakeCart(fakeCart.length)
+        // }
+        //this.toastr.error("Hubo un Error al Intertar eliminar todas la copias")
+
+        console.log(  "tachito" ,fakeCart)
   }
 
   /**
@@ -84,9 +97,9 @@ export class CartComponent implements OnInit {
   *
   */
 
-  opdenDialogConfirm(index: number) {
+  opdenDialogConfirm(fakeCart) {
     this.confirmationDialogService.confirm('', 'Esta seguro que desea Eliminar esta Foto')
-      .then((confirmed) => this.deleteItemCart(index) + '' + confirmed)
+      .then((confirmed) => this.deleteItemCart(fakeCart) + '' + confirmed)
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
