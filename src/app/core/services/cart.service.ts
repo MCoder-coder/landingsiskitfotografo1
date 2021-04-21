@@ -148,23 +148,36 @@ export class CartService {
     }
 
 
-
+    /**
+     * deleteAllFakeCart
+     *
+     * recibo los parametro del fakeCart para eliminarlos
+     * como no tengo la ubicacion real del indice
+     * tengo que recorrerlos
+     * creo una variable eliminarCopias y asigno la variable element
+     * que recocorre los items del parametro, llamo al carro real this.cart y llamo a la funcion
+     * indexOf para obtener el indice real de los elemento
+     * y poder eliminarlos por splice
+     * @param items
+     */
     deleteAllFakeCart(items) {
 
         console.log("items param" , items)
 
 
-
-
         for (let index = 0; index < items.length; index++) {
+            //indice de los items
             const element = items[index];
-
+            //obtengo los indices reales del cart real
             let eliminarCopias = this.cart.indexOf(element)
 
             console.log("eliminar copias" ,eliminarCopias)
+            // elimino los indices encontrados
             let splic  =  this.cart.splice(eliminarCopias , 1)
             console.log("splice" , splic)
+            //actualizo el local Storage
             this.updateLocalStorageCart();
+            //actualizo la cuenta de la cantidad total
             this.totalItems.next(this.getFotosCount());
 
         }
