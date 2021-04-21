@@ -54,43 +54,27 @@ export class CartComponent implements OnInit {
      * @param index
      *
      * Metodo que se encarca de eliminar el item del cart
-     * a traves de su index
+     * a traves de los datos del cart
      */
 
-    deleteItemCart(fakeCart  ) {
-        //console.log('tachito de carro real', fakeCart);
+    deleteItemCart(fakeCart ) {
 
-        // if (fakeCart) {
-        // let mapa = this.cart.map(items =>{
-        //         if (items.foto.ID == fakeCart.foto.ID) {
-
-
-        //             //this.cartService.deleteAllFakeCart(items)
-        //             console.log(items)
-        //             //onsole.log( "FILTRO CARRO REAL" ,items)
-        //             return items
-        //          }
-        //     })
-
-        //     //this.cartService.deleteAllFakeCart(mapa)
-        //     console.log("key mapap" , mapa)
-        //    // this.cartService.deleteAllFakeCart(mapa)
-        // }
-
-
-
+        //filtro los dato del cart real
         let filtro = this.cart.filter(items => {
+            //comparo los valores para coincidir con el id de la foto
             if (items.foto.ID == fakeCart.foto.ID) {
 
 
                 //this.cartService.deleteAllFakeCart(items)
                 console.log(items)
                 //onsole.log( "FILTRO CARRO REAL" ,items)
+                //retorno las fotos que coiniciden para dsp eliminarlas
                 return items
              }
         })
 
         console.log("filtro" , filtro)
+        //paso los datos filtrados y los elimino
         this.cartService.deleteAllFakeCart(filtro)
         //console.log('tachito', fakeCart);
     }
