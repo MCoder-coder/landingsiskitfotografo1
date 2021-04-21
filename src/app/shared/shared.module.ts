@@ -22,7 +22,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NavbarComponent,
     FooterComponent,
     CartAddModalComponent,
-
     ConfirmationDialogComponent,
 
 

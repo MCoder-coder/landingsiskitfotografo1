@@ -67,7 +67,7 @@ export class CartService {
     mergeCartItems(fakeCart: CartItem[]) {
         // nano
         let newMergedCart = this.mergeCart(this.cart, fakeCart);
-       // console.log('newMergedCart', newMergedCart);
+        // console.log('newMergedCart', newMergedCart);
         this.cart = newMergedCart;
 
         // jr
@@ -112,26 +112,10 @@ export class CartService {
      */
 
     getCartUnique() {
-        let foto = this.foto;
-        let copiasEnCart: CartItem[] = [];
-
-        // for (let index = 0; index < this.cart.length; index++) {
-        //     const cartItem = this.cart[index];
-
-        //     this.cart[index]
-
-        // }
-
-        // let cartUniqueArray = this.cart.filter( (item, index) => {
-
-        //         return this.cart.indexOf(item) === index
-        //     }
-        // )
-
         let cartUniqueArray = this.cart.filter(
             (v, i, a) => a.findIndex((t) => t.foto.ID === v.foto.ID) === i
         );
-       // console.log('CartUnique', cartUniqueArray);
+        // console.log('CartUnique', cartUniqueArray);
         return cartUniqueArray;
     }
 
@@ -147,7 +131,6 @@ export class CartService {
         this.totalItems.next(this.getFotosCount());
     }
 
-
     /**
      * deleteAllFakeCart
      *
@@ -161,30 +144,25 @@ export class CartService {
      * @param items
      */
     deleteAllFakeCart(items) {
-
-        console.log("items param" , items)
+        console.log('items param', items);
 
 
         for (let index = 0; index < items.length; index++) {
             //indice de los items
             const element = items[index];
+            console.log('elemento de service', element);
             //obtengo los indices reales del cart real
-            let eliminarCopias = this.cart.indexOf(element)
+            let eliminarCopias = this.cart.indexOf(element);
 
-            console.log("eliminar copias" ,eliminarCopias)
+            console.log('eliminar copias', eliminarCopias);
             // elimino los indices encontrados
-            let splic  =  this.cart.splice(eliminarCopias , 1)
-            console.log("splice" , splic)
+            let splic = this.cart.splice(eliminarCopias, 1);
+            console.log('splice', splic);
             //actualizo el local Storage
             this.updateLocalStorageCart();
             //actualizo la cuenta de la cantidad total
             this.totalItems.next(this.getFotosCount());
-
         }
-
-
-
-
     }
 
     deleteModalitem(deletItemModalId: any) {
@@ -197,16 +175,16 @@ export class CartService {
 
             if (cartModal.ID === deletItemModalId) {
                 //console.log(
-                 //   'borrando param deletItemModalId: ',
-                   // deletItemModalId
-               // );
+                //   'borrando param deletItemModalId: ',
+                // deletItemModalId
+                // );
                 //console.log('borrando cart id: ', cartModal.ID);
 
                 this.cart.splice(j, 1);
 
                 //console.log('Elemento eliminado: ', deletedItem);
 
-               // console.log('cart real despues de delete ', this.cart);
+                // console.log('cart real despues de delete ', this.cart);
 
                 this.updateLocalStorageCart();
                 this.totalItems.next(this.getFotosCount());
@@ -290,7 +268,7 @@ export class CartService {
                 copiasEnCart.push(cartItem);
             }
         }
-       // console.log('copias de la misma fotos', copiasEnCart);
+        // console.log('copias de la misma fotos', copiasEnCart);
 
         return copiasEnCart;
     }

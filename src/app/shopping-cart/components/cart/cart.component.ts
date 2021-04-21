@@ -11,6 +11,7 @@ import { ConfirmationDialogService } from 'src/app/core/services/confirmation-di
 import { CartModalDialogService } from 'src/app/core/services/cart.modal.service';
 import { Fotos } from 'src/app/core/models/fotos.model';
 import { Foto } from 'src/app/core/models/foto.model';
+import { filter } from 'rxjs/operators';
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
@@ -56,19 +57,42 @@ export class CartComponent implements OnInit {
      * a traves de su index
      */
 
-    deleteItemCart(fakeCart) {
-        console.log('tachito de carro real', fakeCart);
+    deleteItemCart(fakeCart  ) {
+        //console.log('tachito de carro real', fakeCart);
 
-        console.log('valor despues del carro real', fakeCart);
+        // if (fakeCart) {
+        // let mapa = this.cart.map(items =>{
+        //         if (items.foto.ID == fakeCart.foto.ID) {
 
-        // for (let index = 0; index < this.cartUnique.length; index++) {
-        //     const element = this.cartUnique[index];
-        //     console.log("tachito.length" , element)
-        //     //this.cartService.deleteAllFakeCart(fakeCart.length)
+
+        //             //this.cartService.deleteAllFakeCart(items)
+        //             console.log(items)
+        //             //onsole.log( "FILTRO CARRO REAL" ,items)
+        //             return items
+        //          }
+        //     })
+
+        //     //this.cartService.deleteAllFakeCart(mapa)
+        //     console.log("key mapap" , mapa)
+        //    // this.cartService.deleteAllFakeCart(mapa)
         // }
-        //this.toastr.error("Hubo un Error al Intertar eliminar todas la copias")
 
-        console.log('tachito', fakeCart);
+
+
+        let filtro = this.cart.filter(items => {
+            if (items.foto.ID == fakeCart.foto.ID) {
+
+
+                //this.cartService.deleteAllFakeCart(items)
+                console.log(items)
+                //onsole.log( "FILTRO CARRO REAL" ,items)
+                return items
+             }
+        })
+
+        console.log("filtro" , filtro)
+        this.cartService.deleteAllFakeCart(filtro)
+        //console.log('tachito', fakeCart);
     }
 
     /**
