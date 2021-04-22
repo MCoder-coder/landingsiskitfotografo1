@@ -30,7 +30,7 @@ export class CartService {
     private totalItems: BehaviorSubject<number> = new BehaviorSubject<number>(
         0
     );
-    private getFotoUnique: BehaviorSubject<any> = new BehaviorSubject<any>(this.cart);
+
     //inyecto servicio de encriptacion para acceder a sus metodos
     constructor(
         private localService: LocalService,
@@ -39,7 +39,6 @@ export class CartService {
         // cargo el carrito desde el local storage
         this.loadLocalStorageCart();
         this.totalItems.next(this.getFotosCount());
-       // this.getFotoUnique.next(this.getCartUnique())
     }
 
     loadLocalStorageCart() {
