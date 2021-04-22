@@ -159,7 +159,19 @@ export class CartAddModalComponent implements OnInit {
     }
 
     public dismiss() {
-        this.modalService.hide();
+
+            this.confirmationDialogService
+                .confirm('', '¿Desea Guardar los Cambios?')
+                .then((confirmed) =>     this.modalService.hide() + '' + console.log(confirmed))
+                .catch(() =>
+
+
+                    console.log(
+                        'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+                    )
+                );
+
+
     }
 
     //obtiene el formularios de copia y los caste a un formArray para poder usar las directivas formControlName y formControlArray
@@ -217,8 +229,6 @@ export class CartAddModalComponent implements OnInit {
                     'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
                 )
             );
-
-
     }
 
 
