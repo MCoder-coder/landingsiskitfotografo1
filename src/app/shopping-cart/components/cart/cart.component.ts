@@ -132,18 +132,18 @@ export class CartComponent implements OnInit {
         let digital: String;
         let impresa: String;
         this.cart.forEach((element) => {
-            console.log(element.digital);
+            //console.log(element.digital);
 
             if (element.digital == !!'1') {
-                console.log('if');
+                //console.log('if');
                 this.digital = 'Digital';
-                console.log('value if1', this.digital);
+                //console.log('value if1', this.digital);
             }
 
             if (element.digital == !!'0') {
-                console.log('if2');
+                //console.log('if2');
                 this.impresa = 'Impresa';
-                console.log('value if2', this.impresa);
+               // console.log('value if2', this.impresa);
             }
         });
 
