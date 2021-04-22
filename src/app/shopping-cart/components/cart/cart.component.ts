@@ -52,7 +52,7 @@ export class CartComponent implements OnInit {
     //     this.cartUnique = this.cartService.getCartUnique();
     // }
     ngAfterContentChecked(){
-        console.log("2")
+        console.log("Actualizo el doom")
         this.cart = this.cartService.getCart();
         this.cartUnique = this.cartService.getCartUnique();
     }
