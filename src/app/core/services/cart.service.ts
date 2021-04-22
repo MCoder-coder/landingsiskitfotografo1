@@ -2,7 +2,7 @@ import { CartItem } from './../models/cartitem.model';
 
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { Fotos } from '../models/fotos.model';
 import { LocalService } from './local.service';
@@ -31,6 +31,7 @@ export class CartService {
         0
     );
 
+    private cartitem = new BehaviorSubject(this.cart)
     //inyecto servicio de encriptacion para acceder a sus metodos
     constructor(
         private localService: LocalService,
@@ -62,6 +63,8 @@ export class CartService {
         this.localService.setJsonValue('cart', this.cart);
         // let myCart = JSON.stringify(this.cart);
         //localStorage.setItem('cart', myCart);
+
+
     }
 
     // mescla el carrito falso con el real, agregando los cambios sin duplicar nada
@@ -119,7 +122,18 @@ export class CartService {
         // console.log('CartUnique', cartUniqueArray);
         //actualizo el local Storage
 
-        return cartUniqueArray;
+
+
+        // let filtro = this.cart.filter((value , index, array) =>{
+
+        //    let find = array.findIndex((t) => t.foto.ID === value.foto.ID) === index
+        //     console.log(find)
+
+        //     return find
+        // })
+
+       //console.log("filtro " , filtro)
+        return cartUniqueArray ;
     }
 
     /**

@@ -5,7 +5,7 @@
         <div class="col-5">
             <h4 class="heading">Carrito</h4>
         </div>
-        <div class="col-7">
+        <!-- <div class="col-7">
             <div class="row text-right">
                 <div class="col-4">
                     <h6 class="mt-2">Formato</h6>
@@ -17,7 +17,7 @@
                     <h6 class="mt-2">Precio</h6>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div *ngIf="cart.length==0" style="min-height: 500px;">
         <div id="notfound">
@@ -31,9 +31,9 @@
     <div *ngIf="cart.length >= 1">
 
         <div class="row d-flex justify-content-center border-top " id="tarjeta" *ngFor="let key of Object.keys(cartUnique); let i = index"   >
-            <div class="col-5">
+            <div class="col-5" >
                 <div class="row d-flex box">
-                    <div class="card" id="card">
+                    <div class="card" id="card" >
                         <div class="imgBx">
                             <img src="{{ '//www.juanschtrefotografo.com/'  +   cartUnique[key].foto.filename}}" class="images" >
                             <button class="btncopias btn btn-primary" (click)="cartOpenModal(cartUnique[key].foto)" title="Modificar Cantidad de copias">Modificar copias</button>

@@ -35,22 +35,32 @@ export class CartComponent implements OnInit {
         private cartService: CartService,
         private confirmationDialogService: ConfirmationDialogService
     ) {
+        this.cart = this.cartService.getCart();
+        this.cartUnique = this.cartService.getCartUnique();
 
     }
 
     ngOnInit(): void {
-        console.log('carrito getCart', this.cart);
+        //console.log('carrito getCart', this.cart);
         this.formaterStringBoolean();
 
         //console.log('cart 000', this.cartService.getCartUnique());
     }
-
-
-
-
-
-
-
+    // ngAfterViewChecked(){
+    //     console.log("1")
+    //     this.cart = this.cartService.getCart();
+    //     this.cartUnique = this.cartService.getCartUnique();
+    // }
+    ngAfterContentChecked(){
+        console.log("2")
+        this.cart = this.cartService.getCart();
+        this.cartUnique = this.cartService.getCartUnique();
+    }
+    // ngAfterViewInit(){
+    //     console.log("3")
+    //     this.cart = this.cartService.getCart();
+    //     this.cartUnique = this.cartService.getCartUnique();
+    // }
 
 
 
@@ -93,6 +103,8 @@ export class CartComponent implements OnInit {
         //paso los datos filtrados y los elimino
         this.cartService.deleteAllFakeCart(filtro)
         //console.log('tachito', fakeCart);
+
+
     }
 
     /**
