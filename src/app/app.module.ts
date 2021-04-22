@@ -34,7 +34,7 @@ export function appInitFactory(token: TokenProvider) {
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
+    LayoutComponent
 
 
 

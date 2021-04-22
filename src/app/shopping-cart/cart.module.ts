@@ -11,6 +11,7 @@ import { NoRightClickDirective } from '../no-right-click.directive';
 
 import { CartComponent } from "./components/cart/cart.component";
 
+
 @NgModule({
   declarations: [
 

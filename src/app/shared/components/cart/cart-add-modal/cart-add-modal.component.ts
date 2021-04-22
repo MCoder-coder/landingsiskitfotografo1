@@ -47,6 +47,7 @@ export class CartAddModalComponent implements OnInit {
     ) {
         //creo el formulario
         this.buildOptionForm();
+
     }
 
     ngOnInit(): void {
@@ -55,7 +56,13 @@ export class CartAddModalComponent implements OnInit {
         //console.log("itemCar init" , this.fakeCart)
         //console.log("tempFOto" , this.initialState)
         //console.log('fake car ngONinit', this.fakeCart);
+        this.validationTipoFormato()
     }
+
+    ngAfterViewInit(){
+        this.validationTipoFormato()
+    }
+
 
     //formulario de opciones, pop up
     /**
@@ -124,6 +131,11 @@ export class CartAddModalComponent implements OnInit {
 
         this.fakeCart.push(newCartItem);
         //this.optionSelect.push(newCartItem)
+
+        this.validationTipoFormato()
+    }
+
+    validationTipoFormato(){
         for (let index = 0; index < this.fakeCart.length; index++) {
             const element = this.fakeCart[index];
 
@@ -144,7 +156,6 @@ export class CartAddModalComponent implements OnInit {
             }
 
         }
-
     }
 
     public dismiss() {

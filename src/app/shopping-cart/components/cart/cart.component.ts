@@ -34,18 +34,34 @@ export class CartComponent implements OnInit {
     constructor(
         private cartService: CartService,
         private confirmationDialogService: ConfirmationDialogService
-    ) {}
+    ) {
+
+    }
 
     ngOnInit(): void {
         console.log('carrito getCart', this.cart);
         this.formaterStringBoolean();
 
-        console.log('cart 000', this.cartService.getCartUnique());
+        //console.log('cart 000', this.cartService.getCartUnique());
     }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * cartOpenModal metodo para abrir el modal en el carrito
+     * @param foto
+     * @returns
+     */
 
     cartOpenModal(foto: Foto) {
         return this.cartService.addToCartPopUp(foto);
-
         //this.cartModalService.cartOpenDialogModal()
     }
 
