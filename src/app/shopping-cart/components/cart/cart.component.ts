@@ -125,7 +125,7 @@ export class CartComponent implements OnInit {
 
     opdenDialogConfirm(fakeCart) {
         this.confirmationDialogService
-            .confirm('', 'Esta seguro que desea Eliminar esta Foto')
+            .confirm('', 'Esta seguro que desea Eliminar esta Foto y todas sus Copias')
             .then((confirmed) => this.deleteItemCart(fakeCart) + '' + confirmed)
             .catch(() =>
                 console.log(

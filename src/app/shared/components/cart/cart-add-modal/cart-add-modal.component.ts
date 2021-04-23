@@ -12,6 +12,7 @@ import { ConfirmationDialogService } from 'src/app/core/services/confirmation-di
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { isEmpty } from 'rxjs/operators';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
     selector: 'app-cart-add-modal',
@@ -161,16 +162,29 @@ export class CartAddModalComponent implements OnInit {
     public dismiss() {
 
             this.confirmationDialogService
-                .confirm('', '¿Desea Guardar los Cambios?')
+                .confirm('', '¿Desea eliminar todas las Copias?')
                 .then((confirmed) =>     this.modalService.hide() + '' + console.log(confirmed))
                 .catch(() =>
 
 
                     console.log(
-                        'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
+                       'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
                     )
                 );
 
+
+    }
+
+
+    public cerrarModal(fakeCart){
+        this.confirmationDialogService
+        .confirm('', '¿Desea Guardar los Cambios?')
+        .then((confirmed) =>     this.addToCartFoto(fakeCart) + '' + this.modalService.hide())
+        .catch(() =>
+
+            this.modalService.hide()
+
+        );
 
     }
 
@@ -201,7 +215,7 @@ export class CartAddModalComponent implements OnInit {
             console.log("values dsp de delete", fakeCart)
             // mensaje de informacion de eliminacion de las copias
             this.toastr.info("Se Eliminaron todas las copias ")
-            this.dismiss()
+            //this.dismiss()
 
         } else {
             console.log("value else", fakeCart)
@@ -221,13 +235,11 @@ export class CartAddModalComponent implements OnInit {
     opdenDialogConfirmDeleteAll(cartItem) {
         this.confirmationDialogService
             .confirm('', 'Esta seguro que desea Eliminar Todas Las Copias')
-            .then((confirmed) => this.deletAll(cartItem) + '' + console.log(confirmed))
+            .then((confirmed) => this.deletAll(cartItem) + '' + this.modalService.hide())
             .catch(() =>
 
+            this.modalService.hide()
 
-                console.log(
-                    'User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'
-                )
             );
     }
 
@@ -312,7 +324,7 @@ export class CartAddModalComponent implements OnInit {
 
     opdenDialogConfirm(cartItem: CartItem) {
         this.confirmationDialogService
-            .confirm('', 'Esta seguro que desea Eliminar esta Foto')
+            .confirm('', 'Esta seguro que desea Eliminar esta Copia')
             .then((confirmed) => this.delete(cartItem) + '' + confirmed)
             .catch(() =>
                 console.log(
@@ -335,19 +347,23 @@ export class CartAddModalComponent implements OnInit {
         // this.validarFakeCart()
         //console.log('fake cart btn add', fakeCart);
 
+        if (this.fakeCart.length < 0) {
+               this.modalService.hide()
+        }
 
         if (this.fakeCart.length > 0) {
 
             if (this.validarFakeCart() == true) {
                 this.cartService.mergeCartItems(fakeCart);
                 this.toastr.success('Agregado Correctamente');
-                this.dismiss()
+                this.modalService.hide()
             } else {
                 this.toastr.error('Debe Seleccionar una Medida')
             }
 
 
         } else {
+
             this.toastr.error('Debe agregar almenos una copia.');
         }
 

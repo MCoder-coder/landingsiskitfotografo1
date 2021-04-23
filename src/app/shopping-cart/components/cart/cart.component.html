@@ -1,10 +1,10 @@
 
 
-<div class="container px-4 py-5 mx-auto mt-5" id="doom" >
-    <div class="row d-flex justify-content-center">
-        <div class="col-5">
+<div class="" id="doom" >
+    <div class="">
+        <!-- <div class="col-5">
             <h4 class="heading">Carrito</h4>
-        </div>
+        </div> -->
         <!-- <div class="col-7">
             <div class="row text-right">
                 <div class="col-4">
@@ -28,15 +28,19 @@
             </div>
         </div>
     </div>
-    <div *ngIf="cart.length >= 1">
+    <div *ngIf="cart.length >= 1" class="wrapper">
 
-        <div class="row d-flex justify-content-center border-top " id="tarjeta" *ngFor="let key of Object.keys(cartUnique); let i = index"   >
-            <div class="col-5" >
-                <div class="row d-flex box">
-                    <div class="card" id="card" >
+        <div class="  " id="tarjeta" *ngFor="let key of Object.keys(cartUnique); let i = index"   >
+            <div class=" " >
+                <div class=" box">
+                    <div class="card" >
                         <div class="imgBx">
                             <img src="{{ '//www.juanschtrefotografo.com/'  +   cartUnique[key].foto.filename}}" class="images" >
-                            <button class="btncopias btn btn-primary" (click)="cartOpenModal(cartUnique[key].foto)" title="Modificar Cantidad de copias">Modificar copias</button>
+                             <button class="btncopias btn btn-primary" (click)="cartOpenModal(cartUnique[key].foto)" title="Modificar Cantidad de copias">Modificar copias</button>
+
+                        <button class="btn trash" title="Eliminar Foto y todas sus Copias" (click)="opdenDialogConfirm(cartUnique[key])">
+                            Eliminar Copias
+                            </button>
                         </div>
 
                     </div>
@@ -46,7 +50,7 @@
                     </div>
                 </div>
             </div>
-             <div class="my-auto col-7">
+             <!-- <div class="my-auto col-7">
                 <div class="row text-right">
                     <div class="col-4">
                         <p class="mob-text" *ngIf="cart[key].digital == false">{{impresa}}</p>
@@ -68,15 +72,12 @@
                     <div class="col-4 mt-5 pl-5">
 
 
-                        <button class="btn trash" (click)="opdenDialogConfirm(cartUnique[key])">
-                        <fa-icon [icon]="googleIcon"></fa-icon>
-                        </button>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <button class=" btn btn-blue " style="float: right;" routerLink="/formcompra">Comprar</button>
+
 
     </div>
-
+    <button class=" btn btn-compra " style="float: right;" routerLink="/formcompra" title="Comprar">Comprar</button>
 </div>
