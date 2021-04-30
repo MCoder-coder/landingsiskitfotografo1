@@ -42,7 +42,7 @@ export function appInitFactory(token: TokenProvider) {
 
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     InfiniteScrollModule,
     FormsModule,
     SharedModule,
