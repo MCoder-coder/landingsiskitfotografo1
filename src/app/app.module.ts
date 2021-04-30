@@ -24,6 +24,8 @@ import { CartAddModalComponent } from './shared/components/cart/cart-add-modal/c
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationDialogService } from './core/services/confirmation-dialog.service';
 import { CartModalDialogService } from './core/services/cart.modal.service';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 // La función exportada para ejecutar los proveedores antes que arranque angular
 export function appInitFactory(token: TokenProvider) {
@@ -51,7 +53,13 @@ export function appInitFactory(token: TokenProvider) {
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    })
 
   ],
   providers: [
