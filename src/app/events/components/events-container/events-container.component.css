@@ -10,3 +10,8 @@ div [class^="col-"] {
 .pagination {
     justify-content: center;
 }
+
+.caja{
+    display: flex;
+    justify-content: center;
+}

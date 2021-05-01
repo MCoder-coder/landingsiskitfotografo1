@@ -10,7 +10,7 @@
     <div>
         <h2 style="font-family: 'Parisienne', cursive; font-size: 60px; text-align: center; color: white;">Eventos </h2>
     </div>
-    <div class="row eventos-page" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
+    <div class="row eventos-page caja" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()">
 
         <app-event class=" col-md-3 col-sm-6 mt-3" *ngFor="let evento of eventosArray" (eventClicked)="clickEvent($event)" [evento]="evento">
 

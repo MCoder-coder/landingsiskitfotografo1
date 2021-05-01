@@ -69,7 +69,7 @@ export class EventDetailComponent implements OnInit {
         this.isLoading = false;
         this.photo = '';
         //condicional para pantallas moviles
-        if (window.innerWidth < 768) {
+        if (window.innerWidth < 360) {
             this.isMobile = true;
         } else {
             this.isMobile = false;

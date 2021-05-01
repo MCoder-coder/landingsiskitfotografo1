@@ -2,7 +2,7 @@
 
 <!-- Photo Grid -->
 <div class="container-fluid ">
-    <div class="row no-gutters " infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()" *ngIf="!isMobile">
+    <div class="row no-gutters  caja" infiniteScroll [infiniteScrollDistance]="2" (scrolled)="onScroll()" *ngIf="!isMobile">
         <div class="column">
             <ng-container *ngFor="let foto of fotosArray let i = index">
                 <div class="box" *ngIf="i % 4 === 0">
