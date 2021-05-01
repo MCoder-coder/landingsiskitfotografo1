@@ -92,9 +92,9 @@ export class EventDetailComponent implements OnInit {
             .getEventDetailService(ID, page)
             .subscribe((eventosresponse: any) => {
                 this.isLoading = false;
-                //  console.log(eventosresponse, 'evento detalle');
+                  console.log(eventosresponse, 'evento detalle');
                 //this.fotosArray = eventosresponse;
-                // console.log(' RESPONSE: ', eventosresponse);
+                 console.log(' RESPONSE: ', eventosresponse);
 
                 //console.log('eventosresponse.data.fotos: ', eventosresponse);
                 //console.log('this.fotosArray: ', this.fotosArray.length);
