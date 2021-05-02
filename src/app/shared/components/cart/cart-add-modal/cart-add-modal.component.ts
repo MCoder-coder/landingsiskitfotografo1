@@ -17,7 +17,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 @Component({
     selector: 'app-cart-add-modal',
     templateUrl: './cart-add-modal.component.html',
-    styleUrls: ['./cart-add-modal.component.scss'],
+    styleUrls: ['./cart-add-modal.component.css'],
 })
 export class CartAddModalComponent implements OnInit {
     //variable para obtener los datos de la primera foto obtenida y mostrarla en el modal

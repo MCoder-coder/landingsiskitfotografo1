@@ -1,15 +1,19 @@
 img {
-  max-height: 30%;
-  max-width: 45%;
-  filter: drop-shadow(4px 5px 6px #444);
-  position: inherit;
-  float: left;
-  margin-left: -19px;
-  /* margin-left: 150px; */
-  margin-right: 20px;
-  filter: drop-shadow(5px 5px 10px #444);
-  border: 6px solid #ddd;
-  border-radius: 6px;
+    max-height: 31rem;
+    max-width: 26rem;
+    filter: drop-shadow(4px 5px 6px #444);
+    position: inherit;
+    float: left;
+    /* margin-left: -19px; */
+    /* margin-right: 20px; */
+    /* filter: drop-shadow(5px 5px 10px #444); */
+    /* border: 6px solid #ddd; */
+    border-radius: 6px;
+    transition: transform .2s
+}
+
+img:hover{
+    transform: scale(1.1);
 }
 
 input {
@@ -21,13 +25,13 @@ input {
 .btn {
   color: #fff;
   cursor: pointer;
-  // display: block;
+
   font-size: 16px;
   font-weight: 400;
 
-  &:hover {
+  /* :hover {
     text-decoration: none;
-  }
+  } */
 }
 .box {
   position: relative;
@@ -195,3 +199,115 @@ p {
   display: inherit;
   background-color: white;
 }
+
+
+
+
+/*
+  ##Dispositivo = Desktops
+  ##Resolucion = 1281pxo mayorresolusion desktops
+*/
+
+@media (min-width: 1281px) {
+
+
+
+  }
+
+  /*
+    ##Dispositivo = Laptops, Desktops
+    ##Resolucion = B/w 1025px to 1280px
+  */
+
+  @media (min-width: 1025px) and (max-width: 1280px) {
+
+
+
+  }
+
+  /*
+    ##Dispositivo = Tablets, Ipads (vertical)
+    ##Resolucion = B/w 768px to 1024px
+  */
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+
+
+  }
+
+  /*
+    ##Dispositivo = Tablets, Ipads (horizontal)
+    ##Resolucion = B/w 768px to 1024px
+  */
+
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: horizontal) {
+
+
+
+  }
+
+  /*
+    ##Dispositivo = Tablets de baja resolucion y telefnos Mobiles (horizontal)
+    ##Resolucion = B/w 481px to 767px
+  */
+
+  @media (min-width: 481px) and (max-width: 767px) {
+
+
+
+  }
+
+  /*
+    ##Dispositivo = Mayoria de telefonos moviles (vertical)
+    ##Resolucion = B/w 320px to 479px
+  */
+
+  @media (min-width: 320px) and (max-width: 480px) {
+
+    /* .caja{
+
+    }
+
+    .modal-header{
+
+    }
+
+    .modal-content{
+        height: 44rem;
+        display: flex;
+        display: table-cell;
+    }
+
+    img{
+        margin-left: 215px;
+        height: 19rem;
+    }
+
+    .filas {
+        position: relative;
+        top: 16rem;
+        right: 14rem;
+    }
+
+    .contenedor-campos-ocultables{
+        position: relative;
+        bottom: 190px;
+        left: 7rem;
+    }
+
+    .cantidad{
+        position: relative;
+        left: 190px;
+        top: -44px;
+    }
+
+    .dropdown-menu {
+        position: relative;
+        top: 11%;
+        min-width: 6rem;
+      } */
+
+  }
+
+
+
