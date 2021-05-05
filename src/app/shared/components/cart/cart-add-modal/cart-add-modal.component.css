@@ -1,3 +1,5 @@
+
+
 img {
     max-height: 31rem;
     max-width: 26rem;
@@ -952,6 +954,8 @@ p {
   */
 
 @media (min-width: 320px) and (max-width: 480px) {
+
+
     img {
         max-width: 10rem;
         filter: drop-shadow(4px 5px 6px #444);
@@ -1096,6 +1100,7 @@ p {
         background: #ECE9E6;  /* fallback for old browsers */
         background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        overflow-y: scroll;
 
     }
 
